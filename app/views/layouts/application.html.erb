@@ -18,12 +18,17 @@
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">UrbEx</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  <%= flash.now[:notice] %>
   <div class="container">
-    ...
-  </div>
-</nav>
-  <div class="container">
-<%= yield %>
+    <%= yield %>
   </div>
 </body>
 </html>
