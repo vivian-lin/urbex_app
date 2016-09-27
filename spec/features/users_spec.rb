@@ -31,4 +31,20 @@ RSpec.feature "Users", type: :feature do
       end
     end
   end
+
+  context 'View my profile page' do
+    Steps 'Go to sign up page' do
+      Given 'I am an authenticated user' do
+        visit '/users/sign_up'
+        fill_in 'user[email]', with: 'joe@joe.com'
+        fill_in 'user[password]', with: 'joejoe'
+        fill_in 'user[password_confirmation]', with: 'joejoe'
+        click_button 'Sign up'
+        click_link 'Profile'
+      end
+      Then 'I can see my information on a profile page' do
+        expect(page).to have_content('joe@joe.com')
+      end
+    end
+  end
 end
