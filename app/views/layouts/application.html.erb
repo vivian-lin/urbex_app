@@ -26,9 +26,15 @@
       </ul>
     </div>
   </nav>
-  <%= flash.now[:notice] %>
+
   <div class="container">
+
+    <!-- add alert and notices for Devise installation -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
   </div>
 </body>
 </html>
