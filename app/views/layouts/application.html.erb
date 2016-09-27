@@ -25,6 +25,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
+        <li><%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %></li>
         <% if !current_user.nil? %><li><%= link_to "Sign out", destroy_user_session_path, method: :delete%></li><% end %>
       </ul>
     </div>
