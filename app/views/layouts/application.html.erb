@@ -17,11 +17,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">UrbEx</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="container">
+
     <!-- add alert and notices for Devise installation -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-<%= yield %>
+
+    <%= yield %>
+
   </div>
 </body>
 </html>

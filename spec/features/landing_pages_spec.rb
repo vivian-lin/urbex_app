@@ -12,4 +12,17 @@ RSpec.feature "LandingPages", type: :feature do
      end # ends steps
    end # ends context
 
-  end # ends rspec
+
+  context 'Going to an about page' do
+    Steps 'I can click the nav-bar link called About' do
+      Given 'I am on the landing page' do
+        visit '/'
+      end # ends given
+      Then 'I am taken to the about page' do
+        click_link('About')
+        expect(page).to have_content "About UrbEx"
+      end # ends then
+    end # ends steps
+  end # ends context
+
+end # ends rspec
