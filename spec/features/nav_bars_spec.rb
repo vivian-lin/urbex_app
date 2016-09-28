@@ -10,7 +10,7 @@ RSpec.feature "NavBars", js:true, type: :feature do
         click_link 'Sign Up'
       end # ends the and
       Then 'I am taken to the Sign Up page where I can fill in my information' do
-        fill_in 'Email', with: 'test3@me.com'
+        fill_in 'Email', with: 'test17@me.com'
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
       end # end of then
@@ -18,7 +18,7 @@ RSpec.feature "NavBars", js:true, type: :feature do
         click_button 'Sign up'
       end # end of then
       And 'You will be signed up and be redirected to the home page' do
-        expect(page).to have_content 'Welcome! You have signed up successfully.'
+        expect(page).to have_content "Welcome! You have signed up successfully."
       end # end of and
       Then 'You can click sign out and your session will end' do
         click_link 'Sign out'
@@ -31,21 +31,24 @@ RSpec.feature "NavBars", js:true, type: :feature do
 
   context 'I can log in to my account through the nav bar' do
     Steps 'I click the Sign In link to log into my account' do
-      Given 'I am on the index page' do
-        visit '/'
+      Given 'I am signed up' do
+        sign_up('whatever@email.com', 'whatever')
       end # ends Given
+      Then 'I can sign out' do
+        click_link 'Sign out'
+      end
       And 'I can click the Sign In link on the nav bar to sign in' do
         click_link 'Sign In'
       end # ends And
       Then 'I will be sent to the sign in form and enter my information' do
-        fill_in 'Email', with: 'test3@me.com'
-        fill_in 'Password', with: 'password'
-      end # ends then
+        fill_in 'Email', with: 'whatever@email.com'
+        fill_in 'Password', with: 'whatever'
+      end # ends t hen
       Then 'Click the Log in button to sign in' do
         click_button 'Log in'
       end # ends then
-      And 'I will be redirected to the index page and see a flash message' do
-        expect(page).to have_content 'Signed in successfully.'
+      And 'I will be redirected to the profile page and see a flash message' do
+        expect(page).to have_content "Signed in successfully."
       end # ends and
     end # ends steps
   end # ends context
