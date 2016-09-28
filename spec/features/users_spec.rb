@@ -50,4 +50,22 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
+  context 'I can edit my user profile' do
+    Steps 'To edit user profile' do
+      Given 'I have signed up' do
+        sign_up('joe@joe.com', 'password', 'joejoe')
+      end
+      Then 'I can see a link in the nav bar called Edit Profile, and edit my profile' do
+        click_link 'Edit Profile'
+        fill_in 'user[username]', with: 'AmazingTechnicolorDreamCoat'
+        fill_in 'user[user_description]', with: 'I like musicals.'
+        fill_in 'user[password]', with: 'amazing'
+        fill_in 'user[password_confirmation]', with: 'amazing'
+        fill_in 'user[current_password]', with: 'password'
+        click_button 'Update'
+        expect(page).to have_content('Your account has been updated successfully.')
+        expect(page).to have_content('AmazingTechnicolorDreamCoat')
+      end
+    end
+  end
 end

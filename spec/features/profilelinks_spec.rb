@@ -7,7 +7,7 @@ RSpec.feature "Profilelinks", js:true, type: :feature do
         visit '/'
       end # ends given
       Given 'We can sign up' do
-        sign_up('whatever@email.com', 'whatever')
+        sign_up('whatever@email.com', 'whatever', 'username')
       end # ends Given
       Given 'I am on the profile page' do
         visit '/profile'
