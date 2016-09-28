@@ -25,6 +25,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
         <li><a href="/about/index">About</a></li>
+        <% if !current_user.nil? %>
+          <li><%= link_to "Your Profile Page", profile_path %></li>
+        <% end %>
         <% if current_user.nil? %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <% end %>
