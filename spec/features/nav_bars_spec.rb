@@ -32,7 +32,7 @@ RSpec.feature "NavBars", js:true, type: :feature do
   context 'I can log in to my account through the nav bar' do
     Steps 'I click the Sign In link to log into my account' do
       Given 'I am signed up' do
-        sign_up('whatever@email.com', 'whatever')
+        sign_up('whatever@email.com', 'whatever', 'username')
       end # ends Given
       Then 'I can sign out' do
         click_link 'Sign out'
