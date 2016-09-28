@@ -40,10 +40,10 @@ RSpec.feature "Users", type: :feature do
         fill_in 'user[password]', with: 'joejoe'
         fill_in 'user[password_confirmation]', with: 'joejoe'
         click_button 'Sign up'
-        click_link 'Profile'
       end
       Then 'I can see my information on a profile page' do
-        expect(page).to have_content('joe@joe.com')
+        expect(page).to have_content('Profile')
+        expect(page).to have_content('Email: joe@joe.com')
       end
     end
   end
