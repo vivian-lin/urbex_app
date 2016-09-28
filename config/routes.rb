@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get '/profile' => 'profile#show'
 
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users
 

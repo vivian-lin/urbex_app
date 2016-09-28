@@ -47,4 +47,20 @@ RSpec.feature "Users", type: :feature do
       end
     end
   end
+
+  context 'Add username on Sign Up' do
+    Steps 'Go to Sign Up page' do
+      Given 'I have filled out the Sign Up form' do
+        visit '/users/sign_up'
+        fill_in 'user[username]', with: 'kittycat'
+        fill_in 'user[email]', with: 'cat@cat.com'
+        fill_in 'user[password]', with: 'catcat'
+        fill_in 'user[password_confirmation]', with: 'catcat'
+        click_button 'Sign up'
+      end
+      Then 'I am welcomed by my username' do
+        expect(page).to have_content('Welcome kittycat!')
+      end
+    end
+  end
 end
