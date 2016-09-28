@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}
 
+  get 'about/index'
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
