@@ -1,0 +1,25 @@
+<h1>Search</h1>
+
+<form action="/search/index" method="get">
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@users.each do |user|%>
+      <tr>
+        <td><%=user.username%></td>
+        <td><%=user.email%></td>
+        <td><%=user.user_description%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

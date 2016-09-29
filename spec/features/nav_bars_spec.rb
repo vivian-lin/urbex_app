@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "NavBars",  type: :feature do
+RSpec.feature "NavBars", type: :feature do
   context 'I am on the index page' do
     Steps 'When I am on the index page I can choose to sign up' do
       Given 'I am on the index page' do
@@ -11,6 +11,7 @@ RSpec.feature "NavBars",  type: :feature do
       end # ends the and
       Then 'I am taken to the Sign Up page where I can fill in my information' do
         fill_in 'Email', with: 'test17@me.com'
+        fill_in 'Username', with: 'username'
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
       end # end of then
@@ -43,7 +44,7 @@ RSpec.feature "NavBars",  type: :feature do
       Then 'I will be sent to the sign in form and enter my information' do
         fill_in 'Email', with: 'whatever@email.com'
         fill_in 'Password', with: 'whatever'
-      end # ends t hen
+      end # ends then
       Then 'Click the Log in button to sign in' do
         click_button 'Log in'
       end # ends then

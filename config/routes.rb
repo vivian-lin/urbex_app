@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   resources :adventures
+
+  get 'search/index'
+
   get '/profile' => 'profile#show'
 
   devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}

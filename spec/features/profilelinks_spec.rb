@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Profilelinks",  type: :feature do
+RSpec.feature "Profilelinks", type: :feature do
   context 'Once signed in you can access a profile page' do
     Steps 'When I am signed in I can click profile page link' do
       Given 'I am on the index page' do
