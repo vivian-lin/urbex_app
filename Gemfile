@@ -39,6 +39,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Add devise for user accounts
 gem 'devise', '~> 4.2'
 gem 'omniauth-twitter'
+gem 'paperclip', '~> 5.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

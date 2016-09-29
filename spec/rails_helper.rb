@@ -40,6 +40,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
+    #Capybara.current_driver = :selenium
+
     if config.use_transactional_fixtures?
       raise(<<-MSG)
         Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
@@ -58,7 +60,6 @@ RSpec.configure do |config|
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
-
   config.before(:each, type: :feature) do
   # :rack_test driver's Rack app under test shares database connection
   # with the specs, so continue to use transaction strategy for speed.
