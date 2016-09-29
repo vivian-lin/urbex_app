@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "NavBars", js:true, type: :feature do
+RSpec.feature "NavBars", type: :feature do
   context 'I am on the index page' do
     Steps 'When I am on the index page I can choose to sign up' do
       Given 'I am on the index page' do
