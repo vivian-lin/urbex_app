@@ -13,7 +13,7 @@ RSpec.feature "Profilelinks", type: :feature do
         visit '/profile'
       end # ends given
       Then 'I can click Your Profile Page link and access my profile' do
-        click_link "Your Profile Page"
+        click_link "Profile"
       end # ends Then
       And 'I can see all my profile information' do
         expect(page).to have_content "Your Profile"

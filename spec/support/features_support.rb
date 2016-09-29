@@ -11,7 +11,7 @@ module FeatureSupport
   end
 
   def sign_out
-    click_link 'Sign out'
+    click_link 'Sign Out'
     expect(page).to have_content('Signed out successfully')
   end
 end

@@ -20,12 +20,14 @@ RSpec.feature "NavBars", type: :feature do
       end # end of then
       And 'You will be signed up and be redirected to the home page' do
         expect(page).to have_content "Welcome! You have signed up successfully."
+        expect(page).to have_content "Welcome, username!"
       end # end of and
       Then 'You can click sign out and your session will end' do
-        click_link 'Sign out'
+        click_link 'Sign Out'
       end # ends then
       And 'You will be redirected to the home page and see a flash message' do
         expect(page).to have_content "Signed out successfully."
+        expect(page).to have_no_content("Welcome, username!")
       end # ends and
     end # end of steps
   end # end of context
@@ -36,7 +38,7 @@ RSpec.feature "NavBars", type: :feature do
         sign_up('whatever@email.com', 'whatever', 'username')
       end # ends Given
       Then 'I can sign out' do
-        click_link 'Sign out'
+        click_link 'Sign Out'
       end
       And 'I can click the Sign In link on the nav bar to sign in' do
         click_link 'Sign In'

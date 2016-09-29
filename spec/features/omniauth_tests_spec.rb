@@ -26,7 +26,7 @@ RSpec.feature "OmniauthTests", js:true, type: :feature do
         expect(page).to have_content('Email: email@email.com')
       end
       Then 'I can sign out, then sign back in with my Twitter account' do
-        click_link 'Sign out'
+        click_link 'Sign Out'
         click_link 'Sign in with Twitter'
         expect(page).to have_content('Signed in!')
       end
