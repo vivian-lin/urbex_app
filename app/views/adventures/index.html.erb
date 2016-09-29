@@ -23,8 +23,10 @@
         <td><%= adventure.description %></td>
         <td><%= adventure.user.username %></td>
         <td><%= link_to 'Show', adventure %></td>
-        <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
-        <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !current_user.nil? %>
+          <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
+          <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,6 @@
 
 <br>
 
-<%= link_to 'New Adventure', new_adventure_path %>
+<% if !current_user.nil? %>
+  <%= link_to 'New Adventure', new_adventure_path %>
+<% end %>
