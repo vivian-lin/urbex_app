@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Adventures</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Directions</th>
+      <th>Description</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adventures.each do |adventure| %>
+      <tr>
+        <td><%= adventure.name %></td>
+        <td><%= adventure.address %></td>
+        <td><%= adventure.directions %></td>
+        <td><%= adventure.description %></td>
+        <td><%= adventure.user.username %></td>
+        <td><%= link_to 'Show', adventure %></td>
+        <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
+        <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adventure', new_adventure_path %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "OmniauthTests", js:true, type: :feature do
+RSpec.feature "OmniauthTests", type: :feature do
   context 'Signing in with Twitter' do
     Steps 'Go to index page to sign in with Twitter' do
       Given 'I am on the index page' do

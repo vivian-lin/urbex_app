@@ -1,0 +1,29 @@
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @adventure.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @adventure.address %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @adventure.directions %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @adventure.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @adventure.user.username %>
+</p>
+
+<%= link_to 'Edit', edit_adventure_path(@adventure) %> |
+<%= link_to 'Back', adventures_path %>
