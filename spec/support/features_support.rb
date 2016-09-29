@@ -10,4 +10,8 @@ module FeatureSupport
     click_button 'Sign up'
   end
 
+  def sign_out
+    click_link 'Sign out'
+    expect(page).to have_content('Signed out successfully')
+  end
 end
