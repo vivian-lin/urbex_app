@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'search/index'
-
+  get '/profile/:username' => 'profile#view'
   get '/profile' => 'profile#show'
 
   devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}

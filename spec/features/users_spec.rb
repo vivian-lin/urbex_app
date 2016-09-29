@@ -78,19 +78,24 @@ RSpec.feature "Users", type: :feature do
         sign_out
         sign_up('3@test.com', 'password', 'Susan')
         sign_out
-        sign_up('4@test.com', 'password', 'Bobby Bob')
+        sign_up('4@test.com', 'password', 'Bobby_Bob')
         sign_out
       end
       Then 'I visit the search page and search for users' do
         click_link 'Search'
         expect(page).to have_content('Bob')
-        expect(page).to have_content('Bobby Bob')
+        expect(page).to have_content('Bobby_Bob')
         expect(page).to have_content('Joe')
         expect(page).to have_content('Susan')
         fill_in 'search', with: 'Bob'
         click_button 'Search'
         expect(page).to have_content('Bob')
-        expect(page).to have_content('Bobby Bob')
+        expect(page).to have_content('Bobby_Bob')
+      end
+      Then 'I can click on a user and view their profile' do
+        click_link 'Bobby_Bob'
+        expect(page).to have_content("Bobby_Bob's Profile")
+        expect(page).to have_content("4@test.com")
       end
     end
   end
