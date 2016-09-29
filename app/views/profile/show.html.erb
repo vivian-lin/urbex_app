@@ -1,6 +1,10 @@
 <h1>Your Profile</h1>
 <h2>Welcome <%= @user.username %>!</h2>
 
+<p>
+  <%= image_tag @user.image.url(:thumb) %>
+</p>
+
 <strong>Email: </strong><%= @user.email %>
 <br>
 <strong>About <%=@user.username%>: </strong><%=@user.user_description%>

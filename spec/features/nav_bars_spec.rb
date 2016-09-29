@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.feature "NavBars", type: :feature do
   context 'I am on the index page' do
     Steps 'When I am on the index page I can choose to sign up' do
@@ -10,6 +11,7 @@ RSpec.feature "NavBars", type: :feature do
         click_link 'Sign Up'
       end # ends the and
       Then 'I am taken to the Sign Up page where I can fill in my information' do
+<<<<<<< HEAD
         fill_in 'Email', with: 'test17@me.com'
         fill_in 'Username', with: 'username'
         fill_in 'Password', with: 'password'
@@ -29,6 +31,8 @@ RSpec.feature "NavBars", type: :feature do
         expect(page).to have_content "Signed out successfully."
         expect(page).to have_no_content("Welcome, username!")
       end # ends and
+        expect(page).to have_content "Sign up"
+      end # end of and
     end # end of steps
   end # end of context
 
@@ -43,15 +47,8 @@ RSpec.feature "NavBars", type: :feature do
       And 'I can click the Sign In link on the nav bar to sign in' do
         click_link 'Sign In'
       end # ends And
-      Then 'I will be sent to the sign in form and enter my information' do
-        fill_in 'Email', with: 'whatever@email.com'
-        fill_in 'Password', with: 'whatever'
-      end # ends then
-      Then 'Click the Log in button to sign in' do
-        click_button 'Log in'
-      end # ends then
-      And 'I will be redirected to the profile page and see a flash message' do
-        expect(page).to have_content "Signed in successfully."
+      Then 'I will be sent to the sign in form ' do
+        expect(page).to have_content "Log in"
       end # ends and
     end # ends steps
   end # ends context
