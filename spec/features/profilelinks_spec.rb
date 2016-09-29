@@ -7,7 +7,7 @@ RSpec.feature "Profilelinks", type: :feature do
         visit '/'
       end # ends given
       Given 'We can sign up' do
-        sign_up('whatever@email.com', 'whatever', 'Super Cool Person')
+        sign_up('joe@joe.com', 'joejoe', 'joejoe')
       end # ends Given
       Given 'I am on the profile page' do
         visit '/profile'
@@ -16,7 +16,7 @@ RSpec.feature "Profilelinks", type: :feature do
         click_link "Your Profile Page"
       end # ends Then
       And 'I can see all my profile information' do
-        expect(page).to have_content "Super Cool Person"
+        expect(page).to have_content "joejoe"
       end # ends and
     end # ends steps
   end #end context
@@ -27,11 +27,7 @@ RSpec.feature "Profilelinks", type: :feature do
         visit '/'
       end # ends given
       Given 'We can sign up' do
-        #sign_up('mom@mom.com', 'mommom',"SuperMom")
-        visit '/users/sign_up'
-        #fill_in 'Email', with: "email"
-        click_button 'Sign up'
-        save_and_open_page
+        sign_up('joe@joe.com', 'joejoe', 'joejoe')
       end # ends Given
       And 'I can see all my profile information' do
         expect(page).to have_selector('img')

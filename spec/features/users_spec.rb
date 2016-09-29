@@ -50,4 +50,48 @@ RSpec.feature "Users", type: :feature do
     end
   end
 
+  context 'I can edit my user profile' do
+    Steps 'To edit user profile' do
+      Given 'I have signed up' do
+        sign_up('joe@joe.com', 'password', 'joejoe')
+      end
+      Then 'I can see a link in the nav bar called Edit Profile, and edit my profile' do
+        click_link 'Edit Profile'
+        fill_in 'user[username]', with: 'AmazingTechnicolorDreamCoat'
+        fill_in 'user[user_description]', with: 'I like musicals.'
+        fill_in 'user[password]', with: 'amazing'
+        fill_in 'user[password_confirmation]', with: 'amazing'
+        fill_in 'user[current_password]', with: 'password'
+        click_button 'Update'
+        expect(page).to have_content('Your account has been updated successfully.')
+        expect(page).to have_content('AmazingTechnicolorDreamCoat')
+      end
+    end
+  end
+
+  context 'I can search for users' do
+    Steps 'To search for users' do
+      Given 'There are many users signed up' do
+        sign_up('1@test.com', 'password', 'Joe')
+        sign_out
+        sign_up('2@test.com', 'password', 'Bob')
+        sign_out
+        sign_up('3@test.com', 'password', 'Susan')
+        sign_out
+        sign_up('4@test.com', 'password', 'Bobby Bob')
+        sign_out
+      end
+      Then 'I visit the search page and search for users' do
+        click_link 'Search'
+        expect(page).to have_content('Bob')
+        expect(page).to have_content('Bobby Bob')
+        expect(page).to have_content('Joe')
+        expect(page).to have_content('Susan')
+        fill_in 'search', with: 'Bob'
+        click_button 'Search'
+        expect(page).to have_content('Bob')
+        expect(page).to have_content('Bobby Bob')
+      end
+    end
+  end
 end
