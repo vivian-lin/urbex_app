@@ -34,4 +34,21 @@ RSpec.feature "Profilelinks", type: :feature do
       end # ends and
     end # ends steps
   end #end context
+
+  context 'Once signed in you can add an adventure from your profile page' do
+    Steps 'When I am signed in I am taken to profile page where I can choose to create a new adventure' do
+      Given 'I am on the index page' do
+        visit '/'
+      end # ends given
+      Given 'We can sign up' do
+        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
+      end # ends Given
+      And 'I can click a button that takes me to the new adventure form' do
+        click_link('Add New Adventure')
+        expect(page).to have_content('New Adventure')
+      end # ends and
+    end # ends steps
+  end #end context
+
+
 end # ends rspec
