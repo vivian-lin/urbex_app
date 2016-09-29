@@ -15,6 +15,9 @@ class AdventuresController < ApplicationController
   # GET /adventures/new
   def new
     @adventure = Adventure.new
+    @categories_for_select = Category.all.map do |category|
+      [category.category_name, category.id]
+    end
   end
 
   # GET /adventures/1/edit
@@ -69,6 +72,6 @@ class AdventuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id)
     end
 end

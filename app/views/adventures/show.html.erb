@@ -25,6 +25,11 @@
   <%= @adventure.user.username %>
 </p>
 
+<p>
+  <strong>Category:</strong>
+  <%= @adventure.category.category_name %>
+</p>
+
 <% if !current_user.nil? %>
   <%= link_to 'Edit', edit_adventure_path(@adventure) %>
 <% end %>
