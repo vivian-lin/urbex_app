@@ -22,7 +22,7 @@ RSpec.feature "NavBars", type: :feature do
         sign_up('whatever@email.com', 'whatever', 'username')
       end # ends Given
       Then 'I can sign out' do
-        click_link 'Sign out'
+        click_link 'Sign Out'
       end
       And 'I can click the Sign In link on the nav bar to sign in' do
         click_link 'Sign In'
