@@ -15,4 +15,10 @@ module FeatureSupport
     click_link 'Sign Out'
     expect(page).to have_content('Signed out successfully')
   end
+
+  def create_categories(category_name)
+    visit '/categories/new'
+    fill_in 'category[category_name]', with: category_name
+    click_button 'Create Category'
+  end
 end
