@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   resources :categories
   get 'admin/index'
   get 'admin/update'
