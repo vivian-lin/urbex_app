@@ -1,37 +1,51 @@
 require 'rails_helper'
 
 RSpec.feature "AdventurePages", type: :feature do
-  context 'I am on the adventures page' do
-    Steps 'I can post about a place that went on an exploration' do
-      Given 'I am signed up' do
+  context 'Creating a new Adventure' do
+    Steps 'I can create a new Adventure' do
+      Given 'I am signed up and there are Categories created' do
         sign_up('whatever@email.com', 'whatever', 'username')
-      end # ends Given
-      And 'There are categories created' do
-        create_categories('Haunted')
-        create_categories('Tunnels')
+        create_category('Haunted')
+        create_category('Tunnels')
       end
-      Then 'I will click a link to get to the adventure page' do
+      Then 'I can create a new Adventure' do
         click_link 'Adventures'
-      end
-      Then 'I can create a new adventure by clicking New Adventure' do # end then
         click_link 'New Adventure'
-      end # end Then
-      Then 'I fill in the information about the place I explored' do
-        fill_in 'Name', with: 'Strawberry Hill'
-        fill_in 'Address', with: '12345 Strawberry Hill'
-        fill_in 'Directions', with: 'Go down yellow brick road, watch out for wicked witch of the west she wants your ruby slippers.'
-        fill_in 'Description', with: 'Beautiful hill with strawberries with lots of art and great shadows'
-        find_field('adventure[category_id]').find('option[2]').text
-      end # ends then
-      And 'I will click the button create adventure when I want to submit the post' do
-        click_button 'Create Adventure'
-      end # ends and
-      Then 'The page redirects me to the show page so I can see what I just posted' do
-        expect(page).to have_content 'Strawberry Hill'
-        expect(page).to have_content '12345 Strawberry Hill'
-        expect(page).to have_content 'Go down yellow brick road, watch out for wicked witch of the west she wants your ruby slippers.'
-        expect(page).to have_content 'Beautiful hill with strawberries with lots of art and great shadows'
-      end # ends then
+        create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
+      end
+      Then 'I can see all the info about my Adventure' do
+        expect(page).to have_content 'adventure_name'
+        expect(page).to have_content 'adventure_address'
+        expect(page).to have_content 'adventure_directions'
+        expect(page).to have_content 'adventure_description'
+        expect(page).to have_content 'Haunted'
+      end
     end # ends steps
   end # ends context
+
+  context 'Searching for Adventures' do
+    Steps 'Searching by category or keyword' do
+      Given 'There are categories, adventures, and a user created' do
+        sign_up('email@email.com', 'password', 'username')
+        create_category('Tunnels')
+        create_category('Buildings')
+        create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
+        create_adventure('test_name', 'adventure_address2', 'adventure_directions2', 'adventure_description2', 'option[2]')
+        sign_out
+        click_link 'Adventures'
+      end
+      Then 'I can browse adventures by category' do
+        click_link 'Tunnels'
+        expect(page).to have_content 'Tunnels Adventures'
+        expect(page).to have_content 'adventure_name'
+      end
+      Then 'I can also search adventures by keywords' do
+        click_link 'Adventures'
+        fill_in 'search', with: 'test_name'
+        click_button 'Search'
+        expect(page).to have_content 'test_name'
+        expect(page).to have_no_content 'adventure_name'
+      end
+    end
+  end
 end # ends rspec
