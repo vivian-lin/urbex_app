@@ -1,5 +1,19 @@
-<h1>Listing Adventures</h1>
+<h1>Search Adventures</h1>
 
+<label>Browse by category:</label>
+<ul>
+  <%@categories.each do |category|%>
+    <li><a href="/categories/<%=category.id%>" target="_blank"><%=category.category_name%></a></li>
+  <%end%>
+</ul>
+
+<label>Search by keywords:</label>
+<form action="/adventures" method="get">
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form>
+
+<h3>All Adventures</h3>
 <table class="table">
   <thead>
     <tr>
@@ -8,6 +22,7 @@
       <th>Directions</th>
       <th>Description</th>
       <th>User</th>
+      <th>Category</th>
       <th>Photo</th>
       <th colspan="3"></th>
     </tr>
@@ -21,8 +36,8 @@
         <td><%= adventure.directions %></td>
         <td><%= adventure.description %></td>
         <td><%= adventure.user.username %></td>
-        <td><%= image_tag adventure.image.url(:thumb) %>
-</td>
+        <td><%= adventure.category.category_name %></td>
+        <td><%= image_tag adventure.image.url(:thumb) %></td>
         <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>

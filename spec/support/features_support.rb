@@ -16,22 +16,26 @@ module FeatureSupport
     expect(page).to have_content('Signed out successfully')
   end
 
-  def create_admin
-    # create a default admin user
-    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
-
-    user.add_role :admin
-
+  def create_category(category_name)
+    visit '/categories/new'
+    fill_in 'category[category_name]', with: category_name
+    click_button 'Create Category'
   end
 
-  def new_adventure
-    visit 'adventures/new'
-    fill_in 'Name', with: 'Strawberry Hill'
-    fill_in 'Address', with: '12345 Strawberry Hill'
-    fill_in 'Directions', with: 'Go down yellow brick road, watch out for wicked witch of the west she wants your ruby slippers.'
-    fill_in 'Description', with: 'Beautiful hill with strawberies with lots of art and great shadows'
+  def create_adventure(name, address, directions, description, option)
+    visit '/adventures/new'
+    fill_in 'adventure[name]', with: name
+    fill_in 'adventure[address]', with: address
+    fill_in 'adventure[directions]', with: directions
+    fill_in 'adventure[description]', with: description
+    find_field('adventure[category_id]').find(:xpath, option).select_option
     attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
+  end
+
+  def create_admin
+    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+    user.add_role :admin
   end
 
 end

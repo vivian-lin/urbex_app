@@ -26,8 +26,11 @@
 </p>
 
 <p>
-  <strong>photo:</strong>
-  <%= image_tag @adventure.image.url(:thumb) %>
+
+<strong>Category:</strong>
+<%= @adventure.category.category_name %>
+<strong>Photo:</strong>
+<%= image_tag @adventure.image.url(:thumb) %>
 </p>
 
 <% if !current_user.nil? %>
