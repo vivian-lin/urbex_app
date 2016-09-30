@@ -54,7 +54,10 @@
         current_user.email + ' (' + current_user.roles.pluck(:name).join(", ") + ')'
         end %>
 
-        <%= link_to "Admin Page", admin_index_path %>
+        <% if !current_user.nil? && current_user.has_role?(:admin) %>
+          <%= link_to "Admin page", admin_path, :class => "btn btn-xs btn-default" %>
+        <% end %>
+
 
       </div>
 

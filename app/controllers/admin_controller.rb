@@ -8,7 +8,7 @@ class AdminController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.remove_role(:owner)
+    @user.remove_role(:user)
     @user.add_role(:admin)
     redirect_to '/admin'
   end

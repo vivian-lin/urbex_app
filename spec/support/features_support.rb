@@ -15,4 +15,13 @@ module FeatureSupport
     click_link 'Sign out'
     expect(page).to have_content('Signed out successfully')
   end
+
+  def create_admin
+    # create a default admin user
+    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+
+    user.add_role :admin
+
+  end
+
 end

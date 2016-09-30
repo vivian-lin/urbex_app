@@ -13,11 +13,11 @@
     <tr>
       <td><%= user.email %></td>
       <td><%= user.roles[0].name %></td>
-      <td>
+      <td><% if !user.has_role?(:admin) %>
         <%= form_tag("/admin/" + user.id.to_s + "?role=admin", method: :PUT) do %>
           <input class="btn btn-default" type="submit" value="Make Admin"/>
         <% end %>
-      </td>
+      <% end %></td>
     </tr>
   <% end %>
   </tbody>
