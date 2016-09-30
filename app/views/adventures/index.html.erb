@@ -7,7 +7,6 @@
   <%end%>
 </ul>
 
-
 <label>Search by keywords:</label>
 <form action="/adventures" method="get">
   <input type="text" name="search">
@@ -24,6 +23,7 @@
       <th>Description</th>
       <th>User</th>
       <th>Category</th>
+      <th>Photo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -37,6 +37,7 @@
         <td><%= adventure.description %></td>
         <td><%= adventure.user.username %></td>
         <td><%= adventure.category.category_name %></td>
+        <td><%= image_tag adventure.image.url(:thumb) %></td>
         <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
@@ -50,5 +51,5 @@
 <br>
 
 <% if !current_user.nil? %>
-  <%= link_to 'New Adventure', new_adventure_path %>
+  <%= link_to 'New Adventure', new_adventure_path, :class => "btn btn-default" %>
 <% end %>

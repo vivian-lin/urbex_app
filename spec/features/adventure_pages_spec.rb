@@ -8,7 +8,7 @@ RSpec.feature "AdventurePages", type: :feature do
         create_category('Haunted')
         create_category('Tunnels')
       end
-      Then 'I can create a new Adventure' do
+      Then 'I can create a new Adventure with an image' do
         click_link 'Adventures'
         click_link 'New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
@@ -19,10 +19,10 @@ RSpec.feature "AdventurePages", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
+        expect(page).to have_selector('img')
       end
     end # ends steps
   end # ends context
-
   context 'Searching for Adventures' do
     Steps 'Searching by category or keyword' do
       Given 'There are categories, adventures, and a user created' do

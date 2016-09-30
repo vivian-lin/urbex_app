@@ -29,6 +29,13 @@ module FeatureSupport
     fill_in 'adventure[directions]', with: directions
     fill_in 'adventure[description]', with: description
     find_field('adventure[category_id]').find(option).text
+    attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
   end
+
+  def create_admin
+    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+    user.add_role :admin
+  end
+
 end
