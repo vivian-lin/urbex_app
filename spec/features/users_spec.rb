@@ -20,7 +20,7 @@ RSpec.feature "Users", type: :feature do
       end
       Then 'I can enter my email and password' do
         sign_up('joe@joe.com', 'joejoe', 'joejoe')
-        click_link 'Sign out'
+        click_link 'Sign Out'
         expect(page).to have_content('Signed out successfully')
       end
     end
@@ -44,7 +44,7 @@ RSpec.feature "Users", type: :feature do
         sign_up('joe@joe.com', 'joejoe', 'joejoe')
       end
       Then 'I am welcomed by my username and description' do
-        expect(page).to have_content('Welcome joejoe!')
+        expect(page).to have_content('Welcome, joejoe!')
         expect(page).to have_content('I love to visit haunted places with my dog. We get scared.')
       end
     end
