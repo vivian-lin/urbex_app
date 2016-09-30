@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :adventures
+  resources :adventures 
 
   get 'search/index'
   get '/profile/:username' => 'profile#view'

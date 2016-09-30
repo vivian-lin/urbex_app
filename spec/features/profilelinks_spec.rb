@@ -50,5 +50,23 @@ RSpec.feature "Profilelinks", type: :feature do
     end # ends steps
   end #end context
 
+  context 'I see a map on my profile page with markers of the adventures I have created' do
+    Steps 'When I am signed in I am taken to profile page where I can choose to create a new adventure' do
+      Given 'I start on the index page' do
+        visit '/'
+      end # ends given
+      And 'I can sign up' do
+        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
+      end # ends Given
+      And 'I create a new adventure' do
+        click_link('Add New Adventure')
+        new_adventure
+      end # ends and
+      Then 'I go back to my profile page and see the map with my new adventure marker' do
+        click_link('Back')
+        expect(page.find_by_id('adventureMap')).to_no eq nil
+      end # ends Then
+    end # ends steps
+  end #end context
 
 end # ends rspec

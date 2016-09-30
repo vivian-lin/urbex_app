@@ -30,7 +30,27 @@
   <%= image_tag @adventure.image.url(:thumb) %>
 </p>
 
+<hr>
+<!-- Map starts -->
+<div id="adventureMap" data-adventure-id="<%=@adventure.id%>">testing</div>
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({
+    provider: {},
+    internal: {id: 'adventureMap'}
+  },
+  function() {
+    markers = handler.addMarkers(<%=raw @pindrop.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+  }
+);
+</script>
+<!-- Map ends  -->
+
 <% if !current_user.nil? %>
   <%= link_to 'Edit', edit_adventure_path(@adventure) %>
 <% end %>
 | <%= link_to 'Back', adventures_path %>
+<hr>

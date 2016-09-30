@@ -9,8 +9,26 @@ class AdventuresController < ApplicationController
 
   # GET /adventures/1
   # GET /adventures/1.json
+  # Added show method info got google map api
   def show
+    @adventures = Adventure.find(params[:id])
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
   end
+
+  #create map location for ajax map load
+  # def map_location
+  #   @apartment = Adventure.find(params[:adventure_id])
+  #   @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+  #     marker.lat adventure.latitude
+  #     marker.lng adventure.longitude
+  #     marker.infowindow adventure.address
+  #   end
+  #   render json: @hash.to_json
+  # end
 
   # GET /adventures/new
   def new
@@ -69,6 +87,6 @@ class AdventuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :image)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :image, :latitude, :longitude)
     end
 end

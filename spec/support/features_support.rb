@@ -13,15 +13,14 @@ module FeatureSupport
 
   def sign_out
     click_link 'Sign Out'
-    expect(page).to have_content('Signed out successfully')
   end
 
   def new_adventure
     visit 'adventures/new'
-    fill_in 'Name', with: 'Strawberry Hill'
-    fill_in 'Address', with: '12345 Strawberry Hill'
-    fill_in 'Directions', with: 'Go down yellow brick road, watch out for wicked witch of the west she wants your ruby slippers.'
-    fill_in 'Description', with: 'Beautiful hill with strawberies with lots of art and great shadows'
+    fill_in 'Name', with: 'Learn Academy'
+    fill_in 'Address', with: '3803 Ray Street, San Diego, CA  92104'
+    fill_in 'Directions', with: 'Corner of Ray and North Park'
+    fill_in 'Description', with: 'Cool place with rotating art exhibits and really cool people that hang out and make cool stuff'
     attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
   end
