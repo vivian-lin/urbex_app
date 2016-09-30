@@ -8,7 +8,7 @@ RSpec.feature "AdventurePages", type: :feature do
         create_category('Haunted')
         create_category('Tunnels')
       end
-      Then 'I can create a new Adventure with an image' do
+      Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
         click_link 'New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')

@@ -28,7 +28,7 @@ module FeatureSupport
     fill_in 'adventure[address]', with: address
     fill_in 'adventure[directions]', with: directions
     fill_in 'adventure[description]', with: description
-    find_field('adventure[category_id]').find(option).text
+    find_field('adventure[category_id]').find(:xpath, option).select_option
     attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
   end
