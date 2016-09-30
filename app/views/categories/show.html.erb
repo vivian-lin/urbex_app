@@ -5,5 +5,13 @@
   <%= @category.category_name %>
 </p>
 
+<strong><%= @category.category_name %> Adventures</strong>
+<ul>
+  <%@category.adventures.each do |adventure|%>
+    <li><%=adventure.name%></li>
+  <%end%>
+</ul>
+
+<br><br>
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

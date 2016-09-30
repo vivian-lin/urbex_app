@@ -1,7 +1,20 @@
-<p id="notice"><%= notice %></p>
+<h1>Search Adventures</h1>
 
-<h1>Listing Adventures</h1>
+<label>Browse by category:</label>
+<ul>
+  <%@categories.each do |category|%>
+    <li><a href="/categories/<%=category.id%>" target="_blank"><%=category.category_name%></a></li>
+  <%end%>
+</ul>
 
+
+<label>Search by keywords:</label>
+<form action="/adventures" method="get">
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form>
+
+<h3>All Adventures</h3>
 <table class="table">
   <thead>
     <tr>
