@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'admin/index'
+
+  get 'admin/update'
+
   resources :adventures
 
   get 'search/index'
   get '/profile/:username' => 'profile#view'
   get '/profile' => 'profile#show'
+
+  get "admin" => "admin#index"
+  put "admin/:id" => "admin#update"
+  patch "admin/:id" => "admin#update"
 
   devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}
 

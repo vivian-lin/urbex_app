@@ -49,7 +49,23 @@
   <div class="container">
     <!-- add alert and notices for Devise installation -->
     <p class="notice"><%= notice %></p>
+
+    <div class="row">
+      <div class="col-md-8"></div>
+      <div class="col-md-4">
+        <%= if !current_user.nil?
+        current_user.email + ' (' + current_user.roles.pluck(:name).join(", ") + ')'
+        end %>
+
+        <% if !current_user.nil? && current_user.has_role?(:admin) %>
+          <%= link_to "Admin page", admin_path, :class => "btn btn-xs btn-default" %>
+        <% end %>
+
+
+      </div>
+
     <%= yield %>
+
 
   </div>
 </body>

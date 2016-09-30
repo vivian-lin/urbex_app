@@ -16,6 +16,14 @@ module FeatureSupport
     expect(page).to have_content('Signed out successfully')
   end
 
+  def create_admin
+    # create a default admin user
+    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+
+    user.add_role :admin
+
+  end
+
   def new_adventure
     visit 'adventures/new'
     fill_in 'Name', with: 'Strawberry Hill'
@@ -25,4 +33,5 @@ module FeatureSupport
     attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
   end
+
 end

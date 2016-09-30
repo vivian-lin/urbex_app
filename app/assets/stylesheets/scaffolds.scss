@@ -6,6 +6,10 @@ body {
   line-height: 18px;
 }
 
+footer {
+  margin-top: 60px;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -25,10 +29,6 @@ a {
     color: #666;
   }
 
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
 }
 
 div {

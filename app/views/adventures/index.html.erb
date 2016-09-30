@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Adventures</h1>
 
 <table class="table">
@@ -38,5 +36,5 @@
 <br>
 
 <% if !current_user.nil? %>
-  <%= link_to 'New Adventure', new_adventure_path %>
+  <%= link_to 'New Adventure', new_adventure_path, :class => "btn btn-default" %>
 <% end %>
