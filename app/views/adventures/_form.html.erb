@@ -28,6 +28,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :adventure_image %> <br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
     <%= f.label :user_id %>  <%=current_user.username%> <br>
      <%=f.hidden_field :user_id, :value => current_user.id %>
   </div>
