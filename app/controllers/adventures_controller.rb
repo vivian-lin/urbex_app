@@ -11,10 +11,26 @@ class AdventuresController < ApplicationController
       @adventures = Adventure.search(params[:search])
     end
     @categories = Category.all
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
   end
-
+  #gets the info for google map for the adventure show page and creates json hash
   def map_location
     @adventure = Adventure.find(params[:adventure_id])
+    @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+    render json: @hash.to_json
+  end
+
+  #gets the info for google maps for the adventure index page and creates json hash
+  def all_map_locations
+    @adventure = Adventure.all
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude

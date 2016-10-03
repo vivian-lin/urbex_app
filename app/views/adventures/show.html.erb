@@ -58,18 +58,13 @@
             original: -> image { image.url() },
             thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
 
-
         </tbody>
       </table>
   </div>
-
 </div>
-
-
 <hr>
 <!-- Map starts -->
 <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
-  ...Google map will appear here
 </div>
 <!-- Map ends  -->
 
