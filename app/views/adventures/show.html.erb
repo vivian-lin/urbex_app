@@ -1,37 +1,70 @@
 
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <strong>Name:</strong>
+      <%= @adventure.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @adventure.name %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @adventure.address %>
+    </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @adventure.address %>
-</p>
+    <p>
+      <strong>Directions:</strong>
+      <%= @adventure.directions %>
+    </p>
 
-<p>
-  <strong>Directions:</strong>
-  <%= @adventure.directions %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @adventure.description %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @adventure.description %>
-</p>
+    <p>
+      <strong>User:</strong>
+      <%= @adventure.user.username %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @adventure.user.username %>
-</p>
+    <p>
+    <strong>Category:</strong>
+    <%= @adventure.category.category_name %>
+    </p>
 
-<p>
 
-<strong>Category:</strong>
-<%= @adventure.category.category_name %>
-<strong>Photo:</strong>
-<%= image_tag @adventure.image.url(:thumb) %>
-</p>
+    <p>
+      <%= image_tag @adventure.image.url(:medium) %>
+    </p>
+</div>
+
+  <div class="col-md-6">
+
+      <table class="gallery">
+        <tbody>
+
+          <%= render_gallery_for @images[0..2],
+            original: -> image { image.url() },
+            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
+
+          <%= render_gallery_for @images[3..5],
+            original: -> image { image.url() },
+            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
+
+          <%= render_gallery_for @images[6..8],
+            original: -> image { image.url() },
+            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
+
+          <%= render_gallery_for @images[9..11],
+            original: -> image { image.url() },
+            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
+
+
+        </tbody>
+      </table>
+  </div>
+
+</div>
+
 
 <% if !current_user.nil? %>
   <%= link_to 'Edit', edit_adventure_path(@adventure) %>
