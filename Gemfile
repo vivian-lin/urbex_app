@@ -40,6 +40,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 4.2'
 gem 'omniauth-twitter'
 gem 'paperclip', '~> 5.1'
+gem 'cancancan'
+gem 'rolify'
 
 # add gems for google maps
 gem 'geocoder'

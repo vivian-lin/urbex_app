@@ -15,13 +15,26 @@ module FeatureSupport
     click_link 'Sign Out'
   end
 
-  def new_adventure
-    visit 'adventures/new'
-    fill_in 'Name', with: 'Learn Academy'
-    fill_in 'Address', with: '3803 Ray Street, San Diego, CA  92104'
-    fill_in 'Directions', with: 'Corner of Ray and North Park'
-    fill_in 'Description', with: 'Cool place with rotating art exhibits and really cool people that hang out and make cool stuff'
+  def create_category(category_name)
+    visit '/categories/new'
+    fill_in 'category[category_name]', with: category_name
+    click_button 'Create Category'
+  end
+
+  def create_adventure(name, address, directions, description, option)
+    visit '/adventures/new'
+    fill_in 'adventure[name]', with: name
+    fill_in 'adventure[address]', with: address
+    fill_in 'adventure[directions]', with: directions
+    fill_in 'adventure[description]', with: description
+    find_field('adventure[category_id]').find(:xpath, option).select_option
     attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
     click_button 'Create Adventure'
   end
+
+  def create_admin
+    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+    user.add_role :admin
+  end
+
 end

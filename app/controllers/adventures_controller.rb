@@ -1,10 +1,16 @@
 class AdventuresController < ApplicationController
+  load_and_authorize_resource
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
   # GET /adventures
   # GET /adventures.json
   def index
-    @adventures = Adventure.all
+    if params[:search].nil?
+      @adventures = Adventure.all
+    else
+      @adventures = Adventure.search(params[:search])
+    end
+    @categories = Category.all
   end
 
   # GET /adventures/1
@@ -33,10 +39,16 @@ class AdventuresController < ApplicationController
   # GET /adventures/new
   def new
     @adventure = Adventure.new
+    @categories_for_select = Category.all.map do |category|
+      [category.category_name, category.id]
+    end
   end
 
   # GET /adventures/1/edit
   def edit
+    @categories_for_select = Category.all.map do |category|
+      [category.category_name, category.id]
+    end
   end
 
   # POST /adventures
@@ -87,6 +99,6 @@ class AdventuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :image, :latitude, :longitude)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :image, :latitude, :longitude)
     end
 end
