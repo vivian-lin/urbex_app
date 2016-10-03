@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :categories
   get 'admin/index'
   get 'admin/update'
-  resources :adventures
+  
+  resources :adventures do
+    get 'map_location'
+  end
 
   get 'search/index'
   get '/profile/:username' => 'profile#view'

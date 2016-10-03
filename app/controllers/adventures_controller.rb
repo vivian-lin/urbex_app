@@ -13,6 +13,16 @@ class AdventuresController < ApplicationController
     @categories = Category.all
   end
 
+  def map_location
+    @adventure = Adventure.find(params[:adventure_id])
+    @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+    render json: @hash.to_json
+  end
+
   # GET /adventures/1
   # GET /adventures/1.json
   # Added show method info got google map api

@@ -35,21 +35,9 @@
 
 <hr>
 <!-- Map starts -->
-<div id="adventureMap" data-adventure-id="<%=@adventure.id%>">testing</div>
-<script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({
-    provider: {},
-    internal: {id: 'adventureMap'}
-  },
-  function() {
-    markers = handler.addMarkers(<%=raw @pindrop.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
-  }
-);
-</script>
+<div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
+  ...Google map will appear here
+</div>
 <!-- Map ends  -->
 
 <% if !current_user.nil? %>
