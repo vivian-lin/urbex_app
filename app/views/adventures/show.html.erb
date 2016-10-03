@@ -27,6 +27,14 @@
     </p>
 
     <p>
+
+    <strong>Category:</strong>
+    <%= @adventure.category.category_name %>
+    <strong>Photo:</strong>
+    <%= image_tag @adventure.image.url(:thumb) %>
+    </p>
+
+    <p>
       <%= image_tag @adventure.image.url(:medium) %>
     </p>
 </div>
@@ -58,6 +66,7 @@
   </div>
 
 </div>
+
 
 <% if !current_user.nil? %>
   <%= link_to 'Edit', edit_adventure_path(@adventure) %>

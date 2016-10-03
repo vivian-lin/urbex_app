@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-
+  resources :categories
   get 'admin/index'
-
   get 'admin/update'
-
   resources :adventures
 
   get 'search/index'
