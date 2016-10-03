@@ -33,18 +33,9 @@ class AdventuresController < ApplicationController
       marker.lng adventure.longitude
       marker.infowindow adventure.address
     end
+    # TODO: add more images here or else all images will be the same.
+    @images = [@adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image ]
   end
-
-  #create map location for ajax map load
-  # def map_location
-  #   @apartment = Adventure.find(params[:adventure_id])
-  #   @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
-  #     marker.lat adventure.latitude
-  #     marker.lng adventure.longitude
-  #     marker.infowindow adventure.address
-  #   end
-  #   render json: @hash.to_json
-  # end
 
   # GET /adventures/new
   def new

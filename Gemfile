@@ -42,6 +42,7 @@ gem 'omniauth-twitter'
 gem 'paperclip', '~> 5.1'
 gem 'cancancan'
 gem 'rolify'
+gem 'hermitage'
 
 # add gems for google maps
 gem 'geocoder'
