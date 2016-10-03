@@ -16,7 +16,7 @@ class AdventuresController < ApplicationController
   # GET /adventures/1
   # GET /adventures/1.json
   def show
-    # TODO: add more images here
+    # TODO: add more images here or else all images will be the same.
     @images = [@adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image ]
   end
 
