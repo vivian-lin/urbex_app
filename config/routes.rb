@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   resources :categories
   get 'admin/index'
   get 'admin/update'
-  
+
   resources :adventures do
+    # sets the route for google map
     get 'map_location'
+    get 'all_map_locations', on: :collection
   end
 
   get 'search/index'

@@ -1,3 +1,4 @@
+//sets google zoom and places markers
 function placeMakers(data) {
   markers = handler.addMarkers(data);
   handler.bounds.extendWith(markers);
@@ -5,6 +6,7 @@ function placeMakers(data) {
   handler.getMap().setZoom(12);
 }
 // commented out the YOU position
+// calls placeMakers function
 function showLocations(data) {
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -21,12 +23,12 @@ function showLocations(data) {
       placeMakers(data)
   }
 }
-
-function createGmap(data) {
+// create google map data
+function createGmap(data, selector) {
   handler = Gmaps.build('Google');
   handler.buildMap({
       provider: {},
-      internal: {id: 'adventureMap'}
+      internal: {id: selector}
     },
     function() {
       showLocations(data);
@@ -39,7 +41,6 @@ function loadAndCreateGmap() {
   if ($('#adventureMap').length > 0) {
     // Access the data-apartment-id attribute on the map element
     var adventureId = $('#adventureMap').attr('data-adventure-id');
-
 // '/map_location was added and the route was created'
     $.ajax({
       dataType: 'json',
@@ -47,7 +48,7 @@ function loadAndCreateGmap() {
       method: 'GET',
       data: '',
       success: function(data) {
-        createGmap(data);
+        createGmap(data, 'adventureMap');
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert("Getting map data failed: " + errorThrown);
@@ -55,6 +56,29 @@ function loadAndCreateGmap() {
     });
   }
 };
+// Creates the json object for all locations on the adventure index
+function loadAndCreateGmapForAllLocations() {
+  // Only load map data if we have a map on the page
+  if ($('#allAdventuresMap').length > 0) {
+// '/map_location was added and the route was created'
+    $.ajax({
+      dataType: 'json',
+      url: '/adventures/all_map_locations',
+      method: 'GET',
+      data: '',
+      success: function(data) {
+        createGmap(data, 'allAdventuresMap');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("Getting map data failed: " + errorThrown);
+      }
+    });
+  }
+};
+// Create the map on the locations index page
+$(document).on('ready',
+  loadAndCreateGmapForAllLocations
+);
 
 // Create the map when the page loads the first time
 $(document).on('ready', loadAndCreateGmap);
