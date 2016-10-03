@@ -238,12 +238,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise (~> 4.2)
-<<<<<<< HEAD
   geocoder
   gmaps4rails
-=======
   hermitage
->>>>>>> master
   jbuilder (~> 2.0)
   jquery-rails
   launchy
