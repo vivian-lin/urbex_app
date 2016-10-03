@@ -1,6 +1,7 @@
 class Adventure < ActiveRecord::Base
   has_and_belongs_to_many :users
   belongs_to :category
+  has_many :posts
   validates :category_id, presence: true
   resourcify
 

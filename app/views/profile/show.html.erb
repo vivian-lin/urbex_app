@@ -14,11 +14,10 @@
     <p>Followers will appear here...</p>
   </div>
   <div class="col-md-8">
-    <h3>Your Adventures</h3>
     <% if !current_user.nil? %>
       <%= link_to 'Add New Adventure', new_adventure_path, :class =>'btn btn-default' %>
     <% end %>
-    <button class="button"><%=link_to "New Post", new_post_path%></button>
+    <h3>Your Adventures</h3>
     <% @posts.each do |post| %>
       <div class="post_wrapper">
         <h2 class="title"><%=link_to post.title, post%></h2>

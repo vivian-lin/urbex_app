@@ -9,7 +9,8 @@ class ProfileController < ApplicationController
     else
       redirect_to '/users/sign_in'
     end
-    @posts = Post.all.order('created_at DESC')
+    id = current_user.id
+    @posts = Post.where(user_id: id).order('created_at DESC')
   end
 
   def view
