@@ -14,7 +14,7 @@ function showLocations(data) {
       // data[data.length] = {
       //   lat: position.coords.latitude,
       //   lng: position.coords.longitude,
-      //   infowindow: "You!",
+      //   infowindow: "You!",  
       // };
       placeMakers(data);
     });
