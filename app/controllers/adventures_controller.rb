@@ -53,8 +53,34 @@ class AdventuresController < ApplicationController
       marker.lng adventure.longitude
       marker.infowindow adventure.address
     end
-    # TODO: add more images here or else all images will be the same.
-    @images = [@adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image ]
+    #empty array that will hold arrays of images
+    @images = []
+    #stating the var for the loop
+    index = 0
+    #while there is a imgae uploded that is greater than 0 upload them into the array
+    while index < @adventure.images.length do
+      #array of images that they are now put into
+      set_of_images = []
+      #shoveling the images into the array
+      set_of_images << @adventure.images[index]
+      #adding an image to the index to the loop to now compare to the next loop
+      index = index + 1
+      #comparing if the index is less than the amount of photos uploaded
+      if index < @adventure.images.length
+        #shoveling the images into the new uploaded array
+        set_of_images << @adventure.images[index]
+        #adding the photo into the index loop to now compair for the next loop
+        index = index + 1
+      end
+      if index < @adventure.images.length
+        #shoveling the images into the new uploaded array
+        set_of_images << @adventure.images[index]
+        #adding the photo into the index loop to now compair for the next loop
+        index = index + 1
+      end
+      #adding one array of pictures into the images corresponding to a row in the view
+      @images << set_of_images
+    end
   end
 
   # GET /adventures/new
@@ -80,6 +106,16 @@ class AdventuresController < ApplicationController
 
     respond_to do |format|
       if @adventure.save
+        # TODO: more comments
+        if params[:images]
+          params[:images].each do |image|
+            #1/0
+            img = Image.create(image: image)
+            #@adventure.images.create(image_file_name: image)
+            @adventure.images << img
+
+          end
+        end
         format.html { redirect_to @adventure, notice: 'Adventure was successfully created.' }
         format.json { render :show, status: :created, location: @adventure }
       else
@@ -94,6 +130,15 @@ class AdventuresController < ApplicationController
   def update
     @adventure.users << current_user
     respond_to do |format|
+      if params[:images]
+        params[:images].each do |image|
+          #1/0
+          img = Image.create(image: image)
+          #@adventure.images.create(image_file_name: image)
+          @adventure.images << img
+
+        end
+      end
       if @adventure.update(adventure_params)
         format.html { redirect_to @adventure, notice: 'Adventure was successfully updated.' }
         format.json { render :show, status: :ok, location: @adventure }
@@ -122,6 +167,9 @@ class AdventuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :image, :latitude, :longitude)
+
+      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :images, :latitude, :longitude)
+
     end
+
 end
