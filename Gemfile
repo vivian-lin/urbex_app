@@ -44,6 +44,11 @@ gem 'cancancan'
 gem 'rolify'
 gem 'hermitage'
 
+# add gems for google maps
+gem 'geocoder'
+gem 'gmaps4rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -32,10 +32,6 @@
     <%= file_field_tag "images[]", type: :file, multiple: true  %>
   </div>
   <div class="field">
-    <%= f.label :user_id %>  <%=current_user.username%> <br>
-    <%=f.hidden_field :user_id, :value => current_user.id %>
-  </div>
-  <div class="field">
     <%= f.label :choose_a_category %> <br>
     <%= select(:adventure, :category_id, @categories_for_select)%>
   </div><br>

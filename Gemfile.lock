@@ -77,8 +77,10 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    geocoder (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     hashie (3.4.6)
     hermitage (0.0.7)
       coffee-rails
@@ -236,6 +238,8 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise (~> 4.2)
+  geocoder
+  gmaps4rails
   hermitage
   jbuilder (~> 2.0)
   jquery-rails

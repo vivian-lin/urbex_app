@@ -15,4 +15,23 @@ RSpec.describe User, type: :model do
     expect(user2.email).to eq 'bob@bob.com'
   end
 
+  it 'has adventures' do
+    user = User.new
+    user.email = 'bob@bob.com'
+    user.password = 'bobbob'
+    user.username = 'bobbobbob'
+    user.save
+    category = Category.new
+    category.save
+    adventure = Adventure.new
+    adventure.name = "Adventure name"
+    adventure.address = "Adventure address"
+    adventure.directions = "Adventure directions"
+    adventure.category = category
+    expect(adventure.save).to be true
+    user.adventures << adventure
+    user2 = User.find_by_email('bob@bob.com')
+    expect(user2.adventures.count).to be 1
+    expect(user2.adventures[0].name).to eq 'Adventure name'
+  end
 end

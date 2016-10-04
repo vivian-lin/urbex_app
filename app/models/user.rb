@@ -1,17 +1,24 @@
 class User < ActiveRecord::Base
+  #User can have many Adventures, can belong to many Adventures
+  has_and_belongs_to_many :adventures
+  #adds roles to Users
   rolify
+  #adds User avatar
   has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  #added devise (login/logout functionality)
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  #requires that Users add a username
   validates :username, presence: true
+  #requires that usernames must be unique
   validates :username, uniqueness: true
-
+  #assigns a role automatically after creating User
   after_create :assign_role
+  #User has many Posts, Posts belong_to a User
+  has_many :posts
 
+  #assigns role(:user) when User is created
   def assign_role
     add_role(:user)
   end

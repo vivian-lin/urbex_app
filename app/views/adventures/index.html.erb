@@ -21,7 +21,6 @@
       <th>Address</th>
       <th>Directions</th>
       <th>Description</th>
-      <th>User</th>
       <th>Category</th>
       <th>Photo</th>
       <th colspan="3"></th>
@@ -35,21 +34,25 @@
         <td><%= adventure.address %></td>
         <td><%= adventure.directions %></td>
         <td><%= adventure.description %></td>
-        <td><%= adventure.user.username %></td>
         <td><%= adventure.category.category_name %></td>
         <td><%= image_tag adventure.images.first.image.url(:thumbnail) %></td>
         <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
-          <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if current_user.roles.name == 'admin' %>
+            <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<hr>
+<!-- Map starts -->
+<div id="allAdventuresMap"></div>
+<!-- Map ends  -->
 <br>
-
 <% if !current_user.nil? %>
   <%= link_to 'New Adventure', new_adventure_path, :class => "btn btn-default" %>
 <% end %>
