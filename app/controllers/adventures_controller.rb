@@ -11,11 +11,46 @@ class AdventuresController < ApplicationController
       @adventures = Adventure.search(params[:search])
     end
     @categories = Category.all
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+  end
+  #gets the info for google map for the adventure show page and creates json hash
+  def map_location
+    @adventure = Adventure.find(params[:adventure_id])
+    @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+    render json: @hash.to_json
+  end
+
+  #gets the info for google maps for the adventure index page and creates json hash
+  def all_map_locations
+    @adventure = Adventure.all
+    @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+    render json: @hash.to_json
   end
 
   # GET /adventures/1
   # GET /adventures/1.json
+  # Added show method info got google map api
   def show
+    @adventures = Adventure.find(params[:id])
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
+    # TODO: add more images here or else all images will be the same.
+    @images = [@adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image, @adventure.image ]
   end
 
   # GET /adventures/new
@@ -83,6 +118,6 @@ class AdventuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :image)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :image, :latitude, :longitude)
     end
 end

@@ -11,5 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require hermitage
 //= require jquery_ujs
+//= require underscore
+//= require gmaps/google
 //= require_tree .

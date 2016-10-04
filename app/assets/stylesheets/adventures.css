@@ -1,0 +1,14 @@
+#adventureMap, #allAdventuresMap {
+  width: 500px;
+  height: 400px;
+}
+
+.thumbnail {
+  width: 150px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.gallery {
+  margin-top: 20px;
+}
