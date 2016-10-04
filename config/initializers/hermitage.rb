@@ -4,8 +4,8 @@
 # You can configure any of its options and they will be applied for every rendering.
 #
  Hermitage.configure :default do
-  original -> item { item.file.url (:medium) }
-  thumbnail -> item { item.file.url(:thumbnail) }
+  # original -> item { 1/0; item.file.url (:medium) }
+  # thumbnail -> item { 1/0; item.file.url(:thumbnail) }
 #   title nil
 #   list_tag :ul
 #   item_tag :li

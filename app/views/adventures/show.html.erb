@@ -31,34 +31,23 @@
     <%= @adventure.category.category_name %>
     </p>
 
-    <p>
-      <%= image_tag @adventure.image.url(:medium) %>
-    </p>
+
 </div>
 
   <div class="col-md-6">
 
-      <table class="gallery">
-        <tbody>
+    <table class="gallery">
+      <tbody>
+        <% @images.each do |set_of_images| %>
+          <%= render_gallery_for set_of_images,
+              original: -> image { image.image.url() },
+              thumbnail: -> image { image.image.url(:thumbnail) },
+              list_tag: :tr, item_tag: :td, item_class: 'image' %>
+        <% end %>
 
-          <%= render_gallery_for @images[0..2],
-            original: -> image { image.url() },
-            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
+      </tbody>
+    </table>
 
-          <%= render_gallery_for @images[3..5],
-            original: -> image { image.url() },
-            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
-
-          <%= render_gallery_for @images[6..8],
-            original: -> image { image.url() },
-            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
-
-          <%= render_gallery_for @images[9..11],
-            original: -> image { image.url() },
-            thumbnail: -> image { image.url(:medium) }, list_tag: :tr, item_tag: :td, item_class: 'image' %>
-
-        </tbody>
-      </table>
   </div>
 </div>
 <hr>
