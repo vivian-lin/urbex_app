@@ -133,6 +133,15 @@ class AdventuresController < ApplicationController
   def update
     @adventure.users << current_user
     respond_to do |format|
+      if params[:images]
+        params[:images].each do |image|
+          #1/0
+          img = Image.create(image: image)
+          #@adventure.images.create(image_file_name: image)
+          @adventure.images << img
+
+        end
+      end
       if @adventure.update(adventure_params)
         format.html { redirect_to @adventure, notice: 'Adventure was successfully updated.' }
         format.json { render :show, status: :ok, location: @adventure }
@@ -165,4 +174,5 @@ class AdventuresController < ApplicationController
       params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :images, :latitude, :longitude)
 
     end
+
 end

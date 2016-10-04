@@ -32,6 +32,11 @@ module FeatureSupport
     click_button 'Create Adventure'
   end
 
+  def edit_adventure
+    attach_file "images[]", [File.join(Rails.root,"spec/assets/mine1.jpg"), File.join(Rails.root,"spec/assets/mine2.jpg"), File.join(Rails.root,"spec/assets/mine3.jpg")]
+    click_button 'Update Adventure'
+  end
+
   def create_admin
     user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
     user.add_role :admin
