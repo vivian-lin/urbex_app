@@ -82,7 +82,7 @@ RSpec.feature "Users", type: :feature do
         sign_out
       end
       Then 'I visit the search page and search for users' do
-        click_link 'Search'
+        click_link 'Explorers'
         expect(page).to have_content('Bob')
         expect(page).to have_content('Bobby_Bob')
         expect(page).to have_content('Joe')
