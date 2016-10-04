@@ -1,6 +1,8 @@
 class Adventure < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  has_many :images, :dependent => :destroy
+
 
   validates :category_id, presence: true
 

@@ -24,7 +24,7 @@ RSpec.feature "AdventureGalleries", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
-        expect(page).to have_selector('img', :count => 10)
+        expect(page).to have_selector('img', :count => 3)
       end
     end # ends steps
   end # ends context
