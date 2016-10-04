@@ -72,6 +72,7 @@ class AdventuresController < ApplicationController
   # POST /adventures.json
   def create
     @adventure = Adventure.new(adventure_params)
+    @adventure.users << current_user
 
     respond_to do |format|
       if @adventure.save
@@ -87,6 +88,7 @@ class AdventuresController < ApplicationController
   # PATCH/PUT /adventures/1
   # PATCH/PUT /adventures/1.json
   def update
+    @adventure.users << current_user
     respond_to do |format|
       if @adventure.update(adventure_params)
         format.html { redirect_to @adventure, notice: 'Adventure was successfully updated.' }

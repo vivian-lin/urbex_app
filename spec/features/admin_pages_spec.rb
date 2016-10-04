@@ -16,7 +16,7 @@ RSpec.feature "AdminPages", type: :feature do
         click_button 'Log in'
       end
       Then 'I can go to the admin page' do
-        click_link 'Admin page'
+        click_link 'Administration'
         expect(page).to have_content 'Admin-ify'
       end
     end
@@ -43,7 +43,7 @@ RSpec.feature "AdminPages", type: :feature do
         click_button 'Log in'
       end
       Then 'I can go to the admin page' do
-        click_link 'Admin page'
+        click_link 'Administration'
         expect(page).to have_css('input', :count => 1)
       end
     end
