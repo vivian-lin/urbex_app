@@ -22,15 +22,14 @@
     </p>
 
     <p>
-      <strong>User:</strong>
-      <%= @adventure.user.username %>
+      <strong>Last updated by:</strong>
+      <%= @adventure.users[0].username %>
     </p>
 
     <p>
     <strong>Category:</strong>
     <%= @adventure.category.category_name %>
     </p>
-
 
     <p>
       <%= image_tag @adventure.image.url(:medium) %>
@@ -67,6 +66,8 @@
 <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
 </div>
 <!-- Map ends  -->
+
+<%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %>
 
 <% if !current_user.nil? %>
   <%= link_to 'Edit', edit_adventure_path(@adventure) %>
