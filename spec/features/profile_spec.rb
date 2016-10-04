@@ -124,4 +124,20 @@ RSpec.feature "Profilelinks", type: :feature do
     end # ends steps
   end #end context
 
+  context 'On a profile page I can see a map of all my adventures' do
+    Steps 'I can go to my profile page and see my adventures on a map' do
+      Given 'There are adventures created for the map' do
+        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
+        create_category('Urban Art')
+        create_category('Haunted')
+        create_adventure('Learn Academy', '3803 Ray St. San Diego, CA, 92104', 'corner of Ray and Northpark, just south of university', 'A haunted place of mystery and ghouls', 'option[1]')
+        create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[2]')
+      end # ends Given
+      Then 'I can see the map with all of the adventures' do
+        visit '/profile'
+        expect(page.find_by_id('profileMap')).to_not eq nil
+      end # ends then
+    end #end steps
+  end #end context
+
 end # ends rspec
