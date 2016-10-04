@@ -46,6 +46,7 @@ class AdventuresController < ApplicationController
   # GET /adventures/1.json
   # Added show method info got google map api
   def show
+    @posts = Adventure.find(params[:id]).posts 
     @adventures = Adventure.find(params[:id])
     @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
       marker.lat adventure.latitude
