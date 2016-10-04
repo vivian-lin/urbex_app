@@ -9,8 +9,13 @@ class Ability
     end
     if user.has_role? :admin
       can :manage, :all
-    else user.has_role? :user
+    elsif user.has_role? :user
       can :manage, Adventure
+      can :manage, Post, user_id: user.id
+      can :read, Post
+    else user.nil?
+      can :read, Post
+      can :read, Adventure
     end
 
 
