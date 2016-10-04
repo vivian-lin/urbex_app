@@ -46,8 +46,13 @@ class AdventuresController < ApplicationController
   # GET /adventures/1.json
   # Added show method info got google map api
   def show
-
-
+    @posts = Adventure.find(params[:id]).posts 
+    @adventures = Adventure.find(params[:id])
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
     #empty array that will hold arrays of images
     @images = []
     #stating the var for the loop
@@ -76,14 +81,6 @@ class AdventuresController < ApplicationController
       #adding one array of pictures into the images corresponding to a row in the view
       @images << set_of_images
     end
-
-    @adventures = Adventure.find(params[:id])
-    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
-      marker.lat adventure.latitude
-      marker.lng adventure.longitude
-      marker.infowindow adventure.address
-    end
-
   end
 
   # GET /adventures/new

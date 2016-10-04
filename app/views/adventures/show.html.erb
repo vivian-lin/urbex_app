@@ -51,11 +51,22 @@
   </div>
 </div>
 <hr>
-<!-- Map starts -->
-<div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
+<div class="row">
+  <div class="col-sm-6">
+    <!-- Map starts -->
+    <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
+    </div>
+    <!-- Map ends  -->
+  </div>
+  <div class="col-sm-6">
+    <h3>Adventure Posts</h3>
+    <ul>
+      <%@posts.each do |post|%>
+        <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
+      <%end%>
+    </ul>
+  </div>
 </div>
-<!-- Map ends  -->
-
 <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %>
 
 <% if !current_user.nil? %>
