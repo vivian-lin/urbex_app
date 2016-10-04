@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AdventureGalleries", type: :feature do
+RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
   context 'I can add photos to a gallery on an adventrue' do
     Steps 'I have to sign up to I can create an account to create an adventrue' do
       Given 'I am on the index page' do
@@ -26,6 +26,18 @@ RSpec.feature "AdventureGalleries", type: :feature do
         expect(page).to have_content 'Haunted'
         expect(page).to have_selector('img', :count => 3)
       end
+      And 'I can edit my post by adding more photos' do
+        click_link 'Edit'
+        edit_adventure
+      end
+      Then 'I can see all the info about my Adventure' do
+        expect(page).to have_content 'adventure_name'
+        expect(page).to have_content 'adventure_address'
+        expect(page).to have_content 'adventure_directions'
+        expect(page).to have_content 'adventure_description'
+        expect(page).to have_content 'Haunted'
+        expect(page).to have_selector('img', :count => 6)
+      end
     end # ends steps
   end # ends context
-end # ends rspec
+end

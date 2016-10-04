@@ -28,13 +28,27 @@ module FeatureSupport
     fill_in 'adventure[directions]', with: directions
     fill_in 'adventure[description]', with: description
     find_field('adventure[category_id]').find(:xpath, option).select_option
-    attach_file "adventure_image", File.join(Rails.root, "spec/assets/strawberry_hill.jpg")
+    attach_file "images[]", [File.join(Rails.root,"spec/assets/strawberry_hill.jpg"), File.join(Rails.root,"spec/assets/dam.jpg"), File.join(Rails.root,"spec/assets/haunted.jpg")]
     click_button 'Create Adventure'
+  end
+
+  def edit_adventure
+    attach_file "images[]", [File.join(Rails.root,"spec/assets/mine1.jpg"), File.join(Rails.root,"spec/assets/mine2.jpg"), File.join(Rails.root,"spec/assets/mine3.jpg")]
+    click_button 'Update Adventure'
   end
 
   def create_admin
     user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
     user.add_role :admin
+  end
+
+  def create_post(title, body)
+    visit '/adventures'
+    click_link 'Show'
+    click_link 'Add New Post'
+    fill_in 'Title', with: title
+    fill_in 'Body', with: body
+    click_button 'Create Post'
   end
 
 end

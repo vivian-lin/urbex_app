@@ -3,7 +3,7 @@
 <label>Browse by category:</label>
 <ul>
   <%@categories.each do |category|%>
-    <li><a href="/categories/<%=category.id%>" target="_blank"><%=category.category_name%></a></li>
+    <li><a href="/categories/<%=category.id%>" ><%=category.category_name%></a></li>
   <%end%>
 </ul>
 
@@ -35,7 +35,7 @@
         <td><%= adventure.directions %></td>
         <td><%= adventure.description %></td>
         <td><%= adventure.category.category_name %></td>
-        <td><%= image_tag adventure.image.url(:thumb) %></td>
+        <td><%= image_tag adventure.images.first.image.url(:thumbnail) %></td>
         <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
