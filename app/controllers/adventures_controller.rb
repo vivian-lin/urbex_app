@@ -2,22 +2,25 @@ class AdventuresController < ApplicationController
   load_and_authorize_resource
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
-  # GET /adventures
-  # GET /adventures.json
+  # GET /adventures, GET /adventures.json
   def index
+    # for search bar on adventure's index page
     if params[:search].nil?
       @adventures = Adventure.all
     else
       @adventures = Adventure.search(params[:search])
     end
+    # for browsing by categories
     @categories = Category.all
+    # for the all adventures map on the adventures index page
     @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude
       marker.infowindow adventure.address
     end
   end
-  #gets the info for google map for the adventure show page and creates json hash
+
+  # gets the info for google map for the Adventure SHOW page and creates json hash
   def map_location
     @adventure = Adventure.find(params[:adventure_id])
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
@@ -28,7 +31,7 @@ class AdventuresController < ApplicationController
     render json: @hash.to_json
   end
 
-  #gets the info for google maps for the adventure index page and creates json hash
+  #gets the info for google maps for the adventure INDEX page and creates json hash
   def all_map_locations
     @adventure = Adventure.all
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|

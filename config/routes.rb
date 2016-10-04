@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'search/index'
   get '/profile/:username' => 'profile#view'
   get '/profile' => 'profile#show'
+  get '/profile/:id/profile_map_locations' => 'profile#profile_map_locations'
 
   get "admin" => "admin#index"
   put "admin/:id" => "admin#update"
