@@ -71,12 +71,12 @@ RSpec.feature "AdventurePages", type: :feature do
         create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[1]')
       end
       Then 'There are posts created' do
-        create_post('Adventure Post', 'This place was awesome!')
+        create_post('Adventure Post', 'This place was awesome!', 'North Park Water Tower')
         expect(page).to have_content 'Post was successfully created'
       end
       Then 'I can go to the Adventures show page and see that post' do
         click_link 'Adventures'
-        click_link 'Show'
+        click_link 'North Park Water Tower'
         expect(page).to have_content 'Adventure Post'
       end
       Then 'I can click on that Post link and see the content of that Post' do
