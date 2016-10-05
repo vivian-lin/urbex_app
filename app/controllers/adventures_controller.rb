@@ -27,7 +27,7 @@ class AdventuresController < ApplicationController
 
   #gets the info for google maps for the adventure INDEX page and creates json hash
   def all_map_locations
-    if params[:search].nil?
+    if params[:search].nil? || params[:search].empty?
       @adventure = Adventure.all
     else
       @adventure = Adventure.search(params[:search])
@@ -197,7 +197,7 @@ class AdventuresController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
 
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :images, :latitude, :longitude)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :category_id, :images, :latitude, :longitude)
 
     end
 
