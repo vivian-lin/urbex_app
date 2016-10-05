@@ -9,8 +9,8 @@
 
 <label>Search by keywords:</label>
 <form action="/adventures" method="get">
-  <input type="text" name="search">
-  <input type="submit" value="Search">
+  <input type="text" name="search" id="searchField">
+  <input type="submit" value="Search" id="searchBtn">
 </form>
 
 <h3>All Adventures</h3>
@@ -33,7 +33,12 @@
         <td><%= adventure.address %></td>
         <td><%= adventure.directions %></td>
         <td><%= adventure.category.category_name %></td>
-        <td><%= image_tag adventure.images.first.image.url(:thumbnail) %></td>
+        <td>
+          <%if !adventure.images.first.nil?%>
+            <%= image_tag adventure.images.first.image.url(:thumbnail) %>
+          <%end%>
+        </td>
+        <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
           <% if current_user.roles.name == 'admin' %>
@@ -47,7 +52,7 @@
 
 <hr>
 <!-- Map starts -->
-<div id="allAdventuresMap"></div>
+<div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
 <!-- Map ends  -->
 <br>
 <% if !current_user.nil? %>
