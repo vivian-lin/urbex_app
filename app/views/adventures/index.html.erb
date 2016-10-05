@@ -20,7 +20,6 @@
       <th>Name</th>
       <th>Address</th>
       <th>Directions</th>
-      <th>Description</th>
       <th>Category</th>
       <th>Photo</th>
       <th colspan="3"></th>
@@ -30,10 +29,9 @@
   <tbody>
     <% @adventures.each do |adventure| %>
       <tr>
-        <td><%= adventure.name %></td>
+        <td><%= link_to adventure.name, adventure %></td>
         <td><%= adventure.address %></td>
         <td><%= adventure.directions %></td>
-        <td><%= adventure.description %></td>
         <td><%= adventure.category.category_name %></td>
         <td>
           <%if !adventure.images.first.nil?%>
