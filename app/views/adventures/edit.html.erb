@@ -1,6 +1,28 @@
 <h1>Editing Adventure</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-6">
 
-<%= link_to 'Show', @adventure %> |
-<%= link_to 'Back', adventures_path %>
+    <%= render 'form' %>
+
+
+    <%= link_to 'Show', @adventure %> |
+    <%= link_to 'Back', adventures_path %>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <table class="edit_gallery">
+      <tbody>
+        <% @images.each do |set_of_images| %>
+          <tr>
+            <% set_of_images.each do |image| %>
+              <td id="edit">
+                <img src="<%=image.image.url(:thumbnail)%>"/>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+  </div>
+</div>

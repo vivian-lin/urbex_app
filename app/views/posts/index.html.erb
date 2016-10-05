@@ -2,11 +2,11 @@
 
 <h1>Listing Posts</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
-      <th>Body</th>
+      <th>Story</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,14 +16,12 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.body %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', post, :class => "btn btn-xs btn-default" %></td>
+        <% if !current_user.nil? && (post.user == current_user || current_user.has_role?(:admin)) %>
+          <td><%= link_to 'Edit', edit_post_path(post), :class => "btn btn-xs btn-default" %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-xs btn-default" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
