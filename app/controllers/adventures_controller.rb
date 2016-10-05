@@ -1,5 +1,4 @@
 class AdventuresController < ApplicationController
-  #load_and_authorize_resource
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
   # GET /adventures, GET /adventures.json
@@ -138,7 +137,6 @@ class AdventuresController < ApplicationController
         # TODO: more comments
         if params[:images]
           params[:images].each do |image|
-            #1/0
             img = Image.create(image: image)
             #@adventure.images.create(image_file_name: image)
             @adventure.images << img
