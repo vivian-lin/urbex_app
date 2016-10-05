@@ -38,7 +38,6 @@
             <%= image_tag adventure.images.first.image.url(:thumbnail) %>
           <%end%>
         </td>
-        <td><%= link_to 'Show', adventure %></td>
         <% if !current_user.nil? %>
           <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
           <% if current_user.roles.name == 'admin' %>

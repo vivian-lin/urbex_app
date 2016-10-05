@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @post.title %></h1>
 <h5><strong>Adventure: </strong><%=link_to @post.adventure.name, @post.adventure %></h5>
+<h5><strong>Category: </strong><%=link_to @post.adventure.category.category_name, @post.adventure.category%></h5>
 <p>
   <%= @post.body %>
 </p>

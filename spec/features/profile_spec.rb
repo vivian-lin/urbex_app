@@ -104,26 +104,6 @@ RSpec.feature "Profilelinks", type: :feature do
     end
   end
 
-  # context 'I see a map on the adventure page with marker of the adventure' do
-  #   Steps 'When I am signed in I am taken to profile page where I can choose to create a new adventure' do
-  #     Given 'I start on the index page' do
-  #       visit '/'
-  #     end # ends given
-  #     And 'I can sign up' do
-  #       sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
-  #     end # ends Given
-  #     Then 'I can add a new category' do
-  #       create_category('Urban Art')
-  #     end
-  #     Then 'I can create a new adventure' do
-  #       create_adventure('Learn Academy', '3803 Ray St. San Diego, CA, 92104', 'corner of Ray and Northpark, just south of university', 'A haunted place of mystery and ghouls', 'option[1]')
-  #     end # ends and
-  #     Then 'I am taken to the adventure show page where I can see the map' do
-  #       expect(page.find_by_id('adventureMap')).to_not eq nil
-  #     end # ends Then
-  #   end # ends steps
-  # end #end context
-
   context 'On a profile page I can see a map of all my adventures' do
     Steps 'I can go to my profile page and see my adventures on a map' do
       Given 'There are adventures created for the map' do
@@ -164,5 +144,22 @@ RSpec.feature "Profilelinks", type: :feature do
     end
   end
 
-
+  context 'Posts and Categories' do
+    Steps "Seeing the Post's Adventure's Category" do
+      Given 'There is a post created' do
+        sign_up('user@email.com', 'password', 'username')
+        create_category("Spoopy and Creppy")
+        create_adventure("Haunted Forest", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
+        create_post('Title', 'This is the Body.', 'Haunted Forest')
+      end
+      Then "I can see that post's category on my profile page" do
+        click_link 'Profile'
+        expect(page).to have_content 'Category: Spoopy and Creppy'
+      end
+      And "I can see that post's category on that post's show page" do
+        click_link 'Title'
+        expect(page).to have_content 'Category: Spoopy and Creppy'
+      end
+    end
+  end
 end # ends rspec
