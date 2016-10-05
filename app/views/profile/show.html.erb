@@ -7,9 +7,6 @@
     <strong>Email: </strong><%= @user.email %>
     <br>
     <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
-
-    <p>Profile map will appear here...</p>
-
     <p>Followers will appear here...</p>
   </div>
   <div class="col-md-8">
@@ -23,6 +20,7 @@
     <% @posts.each do |post| %>
       <div class="post_wrapper">
         <h4 class="title"><%=link_to post.title, post%></h4>
+        <h5><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
         <p class="date"><%=post.created_at.strftime("%B, %d, %Y")%></p>
       </div>
     <% end %>

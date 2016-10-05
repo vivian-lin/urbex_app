@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "Blog Posts", js:true, type: :feature do
-  context 'Users and Posts' do
+RSpec.feature "Blog Posts", type: :feature do
+  context 'Users and Posts', js:true  do
     Steps 'Deleting a post' do
       Given 'I am signed in and on my profile page' do
         sign_up('user@email.com', 'password', 'username')
@@ -51,5 +51,26 @@ RSpec.feature "Blog Posts", js:true, type: :feature do
       end
     end
   end
-
+  context 'Users and Posts' do
+    Steps 'Adventure Name shows up on posts' do
+      Given 'I am signed in and on my profile page' do
+        sign_up('user@email.com', 'password', 'username')
+      end
+      And 'There are categories & adventures created' do
+        create_category("Spoopy and Creppy")
+        create_adventure("Haunted Forest", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
+      end
+      Then 'I can click a button and create a new post' do
+        click_link 'Add New Post'
+        expect(page).to have_content 'New Post'
+        fill_in 'Title', with: 'This is a Title.'
+        fill_in 'Body', with: 'This paragraph is about my adventure.'
+        click_button 'Create Post'
+        expect(page).to have_content 'Post was successfully created.'
+      end
+      Then 'I can see the post adventure on the post show page' do
+        expect(page).to have_content 'Adventure: Haunted Forest'
+      end
+    end
+  end
 end

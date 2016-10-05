@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @post.title %></h1>
-
+<h5><strong>Adventure: </strong><%=link_to @post.adventure.name, @post.adventure %></h5>
 <p>
   <%= @post.body %>
 </p>
