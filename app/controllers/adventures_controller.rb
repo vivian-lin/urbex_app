@@ -12,12 +12,6 @@ class AdventuresController < ApplicationController
     end
     # for browsing by categories
     @categories = Category.all
-    # for the all adventures map on the adventures index page
-    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
-      marker.lat adventure.latitude
-      marker.lng adventure.longitude
-      marker.infowindow adventure.address
-    end
   end
 
   # gets the info for google map for the Adventure SHOW page and creates json hash
@@ -33,7 +27,11 @@ class AdventuresController < ApplicationController
 
   #gets the info for google maps for the adventure INDEX page and creates json hash
   def all_map_locations
-    @adventure = Adventure.all
+    if params[:search].nil?
+      @adventure = Adventure.all
+    else
+      @adventure = Adventure.search(params[:search])
+    end
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude
@@ -46,7 +44,7 @@ class AdventuresController < ApplicationController
   # GET /adventures/1.json
   # Added show method info got google map api
   def show
-    @posts = Adventure.find(params[:id]).posts 
+    @posts = Adventure.find(params[:id]).posts
     @adventures = Adventure.find(params[:id])
     @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
       marker.lat adventure.latitude

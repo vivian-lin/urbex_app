@@ -9,8 +9,8 @@
 
 <label>Search by keywords:</label>
 <form action="/adventures" method="get">
-  <input type="text" name="search">
-  <input type="submit" value="Search">
+  <input type="text" name="search" id="searchField">
+  <input type="submit" value="Search" id="searchBtn">
 </form>
 
 <h3>All Adventures</h3>
@@ -50,7 +50,7 @@
 
 <hr>
 <!-- Map starts -->
-<div id="allAdventuresMap"></div>
+<div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
 <!-- Map ends  -->
 <br>
 <% if !current_user.nil? %>
