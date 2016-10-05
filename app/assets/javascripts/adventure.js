@@ -5,23 +5,9 @@ function placeMakers(data) {
   handler.fitMapToBounds();
   handler.getMap().setZoom(12);
 }
-// commented out the YOU position
 // calls placeMakers function
 function showLocations(data) {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-      // Add our position to the collection of markers
-      // data[data.length] = {
-      //   lat: position.coords.latitude,
-      //   lng: position.coords.longitude,
-      //   infowindow: "You!",
-      // };
-      placeMakers(data);
-    });
-  } else {
-      alert("Geolocation is not available.");
-      placeMakers(data)
-  }
+  placeMakers(data);
 }
 // create google map data
 function createGmap(data, selector) {
@@ -56,27 +42,7 @@ function loadAndCreateGmap() {
     });
   }
 };
-// Creates the json object for all locations on the adventure index
-function loadAndCreateGmapForAllLocations() {
-  // Only load map data if we have a map on the page
-  if ($('#allAdventuresMap').length > 0) {
-// '/map_location was added and the route was created'
-    $.ajax({
-      dataType: 'json',
-      url: '/adventures/all_map_locations',
-      method: 'GET',
-      data: '',
-      success: function(data) {
-        createGmap(data, 'allAdventuresMap');
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        alert("Getting map data failed: " + errorThrown);
-      }
-    });
-  }
-};
-// we need to tell ajax what the search is...make a function that finds a keyword to pull out the specific data
-function loadAndCreateGmapForSearchLocations() {
+function loadAndCreateGmapForAdventures() {
   // Only load map data if we have a map on the page
   if ($('#allAdventuresMap').length > 0) {
     var search = $('#allAdventuresMap').attr('data-search-string');
@@ -96,11 +62,7 @@ function loadAndCreateGmapForSearchLocations() {
   }
 };
 // Create the map on the locations index page
-$(document).on('ready', loadAndCreateGmapForAllLocations);
-// Create the map on the locations index page for specific locations
-$(document).on('ready', function(){
-  $("#searchBtn").on("click", loadAndCreateGmapForSearchLocations);
-});
+$(document).on('ready', loadAndCreateGmapForAdventures);
 // Create the map when the page loads the first time
 $(document).on('ready', loadAndCreateGmap);
 // Create the map when the contents is loaded using turbolinks
