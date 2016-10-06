@@ -24,7 +24,8 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
-        expect(page).to have_selector('img', :count => 3)
+        # needs to be 4 because of the logo img
+        expect(page).to have_selector('img', :count => 4)
       end
       And 'I can edit my post by adding more photos' do
         click_link 'Edit'
@@ -36,7 +37,8 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
-        expect(page).to have_selector('img', :count => 6)
+        # needs to be 7 because of the logo img
+        expect(page).to have_selector('img', :count => 7)
       end
     end # ends steps
   end # ends context
@@ -64,13 +66,15 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
-        expect(page).to have_selector('img', :count => 3)
+        # needs to be 4 because of the logo img
+        expect(page).to have_selector('img', :count => 4)
       end # ends then
       And 'I can edit my post by adding more photos' do
         click_link 'Edit'
       end # end and
       And 'I can see all the photos that I have uploaded on the edit page as well so I can edit them in the future' do
-        expect(page).to have_selector('img', :count => 3)
+        # needs to be 4 because of the logo img
+        expect(page).to have_selector('img', :count => 4)
         edit_adventure
       end # end and
       Then 'I can see all the info about my Adventure' do
@@ -79,13 +83,15 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Haunted'
-        expect(page).to have_selector('img', :count => 6)
+        # needs to be 7 because of the logo img
+        expect(page).to have_selector('img', :count => 7)
       end # ends then
       Then 'I can edit my post by adding more photos' do
         click_link 'Edit'
       end
       And 'I can see all the photos that I have uploaded on the edit page as well so I can edit them in the future' do
-        expect(page).to have_selector('img', :count => 6)
+        # needs to be 7 because of the logo img
+        expect(page).to have_selector('img', :count => 7)
       end # end and
     end # ends steps
   end # ends context

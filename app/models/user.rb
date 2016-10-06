@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
   #assigns a role automatically after creating User
   after_create :assign_role
   #User has many Posts, Posts belong_to a User
-  has_many :posts
-
+  # ensuring a post will be destroyed along with the user
+  has_many :posts, dependent: :destroy
+  #User can be a follower and can be followed
+  acts_as_follower
+  acts_as_followable
   #assigns role(:user) when User is created
   def assign_role
     add_role(:user)
@@ -50,5 +53,10 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  # Creating a method for blog posts feed
+  def feed
+    Post.where('user_id = ?', id)
   end
 end

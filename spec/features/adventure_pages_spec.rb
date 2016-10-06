@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.feature "AdventurePages", type: :feature do
   context 'Creating a new Adventure' do
     Steps 'I can create a new Adventure' do
@@ -85,6 +87,47 @@ RSpec.feature "AdventurePages", type: :feature do
     end #end steps
   end # end context
 
+  context 'Adventures and Categories' do
+    Steps 'Seeing all adventures associated with a category on the category show page' do
+      Given 'There are adventures and categories created' do
+        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
+        create_category('Haunted')
+        create_adventure('Adventure1', 'Howard Ave, San Diego, CA 92104', 'directions', 'description', 'option[1]')
+        create_adventure('Adventure2', 'Howard Ave, San Diego, CA 92104', 'directions', 'description', 'option[1]')
+      end
+      Then 'I can see all those adventures on the category show page' do
+        click_link 'Adventures'
+        click_link 'Haunted'
+        expect(page).to have_content 'Adventure1'
+        expect(page).to have_content 'Adventure2'
+      end
+    end
+  end
+
+  context 'Adventures and Users' do
+    Steps 'Authenticated users can update adventure information' do
+      Given 'There are users signed up, adventures/categories created' do
+        sign_up('user1@email.com', 'cowcow', 'User1')
+        sign_out
+        sign_up('user2@email.com', 'cowcow', 'User2')
+        create_category('Haunted')
+        create_adventure('Adventure1', 'Howard Ave, San Diego, CA 92104', 'directions', 'description', 'option[1]')
+        sign_out
+      end
+      Then 'Another user can go back and edit that adventure' do
+        click_link 'sign in'
+        fill_in 'user[email]', with: 'user1@email.com'
+        fill_in 'user[password]', with: 'cowcow'
+        click_button 'Log in'
+        click_link 'Adventures'
+        click_link 'edit_adventure'
+        fill_in 'adventure[name]', with: 'Edited name'
+        click_button 'Update Adventure'
+        expect(page).to have_content 'Adventure was successfully updated.'
+        expect(page).to have_content 'User1'
+      end
+    end
+  end
   context 'Edit Adventures' do
     Steps 'I can go to the adventure page and edit an adventure' do
       Given 'There are adventures created' do
@@ -99,5 +142,4 @@ RSpec.feature "AdventurePages", type: :feature do
       end
     end #end steps
   end # end context
-
 end # ends rspec

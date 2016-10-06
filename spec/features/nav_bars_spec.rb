@@ -8,7 +8,7 @@ RSpec.feature "NavBars", type: :feature do
         visit '/'
       end
       And 'I can click on the Sign Up link on the nav bar' do
-        click_link 'Sign Up'
+        click_link 'sign up'
       end
       Then 'I am taken to the Sign Up page' do
         expect(page).to have_content "Sign up"
@@ -24,7 +24,7 @@ RSpec.feature "NavBars", type: :feature do
         click_link 'Sign Out'
       end
       And 'I can click the Sign In link on the nav bar to sign in' do
-        click_link 'Sign In'
+        click_link 'sign in'
       end
       Then 'I will be sent to the sign in form ' do
         expect(page).to have_content "Log in"
@@ -57,6 +57,6 @@ RSpec.feature "NavBars", type: :feature do
         expect(page).to have_content('Search Explorers')
       end
     end
-  end  
+  end
 
 end # end rspec

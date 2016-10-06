@@ -29,6 +29,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}
 
+  # adding routes for socialization gem - follow/unfollow users
+  resources :users do
+    post 'follow', to: 'socializations#follow'
+    post 'unfollow', to: 'socializations#unfollow'
+  end
+  
   get 'about/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

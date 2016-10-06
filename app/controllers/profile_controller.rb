@@ -9,6 +9,7 @@ class ProfileController < ApplicationController
     else
       redirect_to '/users/sign_in'
     end
+
     @posts = current_user.posts.order('created_at DESC')
     # adventures = current_user.adventures
     # @pindrop = Gmaps4rails.build_markers(adventures) do |adventure, marker|

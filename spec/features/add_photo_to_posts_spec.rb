@@ -20,7 +20,7 @@ RSpec.feature "AddPhotoToPosts", type: :feature do
       Then 'I can click on that Post link and see the content of that Post' do
         click_link 'Adventure Post'
         expect(page).to have_content 'This place was awesome!'
-        expect(page).to have_selector('img', :count => 1)
+        expect(page).to have_selector('img', :count => 2)
       end
     end #end steps
   end # end context
