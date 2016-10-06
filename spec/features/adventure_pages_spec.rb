@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "AdventurePages", type: :feature do
   context 'Creating a new Adventure' do
     Steps 'I can create a new Adventure' do
@@ -63,6 +61,7 @@ RSpec.feature "AdventurePages", type: :feature do
       end # ends then
     end #end steps
   end #end context
+
   context 'Posts on adventure page' do
     Steps 'I can go to the adventure page and see all related posts' do
       Given 'There are adventures created' do
@@ -100,4 +99,5 @@ RSpec.feature "AdventurePages", type: :feature do
       end
     end #end steps
   end # end context
+
 end # ends rspec

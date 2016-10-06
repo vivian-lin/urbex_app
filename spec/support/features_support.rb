@@ -32,6 +32,16 @@ module FeatureSupport
     click_button 'Create Adventure'
   end
 
+  def create_adventure_no_images(name, address, directions, description, option)
+    visit '/adventures/new'
+    fill_in 'adventure[name]', with: name
+    fill_in 'adventure[address]', with: address
+    fill_in 'adventure[directions]', with: directions
+    fill_in 'adventure[description]', with: description
+    find_field('adventure[category_id]').find(:xpath, option).select_option
+    click_button 'Create Adventure'
+  end
+
   def edit_adventure
     attach_file "images[]", [File.join(Rails.root,"spec/assets/mine1.jpg"), File.join(Rails.root,"spec/assets/mine2.jpg"), File.join(Rails.root,"spec/assets/mine3.jpg")]
     click_button 'Update Adventure'
@@ -50,5 +60,6 @@ module FeatureSupport
     fill_in 'Body', with: body
     click_button 'Create Post'
   end
+
 
 end
