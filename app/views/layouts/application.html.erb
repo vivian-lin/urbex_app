@@ -45,23 +45,20 @@
             <li class="navbar-bottom-li"><%= link_to 'Administration', admin_path%></li>
           <%end%>
           <% if current_user.nil? %>
-            <li class="navbar-bottom-li"><%= link_to "Sign Up", new_user_registration_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "Sign In", user_session_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %></li>
+            <li class="navbar-bottom-li"><%= link_to "sign up", new_user_registration_path %></li>
+            <li class="navbar-bottom-li"><%= link_to "sign in", user_session_path %></li>
+            <li class="navbar-bottom-li"><%= link_to "sign in with twitter", user_twitter_omniauth_authorize_path %></li>
           <% end %>
         </div>
       </ul>
     </nav>
     <!--End navbar-->
     <!--Begin content-->
-    <div class="container-fluid">
-    <div class="content">
-      <!-- add alert and notices for Devise installation -->
-      <p id="notice"><%= notice %></p>
-      <%= yield %>
-    </div>
+    <div class="container-fluid content">
+        <!-- add alert and notices for Devise installation -->
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
     <!--End content-->
-
-  </div>
+    </div>
 </body>
 </html>
