@@ -1,5 +1,6 @@
 class AdventuresController < ApplicationController
   #load_and_authorize_resource
+  before_action :authenticate_user!, :except => [:show, :index, :map_location, :all_map_locations]
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
   # GET /adventures, GET /adventures.json
@@ -46,6 +47,7 @@ class AdventuresController < ApplicationController
   def show
     @posts = Adventure.find(params[:id]).posts
     @adventures = Adventure.find(params[:id])
+    @last_updated = @adventure.users.order('updated_at DESC').first
     @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude

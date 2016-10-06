@@ -99,7 +99,7 @@ RSpec.feature "Profilelinks", type: :feature do
       end
       Then 'The original user can update the post' do
         sign_out
-        click_link 'Sign In'
+        click_link 'sign in'
       end
     end
   end
