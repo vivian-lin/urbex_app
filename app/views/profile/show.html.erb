@@ -7,6 +7,10 @@
     <strong>Email: </strong><%= @user.email %>
     <br>
     <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
+    <br>
+    <% if !current_user == @user %>
+      <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+    <% end %>
     <p>Followers will appear here...</p>
   </div>
   <div class="col-md-8">
@@ -16,7 +20,7 @@
     <% if !current_user.nil? %>
       <%= link_to 'Add New Adventure', new_adventure_path, :class =>'btn btn-default' %>
     <% end %>
-    <h3>YOUR POSTS</h3>
+    <h3><% @user.username %> Posts</h3>
     <% @posts.each do |post| %>
       <div class="post_wrapper">
         <h4 class="title"><%=link_to post.title, post%></h4>
