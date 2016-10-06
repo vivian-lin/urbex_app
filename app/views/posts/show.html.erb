@@ -1,9 +1,21 @@
-<p id="notice"><%= notice %></p>
 <h1><%= @post.title %></h1>
 <h5><strong>Adventure: </strong><%=link_to @post.adventure.name, @post.adventure %></h5>
+<h5><strong>Category: </strong><%=link_to @post.adventure.category.category_name, @post.adventure.category%></h5>
 <p>
   <%= @post.body %>
 </p>
+
+<table class="gallery">
+  <tbody>
+        <% @images.each do |set_of_images| %>
+          <%= render_gallery_for set_of_images,
+              original: -> image { image.image.url() },
+              thumbnail: -> image { image.image.url(:thumbnail) },
+              list_tag: :tr, item_tag: :td, item_class: 'image' %>
+    <% end %>
+  </tbody>
+</table>
+
 <%if !current_user.nil? && (current_user == @post.user || current_user.has_role?(:admin))%>
   <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-xs btn-default" %>
   <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-xs btn-default" %>

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'images/delete'
+
+  ## Added
+
+  delete 'image/:id' => "images#delete_image"
+
   resources :posts
 
   resources :categories

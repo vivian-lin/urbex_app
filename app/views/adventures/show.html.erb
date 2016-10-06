@@ -5,60 +5,56 @@
       <strong>Name:</strong>
       <%= @adventure.name %>
     </p>
-
     <p>
       <strong>Address:</strong>
       <%= @adventure.address %>
     </p>
-
     <p>
       <strong>Directions:</strong>
       <%= @adventure.directions %>
     </p>
-
     <p>
       <strong>Description:</strong>
       <%= @adventure.description %>
     </p>
-
     <p>
       <strong>Last updated by:</strong>
-      <%= @adventure.users[0].username %>
+      <%= @last_updated.username %>
     </p>
-
     <p>
     <strong>Category:</strong>
     <%= @adventure.category.category_name %>
     </p>
-
-
-</div>
+  </div>
 
   <div class="col-md-6">
-
     <table class="gallery">
       <tbody>
-            <% @images.each do |set_of_images| %>
-              <%= render_gallery_for set_of_images,
-                  original: -> image { image.image.url() },
-                  thumbnail: -> image { image.image.url(:thumbnail) },
-                  list_tag: :tr, item_tag: :td, item_class: 'image' %>
+        <% @images.each do |set_of_images| %>
+          <%= render_gallery_for set_of_images, original: -> image { image.image.url() }, thumbnail: -> image { image.image.url(:thumbnail) },list_tag: :tr, item_tag: :td, item_class: 'image' %>
         <% end %>
       </tbody>
     </table>
-
   </div>
 </div>
 <hr>
+<br><br>
 <div class="row">
   <div class="col-sm-6">
     <!-- Map starts -->
     <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
     </div>
     <!-- Map ends  -->
+    <% if !current_user.nil? %>
+      <%= link_to 'Edit', edit_adventure_path(@adventure) %>
+    <% end %>
+    | <%= link_to 'Back', adventures_path %>
   </div>
   <div class="col-sm-6">
-    <h3>Adventure Posts</h3>
+    <h3>Adventure Posts <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %></h3>
+
+
+
     <ul>
       <%@posts.each do |post|%>
         <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
@@ -66,10 +62,3 @@
     </ul>
   </div>
 </div>
-<%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %>
-
-<% if !current_user.nil? %>
-  <%= link_to 'Edit', edit_adventure_path(@adventure) %>
-<% end %>
-| <%= link_to 'Back', adventures_path %>
-<hr>
