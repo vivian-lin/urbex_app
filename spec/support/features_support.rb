@@ -71,5 +71,9 @@ module FeatureSupport
     click_button 'Create Post'
   end
 
+  def edit_post
+    attach_file "images[]", [File.join(Rails.root,"spec/assets/mine1.jpg"), File.join(Rails.root,"spec/assets/mine2.jpg"), File.join(Rails.root,"spec/assets/mine3.jpg")]
+  end
+
 
 end

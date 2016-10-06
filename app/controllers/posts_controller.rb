@@ -79,6 +79,12 @@ class PostsController < ApplicationController
   def update
     @post.user = current_user
     respond_to do |format|
+      if params[:images]
+        params[:images].each do |image|
+          img = Image.create(image: image)
+          @post.images << img
+        end
+      end
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
