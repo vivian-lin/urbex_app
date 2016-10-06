@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature "AdventurePages", type: :feature do
   context 'Creating a new Adventure' do
     Steps 'I can create a new Adventure' do
@@ -63,6 +61,7 @@ RSpec.feature "AdventurePages", type: :feature do
       end # ends then
     end #end steps
   end #end context
+
   context 'Posts on adventure page' do
     Steps 'I can go to the adventure page and see all related posts' do
       Given 'There are adventures created' do
@@ -127,4 +126,18 @@ RSpec.feature "AdventurePages", type: :feature do
       end
     end
   end
+  context 'Edit Adventures' do
+    Steps 'I can go to the adventure page and edit an adventure' do
+      Given 'There are adventures created' do
+        sign_up('dog@dog.com', 'doggy123', 'Snoop Dogg')
+        create_category('Haunted')
+        create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[1]')
+      end
+      Then 'I can go to the Adventure page, click an edit icon and edit an adventure' do
+        click_link 'Edit'
+        expect(page).to have_content 'Editing Adventure'
+        click_button 'Update Adventure'
+      end
+    end #end steps
+  end # end context
 end # ends rspec

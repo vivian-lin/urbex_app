@@ -1,5 +1,4 @@
 class AdventuresController < ApplicationController
-  #load_and_authorize_resource
   before_action :authenticate_user!, :except => [:show, :index, :map_location, :all_map_locations]
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
@@ -140,11 +139,8 @@ class AdventuresController < ApplicationController
         # TODO: more comments
         if params[:images]
           params[:images].each do |image|
-            #1/0
             img = Image.create(image: image)
-            #@adventure.images.create(image_file_name: image)
             @adventure.images << img
-
           end
         end
         format.html { redirect_to @adventure, notice: 'Adventure was successfully created.' }

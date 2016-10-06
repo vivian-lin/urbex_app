@@ -1,4 +1,5 @@
-<%= form_for(@post) do |f| %>
+<%= form_for(@post, :html => { :class => 'form-horizontal', multipart: true }) do |f| %>
+
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -19,9 +20,13 @@
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, rows: "4"  %>
+  </div>
+  <div class="field">
+    <%= f.label :post_images %> <br>
+    <%= file_field_tag "images[]", type: :file, multiple: true  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-default"  %>
   </div>
 <% end %>
