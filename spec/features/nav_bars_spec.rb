@@ -45,4 +45,18 @@ RSpec.feature "NavBars", type: :feature do
     end
   end
 
+  context 'I can see an Explorers link in the navbar' do
+    Steps 'Going to the Explorers page' do
+      Given 'I am on the index page' do
+        visit '/'
+      end
+      Then 'I can click the Explorers link' do
+        click_link 'Explorers'
+      end
+      Then 'I will be sent to the Explorers page' do
+        expect(page).to have_content('Search Explorers')
+      end
+    end
+  end  
+
 end # end rspec

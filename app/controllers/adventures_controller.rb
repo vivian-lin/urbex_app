@@ -1,5 +1,5 @@
 class AdventuresController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
   before_action :set_adventure, only: [:show, :edit, :update, :destroy]
 
   # GET /adventures, GET /adventures.json
@@ -12,12 +12,6 @@ class AdventuresController < ApplicationController
     end
     # for browsing by categories
     @categories = Category.all
-    # for the all adventures map on the adventures index page
-    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
-      marker.lat adventure.latitude
-      marker.lng adventure.longitude
-      marker.infowindow adventure.address
-    end
   end
 
   # gets the info for google map for the Adventure SHOW page and creates json hash
@@ -33,7 +27,11 @@ class AdventuresController < ApplicationController
 
   #gets the info for google maps for the adventure INDEX page and creates json hash
   def all_map_locations
-    @adventure = Adventure.all
+    if params[:search].nil? || params[:search].empty?
+      @adventure = Adventure.all
+    else
+      @adventure = Adventure.search(params[:search])
+    end
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude
@@ -46,8 +44,13 @@ class AdventuresController < ApplicationController
   # GET /adventures/1.json
   # Added show method info got google map api
   def show
-
-
+    @posts = Adventure.find(params[:id]).posts
+    @adventures = Adventure.find(params[:id])
+    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
+      marker.lat adventure.latitude
+      marker.lng adventure.longitude
+      marker.infowindow adventure.address
+    end
     #empty array that will hold arrays of images
     @images = []
     #stating the var for the loop
@@ -76,14 +79,6 @@ class AdventuresController < ApplicationController
       #adding one array of pictures into the images corresponding to a row in the view
       @images << set_of_images
     end
-
-    @adventures = Adventure.find(params[:id])
-    @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
-      marker.lat adventure.latitude
-      marker.lng adventure.longitude
-      marker.infowindow adventure.address
-    end
-
   end
 
   # GET /adventures/new
@@ -202,7 +197,7 @@ class AdventuresController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def adventure_params
 
-      params.require(:adventure).permit(:name, :address, :directions, :description, :user_id, :category_id, :images, :latitude, :longitude)
+      params.require(:adventure).permit(:name, :address, :directions, :description, :category_id, :images, :latitude, :longitude)
 
     end
 

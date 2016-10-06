@@ -52,13 +52,14 @@ module FeatureSupport
     user.add_role :admin
   end
 
-  # def create_post(title, body, adventureName)
-  #   visit '/adventures'
-  #   click_link adventureName
-  #   click_link 'Add New Post'
-  #   fill_in 'Title', with: title
-  #   fill_in 'Body', with: body
-  #   click_button 'Create Post'
-  # end
+  def create_post(title, body, adventureName)
+    visit '/adventures'
+    click_link adventureName
+    click_link 'Add New Post'
+    fill_in 'Title', with: title
+    fill_in 'Body', with: body
+    click_button 'Create Post'
+  end
+
 
 end

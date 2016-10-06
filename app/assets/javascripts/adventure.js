@@ -30,9 +30,9 @@ function placeMakers(data) {
   handler.fitMapToBounds();
   handler.getMap().setZoom(12);
 }
-// commented out the YOU position
 // calls placeMakers function
 function showLocations(data) {
+
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
       // Add our position to the collection of markers
@@ -47,7 +47,7 @@ function showLocations(data) {
       alert("Geolocation is not available.");
       placeMakers(data)
   }
-}
+
 // create google map data
 function createGmap(data, selector) {
   handler = Gmaps.build('Google');
@@ -81,14 +81,14 @@ function loadAndCreateGmap() {
     });
   }
 };
-// Creates the json object for all locations on the adventure index
-function loadAndCreateGmapForAllLocations() {
+function loadAndCreateGmapForAdventures() {
   // Only load map data if we have a map on the page
   if ($('#allAdventuresMap').length > 0) {
-// '/map_location was added and the route was created'
+    var search = $('#allAdventuresMap').attr('data-search-string');
+    //'/map_location was added and the route was created'
     $.ajax({
       dataType: 'json',
-      url: '/adventures/all_map_locations',
+      url: '/adventures/all_map_locations?search=' + search,
       method: 'GET',
       data: '',
       success: function(data) {
@@ -101,10 +101,7 @@ function loadAndCreateGmapForAllLocations() {
   }
 };
 // Create the map on the locations index page
-$(document).on('ready',
-  loadAndCreateGmapForAllLocations
-);
-
+$(document).on('ready', loadAndCreateGmapForAdventures);
 // Create the map when the page loads the first time
 $(document).on('ready', loadAndCreateGmap);
 // Create the map when the contents is loaded using turbolinks

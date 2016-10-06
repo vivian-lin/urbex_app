@@ -3,14 +3,14 @@
 <label>Browse by category:</label>
 <ul>
   <%@categories.each do |category|%>
-    <li><a href="/categories/<%=category.id%>" target="_blank"><%=category.category_name%></a></li>
+    <li><a href="/categories/<%=category.id%>" ><%=category.category_name%></a></li>
   <%end%>
 </ul>
 
 <label>Search by keywords:</label>
 <form action="/adventures" method="get">
-  <input type="text" name="search">
-  <input type="submit" value="Search">
+  <input type="text" name="search" id="searchField">
+  <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
 </form>
 
 <h3>All Adventures</h3>
@@ -20,7 +20,6 @@
       <th>Name</th>
       <th>Address</th>
       <th>Directions</th>
-      <th>Description</th>
       <th>Category</th>
       <th>Photo</th>
       <th colspan="3"></th>
@@ -30,15 +29,23 @@
   <tbody>
     <% @adventures.each do |adventure| %>
       <tr>
-        <td><%= adventure.name %></td>
+        <td><%= link_to adventure.name, adventure %></td>
         <td><%= adventure.address %></td>
         <td><%= adventure.directions %></td>
         <td><%= adventure.description%></td>
         <td><%= adventure.category.category_name %></td>
-        <td><%= image_tag adventure.images.first.image.url(:thumbnail) %></td>
-        <td><%= link_to 'Show', adventure %></td>
+        <td>
+          <%if !adventure.images.first.nil?%>
+            <%= image_tag adventure.images.first.image.url(:thumbnail) %>
+          <%end%>
+        </td>
         <% if !current_user.nil? %>
-          <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
+          <td><%= link_to edit_adventure_path(adventure), id:"edit_adventure" do %>
+            <button type="button" class="btn btn-default btn-xs" title="Edit Adventure">
+              <i class='glyphicon glyphicon-edit' aria-hidden="true"></i>
+            </button>
+            <% end %>
+          </td>
           <% if current_user.roles.name == 'admin' %>
             <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
@@ -50,7 +57,7 @@
 
 <hr>
 <!-- Map starts -->
-<div id="allAdventuresMap"></div>
+<div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
 <!-- Map ends  -->
 <br>
 <% if !current_user.nil? %>
