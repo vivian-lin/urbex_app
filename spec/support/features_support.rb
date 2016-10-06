@@ -61,5 +61,15 @@ module FeatureSupport
     click_button 'Create Post'
   end
 
+  def create_post_with_image(title, body, adventureName)
+    visit '/adventures'
+    click_link adventureName
+    click_link 'Add New Post'
+    fill_in 'Title', with: title
+    fill_in 'Body', with: body
+    attach_file "images[]", File.join(Rails.root, "spec/assets/dam.jpg")
+    click_button 'Create Post'
+  end
+
 
 end

@@ -47,6 +47,8 @@ function showLocations(data) {
       alert("Geolocation is not available.");
       placeMakers(data)
   }
+  placeMakers(data)
+}
 
 // create google map data
 function createGmap(data, selector) {

@@ -138,11 +138,8 @@ class AdventuresController < ApplicationController
         # TODO: more comments
         if params[:images]
           params[:images].each do |image|
-            #1/0
             img = Image.create(image: image)
-            #@adventure.images.create(image_file_name: image)
             @adventure.images << img
-
           end
         end
         format.html { redirect_to @adventure, notice: 'Adventure was successfully created.' }
