@@ -6,5 +6,12 @@
 <p><strong>Email: </strong><%=@user.email%></p>
 <p><strong>About <%=@user.username%>:</strong> <%=@user.user_description%></p>
 
-
-  <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+  <% if !current_user.follows?(@user) %>
+    <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+  <% end %>
+  <% if current_user.follows?(@user) %>
+    <%= link_to'Unfollow this Explorer', user_unfollow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+  <% end %>
+  <p>
+    <%= flash[:alert] %>
+  </p>
