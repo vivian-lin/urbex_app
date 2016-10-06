@@ -74,8 +74,8 @@ RSpec.feature "Profilelinks", type: :feature do
     end
   end
 
-  context 'Users and Posts' do
-    Steps 'Updating a Post from another User' do
+  context 'Users and Adventures' do
+    Steps 'Updating an Adventure from another User' do
       Given 'There are users, categories, and adventures created' do
         sign_up('user@email.com', 'password', 'username')
         create_category("category_name")
@@ -83,21 +83,21 @@ RSpec.feature "Profilelinks", type: :feature do
         sign_out
         sign_up('user2@email.com', 'password', 'username2')
       end
-      Then 'I can update a post' do
+      Then 'I can update an Adventure' do
         click_link 'Adventures'
-        click_link 'Edit'
+        click_link 'edit_adventure'
         click_button 'Update Adventure'
-        expect(page).to have_content 'username2'
+        expect(page).to have_content 'Adventure was successfully updated.'
       end
-      Then 'Another user can update the post' do
+      Then 'Another user can update the Adventure' do
         sign_out
         sign_up('user3@email.com', 'password', 'username3')
         click_link 'Adventures'
-        click_link 'Edit'
+        click_link 'edit_adventure'
         click_button 'Update Adventure'
-        expect(page).to have_content 'username3'
+        expect(page).to have_content 'Adventure was successfully updated.'
       end
-      Then 'The original user can update the post' do
+      Then 'The original user can update the Adventure' do
         sign_out
         click_link 'Sign In'
       end

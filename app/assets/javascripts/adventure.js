@@ -1,3 +1,28 @@
+
+$(document).ready(function() {
+  $(".delete").on(
+    "click",
+    function() {
+      if (confirm("Are you sure you want to delete this photo?")) {
+        $(this).remove();
+        $.ajax({
+          dataType: 'json',
+          url: '/image/' + $(this).attr('id'),
+          method: 'DELETE',
+          data: '',
+          success: function(data) {
+            alert("You have deleted your photo!");
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert("Delete photo failed." + errorThrown );
+          }
+      });
+    }
+  });
+});
+
+
+
 //sets google zoom and places markers
 function placeMakers(data) {
   markers = handler.addMarkers(data);
@@ -7,8 +32,24 @@ function placeMakers(data) {
 }
 // calls placeMakers function
 function showLocations(data) {
-  placeMakers(data);
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+      // Add our position to the collection of markers
+      // data[data.length] = {
+      //   lat: position.coords.latitude,
+      //   lng: position.coords.longitude,
+      //   infowindow: "You!",
+      // };
+      placeMakers(data);
+    });
+  } else {
+      alert("Geolocation is not available.");
+      placeMakers(data)
+  }
+  placeMakers(data)
 }
+
 // create google map data
 function createGmap(data, selector) {
   handler = Gmaps.build('Google');
