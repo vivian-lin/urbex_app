@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.feature "AdventurePages", type: :feature do
   context 'Creating a new Adventure' do
     Steps 'I can create a new Adventure' do
@@ -118,7 +120,7 @@ RSpec.feature "AdventurePages", type: :feature do
         fill_in 'user[password]', with: 'cowcow'
         click_button 'Log in'
         click_link 'Adventures'
-        click_link 'Edit'
+        click_link 'edit_adventure'
         fill_in 'adventure[name]', with: 'Edited name'
         click_button 'Update Adventure'
         expect(page).to have_content 'Adventure was successfully updated.'
