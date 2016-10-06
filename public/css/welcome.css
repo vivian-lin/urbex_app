@@ -1,0 +1,33 @@
+html {
+  width: 100%;
+}
+
+#welcome-body {
+  background-image: url('https://images.unsplash.com/photo-1473225071450-1f1462d5aa92?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=b9a8c2eb2d62137914cc56bba5000d2b');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.welcome-div{
+  display: table;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-blurb{
+  /*color:white;
+  text-align:center;
+  /*display:flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 400px;
+  font-size: 60pt;*/
+  vertical-align: middle;
+  display: table-cell;
+  color:white;
+  text-align:center;
+  height: 100%;
+  width: 100%;
+}

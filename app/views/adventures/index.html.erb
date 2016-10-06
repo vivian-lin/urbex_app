@@ -56,10 +56,12 @@
 </table>
 
 <hr>
+<% if !current_user.nil? %>
+  <%= link_to 'Add New Adventure', new_adventure_path, :class => "btn btn-default" %>
+<% end %>
+<br>
+<br>
 <!-- Map starts -->
 <div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
 <!-- Map ends  -->
 <br>
-<% if !current_user.nil? %>
-  <%= link_to 'New Adventure', new_adventure_path, :class => "btn btn-default" %>
-<% end %>
