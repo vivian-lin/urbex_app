@@ -18,4 +18,22 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
+  context 'I can unfollow other users' do
+    Steps 'I can unfollow another user' do
+      Given 'I create accounts' do
+        sign_up('user@email.com', 'password', 'username')
+        sign_out
+        sign_up('alex@alex.com', 'alexalex', 'AlexLove')
+      end
+      And 'I am on the explorer page' do
+        click_link 'Explorers'
+        click_link 'username'
+      end
+      Then 'I can unfollow username' do
+        click_link 'Follow this Explorer'
+        click_link 'Unfollow this Explorer'
+        expect(page).to have_content 'You are no longer following username'
+      end
+    end
+  end
 end

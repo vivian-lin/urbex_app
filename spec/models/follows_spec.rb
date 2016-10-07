@@ -5,13 +5,20 @@ RSpec.describe Follow, type: :model do
     expect {Follow.new}.to_not raise_error
   end
 
-  it 'has follower and followable types' do
-    follow = Follow.new
-    follow.follower_type = 'explorer'
-    follow.followable_type = 'user'
-    expect(follow.save).to be true
-    follow2 = Follow.find_by_follower_type('explorer')
-    expect(follow2.follower_type).to eq 'explorer'
-    expect(follow2.followable_type).to eq 'user'
+  it 'users can follow and unfollow' do
+    user1 = User.new
+    user1.email = "email@email.com"
+    user1.password = "password"
+    user1.username = "username"
+    user1.save
+    user2 = User.new
+    user2.email = "email2@email.com"
+    user2.password = "password"
+    user2.username = "username2"
+    user2.save
+    user1.follow!(user2)
+    expect(user2.followers(User)).to eq [user1]
+    user1.unfollow!(user2)
+    expect(user2.followers(User)).to eq []
   end
 end
