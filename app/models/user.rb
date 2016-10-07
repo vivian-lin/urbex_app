@@ -56,7 +56,12 @@ class User < ActiveRecord::Base
   end
 
   # Creating a method for blog posts feed
-  def feed
-    Post.where('user_id = ?', id)
-  end
+  # def feed
+  #   followees = current_user.followees(User)
+  #   followees_posts = followees.map{|followee| followee.posts}
+  #   self_posts = Post.where( user_id: current_user.id )
+  #   @feed = followees_posts << self_posts
+  #   #@feed.sort_by &:created_at
+  #   # default_scope -> { order(created_at: :desc) }
+  # end
 end

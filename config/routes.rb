@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/profile/:username' => 'profile#show'
   get '/profile' => 'profile#show'
   get '/profile/:id/profile_map_locations' => 'profile#profile_map_locations'
+  get '/feed' => 'profile#feed'
 
   get "admin" => "admin#index"
   put "admin/:id" => "admin#update"

@@ -2,10 +2,17 @@ class ProfileController < ApplicationController
 
   def index
   end
-  #
-  # def view
-  #   @user = User.find_by_username(params[:username])
-  # end
+
+  def feed
+    followees = current_user.followees(User)
+    followees_posts = followees.map{|followee| followee.posts}
+    @feed = followees_posts
+    self_posts = Post.where( user_id: current_user.id )
+    @feed = followees_posts << self_posts
+    # @feed.each
+    # @feed = @feed.sort {|a, b| a.created_at<=>b.created_at}
+    # default_scope -> { order(created_at: :desc) }
+  end
 
   def show
     if current_user.nil? && (params[:username].nil? || params[:username].empty?)
