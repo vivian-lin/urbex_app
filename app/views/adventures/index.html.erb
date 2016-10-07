@@ -1,33 +1,34 @@
-<h1>Search Adventures</h1>
+<div class="container">
+  <h1>Search Adventures</h1>
 
-<label>Browse by category:</label>
-<ul>
-  <%@categories.each do |category|%>
+  <label>Browse by category:</label>
+  <ul>
+    <%@categories.each do |category|%>
     <li><a href="/categories/<%=category.id%>" ><%=category.category_name%></a></li>
-  <%end%>
-</ul>
+    <%end%>
+  </ul>
 
-<label>Search by keywords:</label>
-<form action="/adventures" method="get">
-  <input type="text" name="search" id="searchField">
-  <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
-</form>
+  <label>Search by keywords:</label>
+  <form action="/adventures" method="get">
+    <input type="text" name="search" id="searchField">
+    <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
+  </form>
 
-<h3>All Adventures</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Directions</th>
-      <th>Category</th>
-      <th>Photo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h3>All Adventures</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Directions</th>
+        <th>Category</th>
+        <th>Photo</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @adventures.each do |adventure| %>
+    <tbody>
+      <% @adventures.each do |adventure| %>
       <tr>
         <td><%= link_to adventure.name, adventure %></td>
         <td><%= adventure.address %></td>
@@ -36,32 +37,32 @@
         <td><%= adventure.category.category_name %></td>
         <td>
           <%if !adventure.images.first.nil?%>
-            <%= image_tag adventure.images.first.image.url(:thumbnail) %>
+          <%= image_tag adventure.images.first.image.url(:thumbnail) %>
           <%end%>
         </td>
         <% if !current_user.nil? %>
-          <td><%= link_to edit_adventure_path(adventure), id:"edit_adventure" do %>
-            <button type="button" class="btn btn-default btn-xs" title="Edit Adventure">
-              <i class='glyphicon glyphicon-edit' aria-hidden="true"></i>
-            </button>
-            <% end %>
-          </td>
-          <% if current_user.roles.name == 'admin' %>
-            <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to edit_adventure_path(adventure), id:"edit_adventure" do %>
+          <button type="button" class="btn btn-default btn-xs" title="Edit Adventure">
+            <i class='glyphicon glyphicon-edit' aria-hidden="true"></i>
+          </button>
           <% end %>
+        </td>
+        <% if current_user.roles.name == 'admin' %>
+        <td><%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 
-<hr>
-<% if !current_user.nil? %>
+  <hr>
+  <% if !current_user.nil? %>
   <%= link_to 'Add New Adventure', new_adventure_path, :class => "btn btn-default" %>
-<% end %>
-<br>
-<br>
-<!-- Map starts -->
-<div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
-<!-- Map ends  -->
-<br>
+  <% end %>
+  <br>
+  <br>
+  <!-- Map starts -->
+  <div id="allAdventuresMap" data-search-string="<%=params[:search]%>"></div>
+  <!-- Map ends  -->
+</div>
