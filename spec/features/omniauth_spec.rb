@@ -20,7 +20,7 @@ RSpec.feature "OmniauthTests", js:true, type: :feature do
       end
       Then 'I expect to be signed up with my Twitter account' do
         expect(page).to have_content("Welcome! You have signed up successfully.")
-        expect(page).to have_content('Welcome, @SampleTwitter!')
+        expect(page).to have_content('Welcome, SampleTwitter!')
       end
       Then 'I can sign out, then sign back in with my Twitter account' do
         sign_out

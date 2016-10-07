@@ -1,4 +1,8 @@
-<h2>Welcome, @<%= @user.username %>!</h2><br>
+<% if current_user != @user %>
+  <h2><%=@user.username%>'s Profile</h2><br>
+<% else %>
+  <h2>Welcome, <%= @user.username %>!</h2><br>
+<% end %>
 
 <div class="container">
   <div class="col-md-4">
@@ -8,10 +12,19 @@
     <br>
     <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
     <br>
-    <% if !current_user == @user %>
-      <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
-    <% end %>
-    <p>Followers will appear here...</p>
+    <hr>
+    <p>
+      <% if current_user != @user %>
+        <% if !current_user.nil? && !current_user.follows?(@user) %>
+          <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+        <% end %>
+        <% if !current_user.nil? && current_user.follows?(@user) %>
+          <%= link_to'Unfollow this Explorer', user_unfollow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+        <% end %>
+      <% end %>
+    </p>
+    <p class="text-success"><%= flash[:alert] %></p>
+
   </div>
   <div class="col-md-8">
     <!-- Map starts -->
