@@ -3,14 +3,15 @@ class SocializationsController < ApplicationController
 
   def follow
     current_user.follow!(@socializable)
-    flash[:notice] = 'You are now following ' + @socializable.username
+    flash[:alert] = 'You are now following ' + @socializable.username
     #render json: { follow: true }
     redirect_to '/profile/' + @socializable.username
   end
 
   def unfollow
     current_user.unfollow!(@socializable)
-    render json: { follow: false }
+    flash[:alert] = 'You are no longer following ' + @socializable.username
+    #render json: { follow: false }
     redirect_to '/profile/' + @socializable.username
   end
 
