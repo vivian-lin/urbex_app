@@ -50,6 +50,36 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    #empty array that will hold arrays of images
+    @images = []
+    #stating the var for the loop
+    index = 0
+    #while there is a imgae uploded that is greater than 0 upload them into the array
+    while index < @post.images.length do
+      #array of images that they are now put into
+      set_of_images = []
+      #shoveling the images into the array
+      set_of_images << @post.images[index]
+      #adding an image to the index to the loop to now compare to the next loop
+      index = index + 1
+      #comparing if the index is less than the amount of photos uploaded
+      if index < @post.images.length
+        #shoveling the images into the new uploaded array
+        set_of_images << @post.images[index]
+        #adding the photo into the index loop to now compair for the next loop
+        index = index + 1
+      end
+      if index < @post.images.length
+        #shoveling the images into the new uploaded array
+        set_of_images << @post.images[index]
+        #adding the photo into the index loop to now compair for the next loop
+        index = index + 1
+      end
+      #adding one array of pictures into the images corresponding to a row in the view
+      @images << set_of_images
+    end
+
+
   end
 
   # POST /posts
