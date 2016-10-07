@@ -44,7 +44,7 @@ RSpec.feature "AddPhotoToPosts", type: :feature do
       Then 'I can click on that Post link and see the content of that Post' do
         click_link 'Adventure Post'
         expect(page).to have_content 'This place was awesome!'
-        expect(page).to have_selector('img', :count => 1)
+        expect(page).to have_selector('img', :count => 2)
       end # ends then
       Then 'I can edit my post by adding more photos' do
         click_link 'Edit'
@@ -52,7 +52,7 @@ RSpec.feature "AddPhotoToPosts", type: :feature do
         click_button 'Update Post'
       end # ends then
       And 'I will see my newly added photos on the page' do
-        expect(page).to have_selector('img', :count => 4)
+        expect(page).to have_selector('img', :count => 5)
       end # ends and
     end #end steps
   end # end context
