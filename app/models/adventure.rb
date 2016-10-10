@@ -5,6 +5,7 @@ class Adventure < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many :posts
 
+  validates :name, presence: true
   validates :category_id, presence: true
   resourcify
 

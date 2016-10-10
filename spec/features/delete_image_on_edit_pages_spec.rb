@@ -7,11 +7,10 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         visit '/'
       end # ends given
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'Happy`Cat')
       end # end and
       Then 'I can create a category for an adventure' do
-        create_category('Haunted')
-        create_category('Tunnels')
+        create_categories
       end # ends then
       Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
@@ -23,7 +22,7 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
       end # ends then
       And 'I can edit my post by adding photos' do
         click_link 'Edit'
@@ -54,7 +53,7 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         expect(page).to have_selector('img', :count => 2)
       end # ends then
       Then 'I can edit my post by deleting my photos' do
@@ -71,7 +70,7 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         expect(page).to have_selector('img', :count => 1)
       end # ends then
     end # ends steps

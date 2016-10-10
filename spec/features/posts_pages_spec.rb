@@ -7,7 +7,7 @@ RSpec.feature "Blog Posts", type: :feature do
         sign_up('user@email.com', 'password', 'username')
       end
       And 'There are categories & adventures created' do
-        create_category("category_name")
+        create_categories
         create_adventure("adventure_name", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
       end
       Then 'I can click a button and create a new post' do
@@ -31,7 +31,7 @@ RSpec.feature "Blog Posts", type: :feature do
         sign_up('user@email.com', 'password', 'username')
       end
       And 'There are categories & adventures created' do
-        create_category("category_name")
+        create_categories
         create_adventure("adventure_name", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
       end
       And 'I can click a button and create a new post' do
@@ -57,7 +57,7 @@ RSpec.feature "Blog Posts", type: :feature do
         sign_up('user@email.com', 'password', 'username')
       end
       And 'There are categories & adventures created' do
-        create_category("Spoopy and Creppy")
+        create_categories
         create_adventure("Haunted Forest", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
       end
       Then 'I can click a button and create a new post' do
@@ -70,6 +70,11 @@ RSpec.feature "Blog Posts", type: :feature do
       end
       Then 'I can see the post adventure on the post show page' do
         expect(page).to have_content 'Adventure: Haunted Forest'
+      end
+      Then "I can click the back button and be taken back to that post's adventure" do
+        click_link 'Back'
+        expect(page).to have_content 'Category: Abandoned'
+        expect(page).to have_content 'Name: Haunted Forest'
       end
     end
   end

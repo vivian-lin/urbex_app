@@ -1,21 +1,22 @@
-<%= form_for(@adventure, :html => { :class => 'form-horizontal', multipart: true }) do |f| %>
-  <% if @adventure.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
+  <%= form_for(@adventure, :html => { :class => 'form-horizontal', multipart: true }) do |f| %>
+    <% if @adventure.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
 
-      <ul>
-      <% @adventure.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+        <% @adventure.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
 
 <div class="row">
   <div class="field">
-    <%= f.label :name, class: "col-md-2 control-label text-right" %><br>
+    <%= f.label :name, class: "required col-md-2 control-label text-right" %><br>
     <div class="col-md-8">
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", :required => true  %>
     </div>
     <div class="col-md-2">
     </div>
@@ -24,9 +25,9 @@
 
 <div class="row">
   <div class="field">
-    <%= f.label :address, class: "col-md-2 control-label text-right" %><br>
+    <%= f.label :address, class: " required col-md-2 control-label text-right" %><br>
     <div class="col-md-8">
-      <%= f.text_field :address, class: "form-control" %>
+      <%= f.text_field :address, class: "form-control", :required => true, :placeholder => 'Please enter a valid & complete address.' %>
     </div>
     <div class="col-md-2">
     </div>

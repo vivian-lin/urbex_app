@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   end
 
   get 'search/index'
-  get '/profile/:username' => 'profile#view'
+  get '/profile/:username' => 'profile#show'
   get '/profile' => 'profile#show'
   get '/profile/:id/profile_map_locations' => 'profile#profile_map_locations'
+  get '/feed' => 'profile#feed'
 
   get "admin" => "admin#index"
   put "admin/:id" => "admin#update"
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
     post 'follow', to: 'socializations#follow'
     post 'unfollow', to: 'socializations#unfollow'
   end
-  
+
   get 'about/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

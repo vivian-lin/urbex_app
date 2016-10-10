@@ -47,7 +47,7 @@ li a:hover:not(.active) {
 }
 
 .content {
-  margin-left: 25%;
+  margin-left: 20%;
   padding: 1px 16px;
   height: 1000px;
 }
@@ -57,4 +57,9 @@ li a:hover:not(.active) {
   padding-left: 18px;
   padding-top: 18px;
   padding-bottom: 30px;
+}
+
+label.required:after {
+    content: " *";
+    color: red;
 }

@@ -13,9 +13,11 @@ class Ability
       can :manage, Adventure
       can :manage, Post, user_id: user.id
       can :read, Post
+      can :read, Category
     else user.nil?
       can :read, Post
       can :read, Adventure
+      can :read, Category
     end
 
 
