@@ -38,7 +38,7 @@
         <h4 class="title"><%=link_to post.title, post%></h4>
         <h5><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
         <h5><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
-        <p class="date"><%=post.created_at.strftime("%B, %d, %Y")%></p>
+        <p><%=post.created_at.strftime("%B, %d, %Y")%></p>
       </div>
     <% end %>
   </div>

@@ -1,0 +1,13 @@
+
+
+<ul class="blogfeed">
+    <% @feed.each do |f| %>
+      <% f.each do |post| %>
+        <li><h3><%= post.title %></h3></li>
+        <li><h4>By:<%= post.user.username %></h4></li>
+        <li><strong><%= post.created_at.strftime("%B, %d, %Y") %></strong></li>
+        <li><%= post.body %></li>
+        <hr />
+      <% end %>
+    <% end %>
+</ul>
