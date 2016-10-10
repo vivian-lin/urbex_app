@@ -9,24 +9,16 @@ html {
   background-repeat: no-repeat;
 }
 
-.welcome-div{
+.welcome-div {
   display: table;
   height: 100%;
   text-align: center;
 }
 
-.welcome-blurb{
-  /*color:white;
-  text-align:center;
-  /*display:flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 400px;
-  font-size: 60pt;*/
+.welcome-blurb {
   vertical-align: middle;
   display: table-cell;
   color:white;
-  text-align:center;
   height: 100%;
   width: 100%;
 }
