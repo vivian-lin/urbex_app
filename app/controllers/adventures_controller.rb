@@ -14,6 +14,15 @@ class AdventuresController < ApplicationController
     @categories = Category.all
   end
 
+  # purpose: to add adventure to user's collection of adventures
+  # needs adventure id as a parameter
+  def add_adventure
+    @adventure = Adventure.find(params[:adventure_id])
+    @adventure.users << current_user
+    flash[:notice] = "You have successfully added this adventure."
+    redirect_to '/adventures'
+  end
+
   # gets the info for google map for the Adventure SHOW page and creates json hash
   def map_location
     @adventure = Adventure.find(params[:adventure_id])

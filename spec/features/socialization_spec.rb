@@ -84,6 +84,28 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
+
+  context 'Recently added adventures' do
+    Steps 'Seeing recently added adventures on your feed' do
+      Given 'I am signed up, and there are categories and adventures created' do
+        sign_up('user1@email.com', 'password', 'user1')
+        create_categories
+        create_adventure('Adventure1', 'AdventureAddress', 'AdventureDirections', 'AdventureDescription', 'option[1]')
+        create_adventure('Adventure2', 'AdventureAddress', 'AdventureDirections', 'AdventureDescription', 'option[1]')
+        create_adventure('Adventure3', 'AdventureAddress', 'AdventureDirections', 'AdventureDescription', 'option[1]')
+        sign_out
+        sign_up('user2@email.com', 'password', 'user2')
+        create_adventure('Adventure4', 'AdventureAddress', 'AdventureDirections', 'AdventureDescription', 'option[1]')
+      end
+      Then 'I can see new adventures on my feed' do
+        visit '/feed'
+        expect(page).to have_content 'Adventure1'
+        expect(page).to have_content 'Adventure2'
+        expect(page).to have_content 'Adventure3'
+        expect(page).to have_content 'Adventure4'
+      end
+    end
+  end
   context 'posts on my feed page are truncated with links to full post' do
     Steps 'creating posts' do
       Given 'I am logged in and have posts on my feed page' do
@@ -103,5 +125,4 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
-
 end

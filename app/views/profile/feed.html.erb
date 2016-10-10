@@ -1,4 +1,10 @@
-
+<h3 id="adventureFeedTitle">New Adventures</h3>
+<ul class="adventurefeed">
+  <% @adventures.each do |a| %>
+    <li><strong><%= link_to a.name, a %></strong>, Added on: <%=a.created_at.strftime("%B, %d, %Y")%></li>
+  <% end %>
+</ul>
+<hr>
 <div class="container">
   <ul class="blogfeed">
     <% @feed.each do |f| %>
