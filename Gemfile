@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-#add textacular
+# add textacular
 gem 'textacular', '~> 3.0'
-
-
+# imagemagick
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record

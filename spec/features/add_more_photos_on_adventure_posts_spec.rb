@@ -7,15 +7,14 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         visit '/'
       end # ends given
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'HappyCat')
       end # end and
       Then 'I can create a category for an adventure' do
-        create_category('Haunted')
-        create_category('Tunnels')
+        create_categories
       end # ends then
       Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
-        click_link 'New Adventure'
+        click_link 'Add New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
       end
       Then 'I can see all the info about my Adventure' do
@@ -23,7 +22,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         # needs to be 4 because of the logo img
         expect(page).to have_selector('img', :count => 4)
       end
@@ -36,7 +35,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         # needs to be 7 because of the logo img
         expect(page).to have_selector('img', :count => 7)
       end
@@ -49,15 +48,14 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         visit '/'
       end # ends given
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'HappyCat')
       end # end and
       Then 'I can create a category for an adventure' do
-        create_category('Haunted')
-        create_category('Tunnels')
+        create_categories
       end # ends then
       Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
-        click_link 'New Adventure'
+        click_link 'Add New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
       end # ends then
       Then 'I can see all the info about my Adventure' do
@@ -65,7 +63,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         # needs to be 4 because of the logo img
         expect(page).to have_selector('img', :count => 4)
       end # ends then
@@ -82,7 +80,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
         # needs to be 7 because of the logo img
         expect(page).to have_selector('img', :count => 7)
       end # ends then

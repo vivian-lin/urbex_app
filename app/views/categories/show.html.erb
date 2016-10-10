@@ -12,5 +12,7 @@
 </ul>
 
 <br><br>
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<% if !current_user.nil? && current_user.has_role?(:admin) %>
+  <%= link_to 'Edit', edit_category_path(@category) %> |
+<% end %>
+<%= link_to 'Back', adventures_path %>

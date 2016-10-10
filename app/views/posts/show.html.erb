@@ -13,8 +13,8 @@
     <%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-xs btn-default" %>
     <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-xs btn-default" %>
     <% end %>
-    <%= link_to 'Back', posts_path, :class => "btn btn-xs btn-default" %>
-    
+    <%= link_to 'Back', @post.adventure, :class => "btn btn-xs btn-default" %>
+
   </div>
   <div class="col-md-5">
     <table class="gallery">

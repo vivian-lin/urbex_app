@@ -28,7 +28,7 @@ RSpec.feature "AdminPages", type: :feature do
         create_admin
       end
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'HappyCat')
       end
       Then 'I can sign out of the user account' do
         sign_out

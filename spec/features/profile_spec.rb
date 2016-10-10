@@ -41,7 +41,7 @@ RSpec.feature "Profilelinks", type: :feature do
         visit '/'
       end # ends given
       Given 'We can sign up' do
-        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
+        sign_up('cow@cow.com', 'cowcow', 'HolsteinMcMooFace')
       end # ends Given
       And 'I can click a button that takes me to the new adventure form' do
         click_link('Add New Adventure')
@@ -56,7 +56,7 @@ RSpec.feature "Profilelinks", type: :feature do
         sign_up('user@email.com', 'password', 'username')
       end
       And 'There are categories & adventures created' do
-        create_category("category_name")
+        create_categories
         create_adventure("adventure_name", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
       end
       Then 'I can click a button and create a new post' do
@@ -78,7 +78,7 @@ RSpec.feature "Profilelinks", type: :feature do
     Steps 'Updating an Adventure from another User' do
       Given 'There are users, categories, and adventures created' do
         sign_up('user@email.com', 'password', 'username')
-        create_category("category_name")
+        create_categories
         create_adventure("adventure_name", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
         sign_out
         sign_up('user2@email.com', 'password', 'username2')
@@ -107,9 +107,8 @@ RSpec.feature "Profilelinks", type: :feature do
   context 'On a profile page I can see a map of all my adventures' do
     Steps 'I can go to my profile page and see my adventures on a map' do
       Given 'There are adventures created for the map' do
-        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
-        create_category('Urban Art')
-        create_category('Haunted')
+        sign_up('cow@cow.com', 'cowcow', 'HolsteinMcMooFace')
+        create_categories
         create_adventure('Learn Academy', '3803 Ray St. San Diego, CA, 92104', 'corner of Ray and Northpark, just south of university', 'A haunted place of mystery and ghouls', 'option[1]')
         create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[2]')
       end # ends Given
@@ -126,7 +125,7 @@ RSpec.feature "Profilelinks", type: :feature do
         sign_up('user@email.com', 'password', 'username')
       end
       And 'There are categories & adventures created' do
-        create_category("Spoopy and Creppy")
+        create_categories
         create_adventure("Haunted Forest", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
       end
       Then 'I can click a button and create a new post' do
@@ -148,17 +147,17 @@ RSpec.feature "Profilelinks", type: :feature do
     Steps "Seeing the Post's Adventure's Category" do
       Given 'There is a post created' do
         sign_up('user@email.com', 'password', 'username')
-        create_category("Spoopy and Creppy")
+        create_categories
         create_adventure("Haunted Forest", "adventure_address", "adventure_directions", "adventure_description", "option[1]")
         create_post('Title', 'This is the Body.', 'Haunted Forest')
       end
       Then "I can see that post's category on my profile page" do
         click_link 'Profile'
-        expect(page).to have_content 'Category: Spoopy and Creppy'
+        expect(page).to have_content 'Category: Abandoned'
       end
       And "I can see that post's category on that post's show page" do
         click_link 'Title'
-        expect(page).to have_content 'Category: Spoopy and Creppy'
+        expect(page).to have_content 'Category: Abandoned'
       end
     end
   end
