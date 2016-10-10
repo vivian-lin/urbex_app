@@ -6,6 +6,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   margin-bottom: 40px;
+  height: 100%;
 }
 
 
@@ -73,4 +74,50 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+#welcome-body {
+  background-image: url('https://images.unsplash.com/photo-1473225071450-1f1462d5aa92?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=b9a8c2eb2d62137914cc56bba5000d2b');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 1000px;
+}
+
+.welcome-div {
+  display: table;
+  height: 100%;
+}
+
+.welcome-blurb {
+  padding-top: 350px;
+  vertical-align: middle;
+  display: table-cell;
+  color:white;
+  height: 100%;
+  width: 100%;
+}
+
+.welcome-blurb h1 {
+  font-weight: 600;
+}
+
+.col-lg-10, .col-sm-9 {
+  padding: 0;
+}
+/* media query to hide background image on home page for mobile devices */
+@media (max-width: 767px) {
+
+  #welcome-body {
+        background-image: none;
+        background-color: #ff6600;
+        margin: -20px;
+    }
+  .welcome-blurb {
+    padding: 25px 0 0 0;
+  }
+  .bottom-nav {
+    padding: 1em 0 0 0;
+  }
+
 }
