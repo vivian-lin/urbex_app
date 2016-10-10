@@ -33,7 +33,7 @@
         <em class="form-text text-muted">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
         <div class="col-sm-9">
-          <%= f.password_field :password, autocomplete: "off",  class: "form-control", :required => true %>
+          <%= f.password_field :password, autocomplete: "off",  class: "form-control" %>
         </div>
         <div class="col-sm-1">
         </div>
@@ -44,7 +44,7 @@
     <div class="field">
       <%= f.label :password_confirmation, class: "required col-sm-2 control-label text-right" %><br />
       <div class="col-sm-9">
-        <%= f.password_field :password_confirmation, autocomplete: "off",  class: "form-control", :required => true %>
+        <%= f.password_field :password_confirmation, autocomplete: "off",  class: "form-control" %>
       </div>
       <div class="col-sm-1">
       </div>

@@ -8,6 +8,7 @@ class SocializationsController < ApplicationController
     redirect_to '/profile/' + @socializable.username
   end
 
+
   def unfollow
     current_user.unfollow!(@socializable)
     flash[:alert] = 'You are no longer following ' + @socializable.username

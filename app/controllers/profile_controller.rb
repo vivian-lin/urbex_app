@@ -14,6 +14,7 @@ class ProfileController < ApplicationController
     # default_scope -> { order(created_at: :desc) }
   end
 
+
   def show
     if current_user.nil? && (params[:username].nil? || params[:username].empty?)
       redirect_to '/users/sign_up'
