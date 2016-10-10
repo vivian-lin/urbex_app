@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
+RSpec.feature "AddMorePhotosOnAdventurePosts",  type: :feature do
   context 'I can add photos to a gallery on an adventrue' do
     Steps 'I have to sign up to I can create an account to create an adventrue' do
       Given 'I am on the index page' do
         visit '/'
       end # ends given
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'HappyCat')
       end # end and
       Then 'I can create a category for an adventure' do
         create_category('Haunted')
@@ -15,7 +15,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
       end # ends then
       Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
-        click_link 'New Adventure'
+        click_link 'Add New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
       end
       Then 'I can see all the info about my Adventure' do
@@ -57,7 +57,7 @@ RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
       end # ends then
       Then 'I can create a new Adventure and add an image' do
         click_link 'Adventures'
-        click_link 'New Adventure'
+        click_link 'Add New Adventure'
         create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
       end # ends then
       Then 'I can see all the info about my Adventure' do
