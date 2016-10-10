@@ -13,6 +13,9 @@
     <br>
     <hr>
     <p>
+      <% if current_user == @user %>
+        MY FOLLOWERS
+      <% end %>
       <% if current_user != @user %>
         <% if !current_user.nil? && !current_user.follows?(@user) %>
           <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>

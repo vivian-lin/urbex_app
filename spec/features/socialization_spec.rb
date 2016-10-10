@@ -103,5 +103,33 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
-
+  context 'I can see my followers on my profile page' do
+    Steps 'Accounts created and followees followed' do
+      Given 'I create accounts and follow others' do
+        sign_up('user@email.com', 'password', 'username')
+        sign_out
+        sign_up('alex@alex.com', 'alexalex', 'AlexLove')
+        click_link 'Explorers'
+        click_link 'username'
+        click_link 'Follow this Explorer'
+        sign_out
+        sign_up('gorilla@gorilla.com','gorilla','Harambe')
+        click_link 'Explorers'
+        click_link 'username'
+        click_link 'Follow this Explorer'
+        sign_out
+      end
+      And 'I can log back in to first account' do
+        click_link 'sign in'
+        fill_in 'user[email]', with: 'user@email.com'
+        fill_in 'user[password]', with: 'password'
+        click_button 'Log in'
+      end
+      Then 'I can see my followers' do
+        expect(page).to have_content 'MY FOLLOWERS'
+        expect(page).to have_content 'AlexLove'
+        expect(page).to have_content 'Harambe'
+      end
+    end
+  end
 end
