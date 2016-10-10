@@ -15,12 +15,6 @@ module FeatureSupport
     click_link 'Sign Out'
   end
 
-  def create_category(category_name)
-    visit '/categories/new'
-    fill_in 'category[category_name]', with: category_name
-    click_button 'Create Category'
-  end
-
   def create_adventure(name, address, directions, description, option)
     visit '/adventures/new'
     fill_in 'adventure[name]', with: name
@@ -48,7 +42,7 @@ module FeatureSupport
   end
 
   def create_admin
-    user = User.create! :username => 'App Manager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
+    user = User.create! :username => 'AppManager', :email => 'admin@admin.com', :password => 'adminadmin', :password_confirmation => 'adminadmin'
     user.add_role :admin
   end
 
@@ -75,5 +69,14 @@ module FeatureSupport
     attach_file "images[]", [File.join(Rails.root,"spec/assets/mine1.jpg"), File.join(Rails.root,"spec/assets/mine2.jpg"), File.join(Rails.root,"spec/assets/mine3.jpg")]
   end
 
-
+  def create_categories
+    category1 = Category.create! :category_name => 'Abandoned'
+    category1 = Category.create! :category_name => 'Arts & Culture'
+    category1 = Category.create! :category_name => 'Haunted'
+    category1 = Category.create! :category_name => 'Hiking'
+    category1 = Category.create! :category_name => 'Historical'
+    category1 = Category.create! :category_name => 'Kid-Friendly'
+    category1 = Category.create! :category_name => 'Scenic'
+    category1 = Category.create! :category_name => 'Miscellaneous'
+  end
 end

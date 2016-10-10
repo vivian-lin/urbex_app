@@ -16,11 +16,13 @@
   </thead>
   <tbody>
     <%@users.each do |user|%>
-      <tr>
-        <td><a href="/profile/<%=user.username%>"><%=user.username%></a></td>
-        <td><%=user.email%></td>
-        <td><%=user.user_description%></td>
-      </tr>
+      <%if !user.has_role?(:admin)%>
+        <tr>
+          <td><a href="/profile/<%=user.username%>"><%=user.username%></a></td>
+          <td><%=user.email%></td>
+          <td><%=user.user_description%></td>
+        </tr>
+      <%end%>
     <%end%>
   </tbody>
 </table>

@@ -4,8 +4,8 @@ RSpec.feature "AddPhotoToPosts", type: :feature do
   context 'Posts on adventure page' do
     Steps 'I can go to the adventure page and see all related posts' do
       Given 'There are adventures created' do
-        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
-        create_category('Haunted')
+        sign_up('cow@cow.com', 'cowcow', 'HolsteinMcMooFace')
+        create_categories
         create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[1]')
       end
       Then 'There are posts created' do
@@ -28,8 +28,8 @@ RSpec.feature "AddPhotoToPosts", type: :feature do
   context 'Posts on adventure page adding more images in edit' do
     Steps 'I can go to the adventure page and see all related posts' do
       Given 'There are adventures created' do
-        sign_up('cow@cow.com', 'cowcow', 'Holstein McMooFace')
-        create_category('Haunted')
+        sign_up('cow@cow.com', 'cowcow', 'HolsteinMcMooFace')
+        create_categories
         create_adventure('North Park Water Tower', 'Howard Ave, San Diego, CA 92104', 'haunted water tower', 'spoopy and creppy', 'option[1]')
       end # ends given
       Then 'There are posts created' do

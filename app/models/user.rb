@@ -1,27 +1,29 @@
 class User < ActiveRecord::Base
-  #User can have many Adventures, can belong to many Adventures
+  # User can have many Adventures, can belong to many Adventures
   has_and_belongs_to_many :adventures
-  #adds roles to Users
+  # adds roles to Users
   rolify
-  #adds User avatar
+  # adds User avatar
   has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  #added devise (login/logout functionality)
+  # added devise (login/logout functionality)
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
-  #requires that Users add a username
+  # requires that Users add a username
   validates :username, presence: true
-  #requires that usernames must be unique
+  # requires that usernames must be unique
   validates :username, uniqueness: true
-  #assigns a role automatically after creating User
+  # assigns a role automatically after creating User
   after_create :assign_role
-  #User has many Posts, Posts belong_to a User
-  # ensuring a post will be destroyed along with the user
+  # User has many Posts, Posts belong_to a User, ensures post will be destroyed along with the user
   has_many :posts, dependent: :destroy
-  #User can be a follower and can be followed
+  # User can be a follower and can be followed
   acts_as_follower
   acts_as_followable
-  #assigns role(:user) when User is created
+  # No spaces in username allowed
+  validates :username, format: { without: /\s/, message: "must contain no spaces." }
+
+  # assigns role(:user) when User is created
   def assign_role
     add_role(:user)
   end

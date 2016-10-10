@@ -41,8 +41,7 @@ RSpec.feature 'Socialization', type: :feature do
     Steps 'I follow users and see their posts on my feed page' do
       Given 'I create accounts, adventures and posts' do
         sign_up('panda@panda.com', 'panda1', 'LingLing')
-        create_category('urban art')
-        create_category('parks')
+        create_categories
         create_adventure('North Park Water Tower', 'Howard Ave and Idaho Street, San Diego, CA  92104', 'corner of Howard and Idaho', 'cool water tower, soccer fields', 'option[2]')
         click_link 'Add New Post'
         fill_in 'Title', with: 'Water Tower Photography'

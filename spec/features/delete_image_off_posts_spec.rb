@@ -7,11 +7,10 @@ RSpec.feature "DeleteImageOffPosts", js: true,  type: :feature do
         visit '/'
       end # ends given
       And 'I can create a user account' do
-        sign_up('happycat@happy.com', 'happy1', 'Happy Cat')
+        sign_up('happycat@happy.com', 'happy1', 'HappyCat')
       end # end and
       Then 'I can create a category for an adventure' do
-        create_category('Haunted')
-        create_category('Tunnels')
+        create_categories
       end # ends then
       Then 'I can create a new Adventure' do
         click_link 'Adventures'
@@ -23,7 +22,7 @@ RSpec.feature "DeleteImageOffPosts", js: true,  type: :feature do
         expect(page).to have_content 'adventure_address'
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
-        expect(page).to have_content 'Haunted'
+        expect(page).to have_content 'Abandoned'
       end # ends then
       And 'I can create a post about this adventrue' do
         create_post('Adventure Post', 'This place was awesome!', 'North Park Water Tower')
