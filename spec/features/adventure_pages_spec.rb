@@ -156,4 +156,18 @@ RSpec.feature "AdventurePages", type: :feature do
       end
     end
   end
+
+  context 'Adding new Adventures' do
+    Steps 'Seeing a placeholder reminding user to add complete address' do
+      Given 'I am signed up and categories are created' do
+        sign_up('user@email.com', 'password', 'username')
+        create_categories
+      end
+      Then 'I go to create a new Adventure' do
+        click_link 'Adventures'
+        click_link 'Add New Adventure'
+        find("input[placeholder='Please enter a valid & complete address.']").set "value"
+      end
+    end
+  end
 end # ends rspec

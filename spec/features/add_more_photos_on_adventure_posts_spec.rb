@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "AddMorePhotosOnAdventurePosts", type: :feature do
+RSpec.feature "AddMorePhotosOnAdventurePosts",  type: :feature do
   context 'I can add photos to a gallery on an adventrue' do
     Steps 'I have to sign up to I can create an account to create an adventrue' do
       Given 'I am on the index page' do

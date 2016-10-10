@@ -9,6 +9,9 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+  <!-- Adding nav-bar css
+  <link href="css/navbar-fixed-side.css" rel="stylesheet" />
+-->
   <!-- Latest minified jQuery -->
   <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
   <!-- Latest compiled and minified JavaScript -->
@@ -26,39 +29,59 @@
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 </head>
 <body>
-  <!--Begin navbar-->
-    <nav class="navbar navbar-fixed-side">
-      <ul class="navbar-ul">
-        <li><%=image_tag "temp_logo.png", class: 'logo'%></li>
-        <li class="navbar-li"><a href="/">UrbEx</a></li>
-        <li class="navbar-li"><a href="/about/index">About</a></li>
-        <li class="navbar-li"><%= link_to "Adventures", adventures_path %></li>
-        <li class="navbar-li"><a href="/search/index">Explorers</a></li>
-        <div class="navbar-fixed-bottom bottom-nav">
-          <% if !current_user.nil? %>
-            <li class="navbar-bottom-li">Welcome, @<%=current_user.username%>!</li>
-            <li class="navbar-bottom-li"><%= link_to "Profile", profile_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "Edit Profile", edit_user_registration_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></li></li>
-          <% end %>
-          <%if !current_user.nil? && current_user.has_role?(:admin)%>
-            <li class="navbar-bottom-li"><%= link_to 'Administration', admin_path%></li>
-          <%end%>
-          <% if current_user.nil? %>
-            <li class="navbar-bottom-li"><%= link_to "sign up", new_user_registration_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "sign in", user_session_path %></li>
-            <li class="navbar-bottom-li"><%= link_to "sign in with twitter", user_twitter_omniauth_authorize_path %></li>
-          <% end %>
-        </div>
-      </ul>
-    </nav>
-    <!--End navbar-->
-    <!--Begin content-->
-    <div class="container-fluid content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2">
+        <!--Begin navbar-->
+        <nav class="navbar navbar-default navbar-fixed-side">
+          <div class="container">
+            <div class="navbar-header">
+              <!-- this is the hamburger menu -->
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#urbexnav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <!-- Content for navigation -->
+            <div class="collapse navbar-collapse" id="urbexnav">
+              <ul class="nav navbar-nav">
+                <li class="hidden-xs"><a href="/"><%=image_tag "temp_logo.png", class: 'logo'%></a></li>
+                <li class="text-uppercase"><a href="/">UrbEx</a></li>
+                <li class="text-uppercase"><a href="/about/index">About</a></li>
+                <li class="text-uppercase"><%= link_to "Adventures", adventures_path %></li>
+                <li class="text-uppercase"><a href="/search/index">Explorers</a></li>
+                <div class="bottom-nav">
+                  <% if !current_user.nil? %>
+                    <li class="text-lowercase">Welcome, @<%=current_user.username%>!</li>
+                    <li class="text-lowercase"><%= link_to "Profile", profile_path %></li>
+                    <li class="text-lowercase"><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                    <li class="text-lowercase"><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
+                  <% end %>
+                  <%if !current_user.nil? && current_user.has_role?(:admin)%>
+                    <li class="text-lowercase"><%= link_to 'Administration', admin_path%></li>
+                  <%end%>
+                  <% if current_user.nil? %>
+                    <li class="text-lowercase"><%= link_to "sign up", new_user_registration_path %></li>
+                    <li class="text-lowercase"><%= link_to "sign in", user_session_path %></li>
+                    <li class="text-lowercase"><%= link_to "sign in with twitter", user_twitter_omniauth_authorize_path %></li>
+                  <% end %>
+                </div>
+              </ul>
+            </div><!--end navigation content -->
+          </div><!--end nav container-->
+        </nav>
+      </div>
+      <!--End navbar-->
+      <!--Begin content-->
+      <div class="col-sm-9 col-lg-10">
         <!-- add alert and notices for Devise installation -->
         <p id="notice"><%= notice %></p>
         <%= yield %>
-    <!--End content-->
-    </div>
+        <!--End content-->
+      </div> <!-- end sm-9 or lg-10 col -->
+    </div> <!--end row-->
+  </div><!-- end container fluid -->
 </body>
 </html>
