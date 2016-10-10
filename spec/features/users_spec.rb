@@ -87,6 +87,7 @@ RSpec.feature "Users", type: :feature do
         expect(page).to have_content('Bobby_Bob')
         expect(page).to have_content('Joe')
         expect(page).to have_content('Susan')
+        expect(page).to have_selector('img', :count => 5)
         fill_in 'search', with: 'Bob'
         click_button 'Search'
         expect(page).to have_content('Bob')

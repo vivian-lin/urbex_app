@@ -1,45 +1,57 @@
 <div class="container">
-  <div class="col-md-4">
-    <% if current_user != @user %>
-      <h2><%=@user.username%>'s Profile</h2><br>
-    <% else %>
-      <h2>Welcome, <%= @user.username %>!</h2><br>
-    <% end %>
-    <p><%= image_tag @user.image.url(:thumb) %></p>
-    <br>
-    <strong>Email: </strong><%= @user.email %>
-    <br>
-    <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
-    <br>
-    <hr>
-    <p>
+  <div class="row">
+    <div class="col-md-4">
       <% if current_user != @user %>
-        <% if !current_user.nil? && !current_user.follows?(@user) %>
-          <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
-        <% end %>
-        <% if !current_user.nil? && current_user.follows?(@user) %>
-          <%= link_to'Unfollow this Explorer', user_unfollow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
-        <% end %>
+        <h2><%=@user.username%>'s Profile</h2><br>
+      <% else %>
+        <h2>Welcome, <%= @user.username %>!</h2><br>
       <% end %>
-    </p>
-    <p class="text-success"><%= flash[:alert] %></p>
+      <p><%= image_tag @user.image.url(:thumb) %></p>
+      <br>
+      <strong>Email: </strong><%= @user.email %>
+      <br>
+      <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
+      <br>
+      <hr>
+      <p>
+        <% if current_user != @user %>
+          <% if !current_user.nil? && !current_user.follows?(@user) %>
+            <%= link_to'Follow this Explorer', user_follow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+          <% end %>
+          <% if !current_user.nil? && current_user.follows?(@user) %>
+            <%= link_to'Unfollow this Explorer', user_unfollow_path(@user), method: :post, :class => 'btn btn-xs btn-default' %>
+          <% end %>
+        <% end %>
+      </p>
+      <p class="text-success"><%= flash[:alert] %></p>
 
-  </div>
-  <div class="col-md-8">
-    <!-- Map starts -->
-    <div id="profileMap" data-user-id="<%=@user.id%>">Map will live here.</div>
-    <!-- Map ends -->
-    <% if !current_user.nil? %>
-      <%= link_to 'Add New Adventure', new_adventure_path, :class =>'btn btn-default' %>
-    <% end %>
-    <h3><% @user.username %> Posts</h3>
-    <% @posts.each do |post| %>
-      <div class="post_wrapper">
-        <h4 class="title"><%=link_to post.title, post%></h4>
-        <h5><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
-        <h5><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
-        <p><%=post.created_at.strftime("%B, %d, %Y")%></p>
-      </div>
-    <% end %>
+    <p class="follow">
+      <%=@user.username%> has
+      <strong><%= @user.followers(User).count %></strong> followers
+    </p>
+
+    <p class="follow">
+      <%=@user.username%> is following
+      <strong><%= @user.followees(User).count %></strong> explorers
+    </p>
+
+    </div>
+    <div class="col-md-8">
+      <!-- Map starts -->
+      <div id="profileMap" data-user-id="<%=@user.id%>">Map will live here.</div>
+      <!-- Map ends -->
+      <% if !current_user.nil? %>
+        <%= link_to 'Add New Adventure', new_adventure_path, :class =>'btn btn-default' %>
+      <% end %>
+      <h3><% @user.username %> Posts</h3>
+      <% @posts.each do |post| %>
+        <div class="post_wrapper">
+          <h4 class="title"><%=link_to post.title, post%></h4>
+          <h5><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
+          <h5><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
+          <p><%=post.created_at.strftime("%B, %d, %Y")%></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

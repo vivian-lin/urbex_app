@@ -16,6 +16,7 @@ class ProfileController < ApplicationController
     @adventures = Adventure.all.order('created_at DESC').limit(15)
   end
 
+
   def show
     if current_user.nil? && (params[:username].nil? || params[:username].empty?)
       redirect_to '/users/sign_up'
