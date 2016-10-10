@@ -139,4 +139,21 @@ RSpec.feature "AdventurePages", type: :feature do
       end
     end #end steps
   end # end context
+
+  context 'Adding Adventures' do
+    Steps 'Adding an adventure to my profile' do
+      Given 'There are users, categories, and adventures created' do
+        sign_up('user1@email.com', 'password', 'User1')
+        create_categories
+        create_adventure('Adventure1', 'AdventureAddress', 'AdventureDirections', 'AdventureDescription', 'option[1]')
+        sign_out
+        sign_up('user2@email.com', 'password', 'User2')
+      end
+      Then 'I can click Add this Adventure' do
+        visit '/adventures'
+        click_link 'Add this Adventure'
+        expect(page).to have_content('You have successfully added this adventure.')
+      end
+    end
+  end
 end # ends rspec

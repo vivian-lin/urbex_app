@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get 'images/delete'
 
-  ## Added
-
   delete 'image/:id' => "images#delete_image"
 
   resources :posts
@@ -13,8 +11,11 @@ Rails.application.routes.draw do
   get 'admin/update'
 
   resources :adventures do
-    # sets the route for google map
+    # to add adventure to user's collection
+    post '/add_adventure_to_current_user' => 'adventures#add_adventure'
+    # sets route for google map on adventures show
     get 'map_location'
+    # sets route for google map on adventures index
     get 'all_map_locations', on: :collection
   end
 

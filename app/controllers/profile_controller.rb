@@ -12,6 +12,8 @@ class ProfileController < ApplicationController
     # @feed.each
     # @feed = @feed.sort {|a, b| a.created_at<=>b.created_at}
     # default_scope -> { order(created_at: :desc) }
+
+    @adventures = Adventure.all.order('created_at DESC').limit(15)
   end
 
   def show

@@ -1,13 +1,23 @@
-
-
+<h3 id="adventureFeedTitle">New Adventures</h3>
+<ul class="adventurefeed">
+  <% @adventures.each do |a| %>
+    <li><strong><%= link_to a.name, a %></strong>, Added on: <%=a.created_at.strftime("%B, %d, %Y")%></li>
+  <% end %>
+</ul>
+<hr>
 <ul class="blogfeed">
     <% @feed.each do |f| %>
       <% f.each do |post| %>
         <li><h3><%= post.title %></h3></li>
-        <li><h4>By:<%= post.user.username %></h4></li>
+        <li>
+          <h4>
+            By:
+            <a href="/profile/<%=post.user.username%>"> <%=post.user.username%></a>
+          </h4>
+        </li>
         <li><strong><%= post.created_at.strftime("%B, %d, %Y") %></strong></li>
         <li><%= post.body %></li>
-        <hr />
+        <hr/>
       <% end %>
     <% end %>
 </ul>
