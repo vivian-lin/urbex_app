@@ -84,4 +84,24 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
+  context 'posts on my feed page are truncated with links to full post' do
+    Steps 'creating posts' do
+      Given 'I am logged in and have posts on my feed page' do
+        sign_up('panda@panda.com', 'panda1', 'LingLing')
+        create_categories
+        create_adventure('North Park Water Tower', 'Howard Ave and Idaho Street, San Diego, CA  92104', 'corner of Howard and Idaho', 'cool water tower, soccer fields', 'option[2]')
+        click_link 'Add New Post'
+        fill_in 'Title', with: 'Water Tower Photography'
+        fill_in 'Body', with: 'He taught me a code. To survive. God created pudding, and then he rested. I am really more an apartment person. I am not a killer. You are a killer. I catch killers.  Under normal circumstances, I would take that as a compliment. Tonight is the night. And it is going to happen again and again. It has to happen. Like a sloth. I can do that. Oh I beg to differ, I think we have a lot to discuss. After all, you are a client.'
+        click_button 'Create Post'
+      end
+      Then 'I can see my feed page and posts are truncated' do
+        visit '/feed'
+        click_link 'read more'
+        expect(page).to have_content 'Water Tower Photography'
+        expect(page).to have_content 'He taught me a code. To survive. God created pudding, and then he rested. I am really more an apartment person. I am not a killer. You are a killer. I catch killers.  Under normal circumstances, I would take that as a compliment. Tonight is the night. And it is going to happen again and again. It has to happen. Like a sloth. I can do that. Oh I beg to differ, I think we have a lot to discuss. After all, you are a client.'
+      end
+    end
+  end
+
 end
