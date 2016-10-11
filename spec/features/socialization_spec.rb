@@ -182,6 +182,9 @@ RSpec.feature 'Socialization', type: :feature do
         visit '/profile'
         expect(page).to have_content 'AlexLove'
         expect(page).to have_content 'Harambe'
+      end
+    end
+  end
   context 'Posts in order' do
     Steps 'Viewing a post feed organized by date and time' do
       Given 'There are users created, they follow each other, and categories/adventures/posts are made' do
