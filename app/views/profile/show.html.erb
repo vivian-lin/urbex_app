@@ -1,6 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
+    <% if current_user != @user %>
+      <h2><%=@user.username%>'s Profile</h2><br>
+    <% else %>
+      <h2>Welcome, <%= @user.username %>!</h2><br>
+    <% end %>
+    <p><%= image_tag @user.image.url(:thumb) %></p>
+    <br>
+    <strong>Email: </strong><%= @user.email %>
+    <br>
+    <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
+    <br>
+    <hr>
+    <p>
       <% if current_user != @user %>
         <h2><%=@user.username%>'s Profile</h2><br>
       <% else %>
@@ -25,16 +38,28 @@
       </p>
       <p class="text-success"><%= flash[:alert] %></p>
 
-    <p class="follow">
-      <%=@user.username%> has
-      <strong><%= @user.followers(User).count %></strong> followers
-    </p>
-
-    <p class="follow">
-      <%=@user.username%> is following
-      <strong><%= @user.followees(User).count %></strong> explorers
-    </p>
-
+      <p class="follow">
+        <%=@user.username%> is following
+        <strong><%= @user.followees(User).count %></strong> explorers
+      </p>
+      <% if !@followee_usernames.nil? %>
+        <% @followee_usernames.each do |f| %>
+          <ul>
+            <li><a href="/profile/<%= f %>"><%= f %></a></li>
+          </ul>
+        <% end %>
+      <% end %>
+      <p class="follow">
+        <%=@user.username%> has
+        <strong><%= @user.followers(User).count %></strong> followers
+      </p>
+      <% if !@follower_usernames.nil? %>
+        <% @follower_usernames.each do |f| %>
+          <ul>
+            <li><a href="/profile/<%= f %>"><%= f %></a></li>
+          </ul>
+        <% end %>
+      <% end %>
     </div>
     <div class="col-md-8">
       <!-- Map starts -->

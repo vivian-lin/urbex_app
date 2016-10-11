@@ -22,20 +22,40 @@ class ProfileController < ApplicationController
     @adventures = Adventure.all.order('created_at DESC').limit(15)
   end
 
-
   def show
+    # nobody logged in & user is trying to go to /profile (hacking)
     if current_user.nil? && (params[:username].nil? || params[:username].empty?)
       redirect_to '/users/sign_up'
+    # nobody logged in & user is trying to view other explorers' profiles
     elsif current_user.nil? && (!params[:username].nil? || !params[:username].empty?)
       @user = User.find_by_username(params[:username])
       @posts = @user.posts.order('created_at DESC')
+    # if you are logged in
     else
+      # if you're looking at /profile (your own profile)
       if params[:username].nil? || params[:username].empty?
         @user = current_user
         @posts = @user.posts.order('created_at DESC')
+        # sets instance variable for a collection of the user's followers
+        @followers = @user.followers(User)
+        # sets variable for a collection of the followers names
+        @follower_usernames = @followers.map { |follower|  follower.username}
+        # sets variable for a collection of who you are following (followees)
+        @followees = @user.followees(User)
+        # sets variable for a collection of names of who you are following (followees)
+        @followee_usernames = @followees.map { |followee| followee.username }
+      # if you're looking at someone else's profile
       else
         @user = User.find_by_username(params[:username])
         @posts = @user.posts.order('created_at DESC')
+        # sets instance variable for a collection of the user's followers
+        @followers = @user.followers(User)
+        # sets variable for a collection of the followers names
+        @follower_usernames = @followers.map { |follower| follower.username }
+        # sets variable for a collection of who you are following (followees)
+        @followees = @user.followees(User)
+        # sets variable for a collection of names of who you are following (followees)
+        @followee_usernames = @followees.map { |followee| followee.username }
       end
     end
   end
