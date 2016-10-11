@@ -125,4 +125,64 @@ RSpec.feature 'Socialization', type: :feature do
       end
     end
   end
+  context 'I can see my followers on my profile page' do
+    Steps 'Accounts created and followers created' do
+      Given 'I create accounts and follow others' do
+        sign_up('user@email.com', 'password', 'username')
+        sign_out
+        sign_up('alex@alex.com', 'alexalex', 'AlexLove')
+        click_link 'Explorers'
+        click_link 'username'
+        click_link 'Follow this Explorer'
+        sign_out
+        sign_up('gorilla@gorilla.com','gorilla','Harambe')
+        click_link 'Explorers'
+        click_link 'username'
+        click_link 'Follow this Explorer'
+        sign_out
+      end
+      And 'I can log back in to first account' do
+        click_link 'sign in'
+        fill_in 'user[email]', with: 'user@email.com'
+        fill_in 'user[password]', with: 'password'
+        click_button 'Log in'
+      end
+      Then 'I can see my followers' do
+        visit '/profile'
+        expect(page).to have_content 'AlexLove'
+        expect(page).to have_content 'Harambe'
+      end
+    end
+  end
+  context 'I can see who I am following on my profile page' do
+    Steps 'Accounts created and followees created' do
+      Given 'I create accounts and follow others' do
+        sign_up('user@email.com', 'password', 'username')
+        sign_out
+        sign_up('alex@alex.com', 'alexalex', 'AlexLove')
+        sign_out
+        sign_up('gorilla@gorilla.com','gorilla','Harambe')
+        sign_out
+      end
+      And 'I can log back in to first account' do
+        click_link 'sign in'
+        fill_in 'user[email]', with: 'user@email.com'
+        fill_in 'user[password]', with: 'password'
+        click_button 'Log in'
+      end
+      Then 'I can follow other Explorers' do
+        click_link 'Explorers'
+        click_link 'AlexLove'
+        click_link 'Follow this Explorer'
+        click_link 'Explorers'
+        click_link 'Harambe'
+        click_link 'Follow this Explorer'
+      end
+      Then 'I can see who I am following' do
+        visit '/profile'
+        expect(page).to have_content 'AlexLove'
+        expect(page).to have_content 'Harambe'
+      end
+    end
+  end
 end
