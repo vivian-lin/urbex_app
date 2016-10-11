@@ -44,6 +44,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'hermitage'
 gem 'aws-sdk', '~> 2.3.0'
+gem 'rails_12factor'
 
 # add gems for google maps
 gem 'geocoder'
