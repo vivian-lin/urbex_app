@@ -6,8 +6,13 @@
 <hr>
 <strong><%= @category.category_name %> Adventures</strong>
 <ul>
-  <%@category.adventures.each do |adventure|%>
-    <li><%=link_to adventure.name, adventure%></li>
+  <%if @category.adventures.empty?%>
+    <br>
+    <p>This category has no adventures.</p>
+  <%else%>
+    <%@category.adventures.each do |adventure|%>
+      <li><%=link_to adventure.name, adventure%></li>
+    <%end%>
   <%end%>
 </ul>
 
