@@ -43,6 +43,7 @@ gem 'paperclip', '~> 5.1'
 gem 'cancancan'
 gem 'rolify'
 gem 'hermitage'
+gem 'aws-sdk', '~> 2.3.0'
 
 # add gems for google maps
 gem 'geocoder'

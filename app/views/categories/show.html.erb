@@ -1,20 +1,18 @@
 <div class="container">
-
-  <h2>
-    <strong>Category name:</strong>
+  <h3>
+    <strong>Category:</strong>
     <%= @category.category_name %>
-  </h2>
-
+  </h3>
+  <hr>
   <strong><%= @category.category_name %> Adventures</strong>
   <ul>
     <%@category.adventures.each do |adventure|%>
-      <li><%=adventure.name%></li>
+      <li><%=link_to adventure.name, adventure%></li>
     <%end%>
   </ul>
-
-  <br><br>
-  <% if !current_user.nil? && current_user.has_role?(:admin) %>
-    <%= link_to 'Edit', edit_category_path(@category) %> |
-  <% end %>
-  <%= link_to 'Back', adventures_path %>
+    <br>
+    <% if !current_user.nil? && current_user.has_role?(:admin) %>
+      <%= link_to 'Edit', edit_category_path(@category) %> |
+    <% end %>
+    <%= link_to 'Back', adventures_path %>
 </div>

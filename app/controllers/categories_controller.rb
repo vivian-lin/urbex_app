@@ -75,7 +75,9 @@ class CategoriesController < ApplicationController
     end
 
     def authorize
-      if !current_user.has_role? :admin
+      if current_user.nil?
+        redirect_to '/users/sign_in'
+      elsif !current_user.has_role? :admin
         redirect_to '/adventures'
         flash[:notice] = 'You do not have admin authorization.'
       end

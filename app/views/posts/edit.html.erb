@@ -1,25 +1,27 @@
-<h1>Editing Post</h1>
+<div class="container">
+  <h1>Editing Post</h1>
 
-<div class="row">
+  <div class="row">
+    <div class="col-md-6">
+
+      <%= render 'form' %>
+
+      <%= link_to 'Show', @post %> |
+      <%= link_to 'Back', posts_path %>
+
+    </div>
   <div class="col-md-6">
-
-    <%= render 'form' %>
-
-    <%= link_to 'Show', @post %> |
-    <%= link_to 'Back', posts_path %>
-
-  </div>
-<div class="col-md-6">
-  <table class="edit_gallery">
-    <tbody>
-      <% @images.each do |set_of_images| %>
-        <tr>
-          <% set_of_images.each do |image| %>
-            <td class="edit">
-                <img class="delete" id="<%= image.id %>" src="<%=image.image.url(:thumbnail)%>"/>
-            </td>
-          <% end %>
-        </tr>
-      <% end %>
+    <table class="edit_gallery">
+      <tbody>
+        <% @images.each do |set_of_images| %>
+          <tr>
+            <% set_of_images.each do |image| %>
+              <td class="edit">
+                  <img class="delete" id="<%= image.id %>" src="<%=image.image.url(:thumbnail)%>"/>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+    </div>
   </div>
 </div>
