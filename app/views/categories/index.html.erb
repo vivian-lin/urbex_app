@@ -13,8 +13,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.category_name %></td>
-        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to category.category_name, category %></td>
         <% if !current_user.nil? && current_user.has_role?(:admin) %>
           <td><%= link_to 'Edit', edit_category_path(category) %></td>
           <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +25,6 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<% if !current_user.nil? && current_user.has_role?(:admin) %>
+  <%= link_to 'New Category', new_category_path %>
+<% end %>

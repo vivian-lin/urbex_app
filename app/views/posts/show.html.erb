@@ -1,6 +1,7 @@
   <div class="col-md-7">
 
     <h1><%= @post.title %></h1>
+    <h5><strong>By: </strong><a href="/profile/<%=@post.user.username%>"><%=@post.user.username%></a></h5>
     <h5><strong>Adventure: </strong><%=link_to @post.adventure.name, @post.adventure %></h5>
     <h5><strong>Category: </strong><%=link_to @post.adventure.category.category_name, @post.adventure.category%></h5>
     <p>

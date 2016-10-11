@@ -74,7 +74,7 @@ RSpec.feature "Blog Posts", type: :feature do
       Then "I can click the back button and be taken back to that post's adventure" do
         click_link 'Back'
         expect(page).to have_content 'Category: Abandoned'
-        expect(page).to have_content 'Name: Haunted Forest'
+        expect(page).to have_content 'Adventure: Haunted Forest'
       end
     end
   end

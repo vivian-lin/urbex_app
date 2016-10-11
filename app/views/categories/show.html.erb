@@ -1,13 +1,13 @@
 
-<p>
-  <strong>Category name:</strong>
+<h3>
+  <strong>Category:</strong>
   <%= @category.category_name %>
-</p>
-
+</h3>
+<hr>
 <strong><%= @category.category_name %> Adventures</strong>
 <ul>
   <%@category.adventures.each do |adventure|%>
-    <li><%=adventure.name%></li>
+    <li><%=link_to adventure.name, adventure%></li>
   <%end%>
 </ul>
 

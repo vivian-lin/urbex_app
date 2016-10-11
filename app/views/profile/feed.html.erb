@@ -10,7 +10,7 @@
     <% @organized_feed.each do |post| %>
       <section>
         <h3><%= link_to post.title, post %></h3>
-        <h4>By: <%= post.user.username %></h4>
+        <h4>By: <a href="/profile/<%=post.user.username%>"><%= post.user.username %></a></h4>
         <strong><%= post.created_at.strftime("%b, %d, %Y, %l:%M") %></strong>
         <%= truncate post.body, length: 350 %><%= link_to ' read more', post, :class => 'text-primary' %>
       <hr/>
