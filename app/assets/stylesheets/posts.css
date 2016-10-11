@@ -1,11 +1,12 @@
-ul.blogfeed {
-  list-style-type:none
-}
-
 ul.adventurefeed {
   list-style-type:none
 }
 
 #adventureFeedTitle {
+  padding-left: 40px;
+}
+
+.blogPosts{
+  margin-left: 0px;
   padding-left: 40px;
 }

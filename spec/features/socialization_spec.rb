@@ -182,6 +182,27 @@ RSpec.feature 'Socialization', type: :feature do
         visit '/profile'
         expect(page).to have_content 'AlexLove'
         expect(page).to have_content 'Harambe'
+  context 'Posts in order' do
+    Steps 'Viewing a post feed organized by date and time' do
+      Given 'There are users created, they follow each other, and categories/adventures/posts are made' do
+        create_categories
+        sign_up('user1@email.com', 'password', 'user1')
+        create_adventure('adventure_name', 'adventure_address', 'adventure_directions', 'adventure_description', 'option[1]')
+        create_post('Title1', 'This is the Body.', 'adventure_name')
+        create_post('Title2', 'This is the Body.', 'adventure_name')
+        create_post('Title3', 'This is the Body.', 'adventure_name')
+        sign_out
+        sign_up('user2@email.com', 'password', 'user2')
+        click_link 'Explorers'
+        click_link 'user1'
+        click_link 'Follow this Explorer'
+      end
+      Then 'I can go to my news feed and see all my followees posts in descending order' do
+        click_link 'news feed'
+        posts = page.all('div.blogPosts section')
+        expect(posts[0]).to have_content 'Title3'
+        expect(posts[1]).to have_content 'Title2'
+        expect(posts[2]).to have_content 'Title1'
       end
     end
   end

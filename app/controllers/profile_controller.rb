@@ -6,13 +6,19 @@ class ProfileController < ApplicationController
   def feed
     followees = current_user.followees(User)
     followees_posts = followees.map{|followee| followee.posts}
-    @feed = followees_posts
     self_posts = Post.where( user_id: current_user.id )
-    @feed = followees_posts << self_posts
-    # @feed.each
-    # @feed = @feed.sort {|a, b| a.created_at<=>b.created_at}
-    # default_scope -> { order(created_at: :desc) }
-
+    feed = followees_posts << self_posts
+    #empty array to hold organized feed posts
+    @organized_feed = []
+    #shoveling posts into empty array organized feed
+    feed.each do |f|
+      f.each do |post|
+        @organized_feed << post
+      end
+    end
+    #sorting organized_feed by descending created_at date
+    @organized_feed = @organized_feed.sort{|a,b| b.created_at <=> a.created_at}
+    #for recently added adventures on feed page
     @adventures = Adventure.all.order('created_at DESC').limit(15)
   end
 
