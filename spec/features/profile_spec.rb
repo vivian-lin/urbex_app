@@ -44,6 +44,7 @@ RSpec.feature "Profilelinks", type: :feature do
         sign_up('cow@cow.com', 'cowcow', 'HolsteinMcMooFace')
       end # ends Given
       And 'I can click a button that takes me to the new adventure form' do
+        click_link 'Adventures'
         click_link('Add New Adventure')
         expect(page).to have_content('New Adventure')
       end # ends and

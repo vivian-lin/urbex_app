@@ -1,9 +1,4 @@
-class RegistrationController < Devise::RegistrationsController
-  protected
-
-  def after_update_path_for(resource)
-    profile_path
-  end
+class RegistrationsController < Devise::RegistrationsController
 
   private
 
