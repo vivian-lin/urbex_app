@@ -52,7 +52,7 @@
                   <%= link_to 'Add this Adventure', adventure_add_adventure_to_current_user_path(adventure), method: :post %>
               <% end %>
             </td>
-            <% if current_user.roles.name == 'admin' %>
+            <% if current_user.has_role?(:admin) %>
               <td>
                 <%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
