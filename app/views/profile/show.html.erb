@@ -1,23 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-    <% if current_user != @user %>
-      <h2><%=@user.username%>'s Profile</h2><br>
-    <% else %>
-      <h2>Welcome, <%= @user.username %>!</h2><br>
-    <% end %>
-    <p><%= image_tag @user.image.url(:thumb) %></p>
-    <br>
-    <strong>Email: </strong><%= @user.email %>
-    <br>
-    <strong>About <%=@user.username%>: </strong><%=@user.user_description%>
-    <br>
-    <hr>
-    <p>
       <% if current_user != @user %>
-        <h2><%=@user.username%>'s Profile</h2><br>
+        <h1><%=@user.username%>'s Profile</h1>
       <% else %>
-        <h2>Welcome, <%= @user.username %>!</h2><br>
+        <h1>Welcome, <%= @user.username %>!</h1>
       <% end %>
       <%if !@user.image_file_name.nil?%>
         <p><%= image_tag @user.image.url(:thumb) %></p>
@@ -44,24 +31,24 @@
         <%=@user.username%> is following
         <strong><%= @user.followees(User).count %></strong> explorers
       </p>
-      <% if !@followee_usernames.nil? %>
-        <% @followee_usernames.each do |f| %>
-          <ul>
-            <li><a href="/profile/<%= f %>"><%= f %></a></li>
-          </ul>
+        <% if !@followee_usernames.nil? %>
+          <% @followee_usernames.each do |f| %>
+            <ul>
+              <li><a href="/profile/<%= f %>"><%= f %></a></li>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
       <p class="follow">
         <%=@user.username%> has
         <strong><%= @user.followers(User).count %></strong> followers
       </p>
-      <% if !@follower_usernames.nil? %>
-        <% @follower_usernames.each do |f| %>
-          <ul>
-            <li><a href="/profile/<%= f %>"><%= f %></a></li>
-          </ul>
+        <% if !@follower_usernames.nil? %>
+          <% @follower_usernames.each do |f| %>
+            <ul>
+              <li><a href="/profile/<%= f %>"><%= f %></a></li>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
     <div class="col-md-8">
       <!-- Map starts -->
@@ -71,13 +58,18 @@
         <%= link_to 'Add New Adventure', new_adventure_path, :class =>'btn btn-default' %>
       <% end %>
       <h3><% @user.username %> Posts</h3>
-      <% @posts.each do |post| %>
-        <div class="post_wrapper">
-          <h4 class="title"><%=link_to post.title, post%></h4>
-          <h5 class="post-indent"><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
-          <h5 class="post-indent"><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
-          <p class="post-indent"><%=post.created_at.strftime("%B, %d, %Y")%></p>
-        </div>
+
+      <% if @posts.count == 0 %>
+        <p>Visit the <a href="/adventures"><strong>Adventures page</strong></a> to write a post about an adventure!</p>
+      <% else %>
+        <% @posts.each do |post| %>
+          <div class="post_wrapper">
+            <h4 class="title"><%=link_to post.title, post%></h4>
+            <h5 class="post-indent"><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
+            <h5 class="post-indent"><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
+            <p class="post-indent"><%=post.created_at.strftime("%B, %d, %Y")%></p>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

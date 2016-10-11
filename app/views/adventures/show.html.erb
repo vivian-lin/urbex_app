@@ -1,59 +1,61 @@
-
-<div class="row">
-  <div class="col-md-6">
-    <h3>
-      <strong>Adventure:</strong>
-      <%= @adventure.name %>
-    </h3>
-    <p>
-      <strong>Address:</strong>
-      <%= @adventure.address %>
-    </p>
-    <p>
-      <strong>Directions:</strong>
-      <%= @adventure.directions %>
-    </p>
-    <p>
-      <strong>Description:</strong>
-      <%= @adventure.description %>
-    </p>
-    <p>
-    <strong>Category:</strong>
-    <a href="/categories/<%=@adventure.category.id%>"><%= @adventure.category.category_name %></a>
-    </p>
-  </div>
-
-  <div class="col-md-6">
-    <table class="gallery">
-      <tbody>
-        <% @images.each do |set_of_images| %>
-          <%= render_gallery_for set_of_images, original: -> image { image.image.url() }, thumbnail: -> image { image.image.url(:thumbnail) },list_tag: :tr, item_tag: :td, item_class: 'image' %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
-<hr>
-<br><br>
-<div class="row">
-  <div class="col-sm-6">
-    <!-- Map starts -->
-    <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3>
+        <strong>Adventure:</strong>
+        <%= @adventure.name %>
+      </h3>
+      <p>
+        <strong>Address:</strong>
+        <%= @adventure.address %>
+      </p>
+      <p>
+        <strong>Directions:</strong>
+        <%= @adventure.directions %>
+      </p>
+      <p>
+        <strong>Description:</strong>
+        <%= @adventure.description %>
+      </p>
+      <p>
+      <strong>Category:</strong>
+      <a href="/categories/<%=@adventure.category.id%>"><%= @adventure.category.category_name %></a>
+      </p>
     </div>
-    <!-- Map ends  -->
-    <% if !current_user.nil? %>
-      <%= link_to 'Edit', edit_adventure_path(@adventure) %>
-    <% end %>
-    | <%= link_to 'Back', adventures_path %>
-  </div>
-  <div class="col-sm-6">
-    <h3>Adventure Posts<br><h5>Share your experiences about this adventure: </h5>
-    <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %></h3>
-    <br><br>
-    <ul>
-      <%@posts.each do |post|%>
-        <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
-      <%end%>
-    </ul>
-  </div>
-</div>
+
+    <div class="col-md-6">
+      <table class="gallery">
+        <tbody>
+          <% @images.each do |set_of_images| %>
+            <%= render_gallery_for set_of_images, original: -> image { image.image.url() }, thumbnail: -> image { image.image.url(:thumbnail) },list_tag: :tr, item_tag: :td, item_class: 'image' %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div><!--end row-->
+  <hr>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <!-- Map starts -->
+      <div id="adventureMap" data-adventure-id="<%=@adventure.id%>">
+      </div>
+      <!-- Map ends  -->
+      <% if !current_user.nil? %>
+        <%= link_to 'Edit', edit_adventure_path(@adventure) %>
+      <% end %>
+        | <%= link_to 'Back', adventures_path %>
+    </div>
+    <div class="col-sm-6">
+      <h3>Adventure Posts</h3>
+      <h5>Share your experiences about this adventure: </h5>
+      <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %>
+      <br><br>
+      <ul>
+        <%@posts.each do |post|%>
+          <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>
+        <%end%>
+      </ul>
+    </div>
+  </div><!--end row-->
+</div><!--end container-->

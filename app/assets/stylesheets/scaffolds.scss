@@ -42,7 +42,6 @@ div {
   color: green;
 }
 
-
 .field_with_errors {
 
 }
@@ -81,7 +80,7 @@ div {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 1500px;
+  min-height: 1300px;
 }
 
 .welcome-div {
@@ -100,6 +99,8 @@ div {
 
 .welcome-blurb h1 {
   font-weight: 600;
+  text-shadow: 2px 2px 2px black;
+  font-size: 36pt;
 }
 
 .col-lg-10, .col-sm-9 {

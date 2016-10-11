@@ -1,18 +1,23 @@
-
-<h3>
-  <strong>Category:</strong>
-  <%= @category.category_name %>
-</h3>
-<hr>
-<strong><%= @category.category_name %> Adventures</strong>
-<ul>
-  <%@category.adventures.each do |adventure|%>
-    <li><%=link_to adventure.name, adventure%></li>
-  <%end%>
-</ul>
-
-<br><br>
-<% if !current_user.nil? && current_user.has_role?(:admin) %>
-  <%= link_to 'Edit', edit_category_path(@category) %> |
-<% end %>
-<%= link_to 'Back', adventures_path %>
+<div class="container">
+  <h3>
+    <strong>Category:</strong>
+    <%= @category.category_name %>
+  </h3>
+  <hr>
+  <strong><%= @category.category_name %> Adventures</strong>
+  <ul>
+    <%if @category.adventures.empty?%>
+      <br>
+      <p>This category has no adventures.</p>
+    <%else%>
+      <%@category.adventures.each do |adventure|%>
+        <li><%=link_to adventure.name, adventure%></li>
+      <%end%>
+    <%end%>
+  </ul>
+  <br><br>
+  <% if !current_user.nil? && current_user.has_role?(:admin) %>
+    <%= link_to 'Edit', edit_category_path(@category) %> |
+  <% end %>
+  <%= link_to 'Back', adventures_path %>
+</div>

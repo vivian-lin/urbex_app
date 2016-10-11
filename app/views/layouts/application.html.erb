@@ -31,10 +31,10 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-lg-2">
+      <div class="col-sm-3 col-lg-2 homepage">
         <!--Begin navbar-->
         <nav class="navbar navbar-default navbar-fixed-side">
-          <div class="container">
+          <div class="container remove-display-table">
             <div class="navbar-header">
               <!-- this is the hamburger menu -->
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#urbexnav" aria-expanded="false">
@@ -54,11 +54,11 @@
                 <li class="text-uppercase upper-nav"><a href="/search/index">Explorers</a></li>
                 <div class="bottom-nav">
                   <% if !current_user.nil? %>
-                    <li class="text-lowercase lower-nav">Welcome, @<%=current_user.username%>!</li>
-                    <li class="text-lowercase lower-nav"><%= link_to "Profile", profile_path %></li>
-                    <li class="text-lowercase lower-nav"><%= link_to "news feed", feed_path %></li>
-                    <li class="text-lowercase lower-nav"><%= link_to "Edit Profile", edit_user_registration_path %></li>
-                    <li class="text-lowercase lower-nav"><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
+                    <li class="text-lowercase">Welcome, @<%=current_user.username%>!</li>
+                    <li class="text-lowercase"><%= link_to "Profile", profile_path %></li>
+                    <li class="text-lowercase"><%= link_to "news feed", feed_path %></li>
+                    <li class="text-lowercase"><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                    <li class="text-lowercase"><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
                   <% end %>
                   <%if !current_user.nil? && current_user.has_role?(:admin)%>
                     <li class="text-lowercase lower-nav"><%= link_to 'Administration', admin_path%></li>
@@ -77,12 +77,10 @@
       <!--End navbar-->
       <!--Begin content-->
       <div class="col-sm-9 col-lg-10">
-        <div class="container">
           <!-- add alert and notices for Devise installation -->
-          <p id="notice"><%= notice %></p>
+          <div id="notice"><%= notice %></div>
           <%= yield %>
           <!--End content-->
-        </div>
       </div> <!-- end sm-9 or lg-10 col -->
     </div> <!--end row-->
   </div><!-- end container fluid -->

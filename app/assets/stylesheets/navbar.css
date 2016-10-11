@@ -25,14 +25,11 @@
 }
 
 .upper-nav {
-  font-size: 21pt;
+  font-size: 20pt;
   margin-top: 18px;
   margin-bottom: 18px;
 }
 
-.lower-nav {
-  padding: 0px;
-}
 /*li a.active {
   background-color: #4CAF50;
   color: white;
