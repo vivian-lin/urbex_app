@@ -83,6 +83,7 @@ function loadAndCreateGmap() {
     });
   }
 };
+
 function loadAndCreateGmapForAdventures() {
   // Only load map data if we have a map on the page
   if ($('#allAdventuresMap').length > 0) {
