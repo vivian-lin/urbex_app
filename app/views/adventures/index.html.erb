@@ -33,7 +33,7 @@
           <td><%= link_to adventure.name, adventure %></td>
           <td><%= adventure.address %></td>
           <td><%= adventure.directions %></td>
-          <td><%= adventure.category.category_name %></td>
+          <td><a href="/categories/<%=adventure.category.id%>"><%= adventure.category.category_name %></a></td>
           <td>
             <%if !adventure.images.first.nil?%>
               <%= image_tag adventure.images.first.image.url(:thumbnail) %>

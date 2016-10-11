@@ -33,7 +33,7 @@ RSpec.feature "AdventurePages", type: :feature do
         click_link 'Adventures'
       end
       Then 'I can browse adventures by category' do
-        click_link 'Abandoned'
+        first(:link, 'Abandoned').click
         expect(page).to have_content 'Abandoned Adventures'
         expect(page).to have_content 'adventure_name'
       end
@@ -94,7 +94,7 @@ RSpec.feature "AdventurePages", type: :feature do
       end
       Then 'I can see all those adventures on the category show page' do
         click_link 'Adventures'
-        click_link 'Abandoned'
+        first(:link, 'Abandoned').click
         expect(page).to have_content 'Adventure1'
         expect(page).to have_content 'Adventure2'
       end

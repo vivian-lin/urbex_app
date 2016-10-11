@@ -19,7 +19,9 @@
       <% else %>
         <h2>Welcome, <%= @user.username %>!</h2><br>
       <% end %>
-      <p><%= image_tag @user.image.url(:thumb) %></p>
+      <%if !@user.image_file_name.nil?%>
+        <p><%= image_tag @user.image.url(:thumb) %></p>
+      <%end%>
       <br>
       <strong>Email: </strong><%= @user.email %>
       <br>
@@ -72,9 +74,9 @@
       <% @posts.each do |post| %>
         <div class="post_wrapper">
           <h4 class="title"><%=link_to post.title, post%></h4>
-          <h5><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
-          <h5><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
-          <p><%=post.created_at.strftime("%B, %d, %Y")%></p>
+          <h5 class="post-indent"><strong>Adventure: </strong><%=link_to post.adventure.name, post.adventure %></h5>
+          <h5 class="post-indent"><strong>Category: </strong><%=link_to post.adventure.category.category_name, post.adventure.category%></h5>
+          <p class="post-indent"><%=post.created_at.strftime("%B, %d, %Y")%></p>
         </div>
       <% end %>
     </div>

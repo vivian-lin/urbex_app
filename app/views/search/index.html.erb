@@ -19,7 +19,13 @@
     <%@users.each do |user|%>
       <%if !user.has_role?(:admin)%>
         <tr>
-          <td> <a href="/profile/<%=user.username%>"> <%= image_tag user.image.url(:small) %> </a> </td>
+          <td>
+            <%if !user.image_file_name.nil?%>
+              <a href="/profile/<%=user.username%>">
+                <%= image_tag user.image.url(:small) %>
+              </a>
+            <%end%>
+          </td>
           <td><a href="/profile/<%=user.username%>"><%=user.username%></a></td>
           <td><%=user.email%></td>
           <td><%=user.user_description%></td>

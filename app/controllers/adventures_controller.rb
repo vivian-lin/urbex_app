@@ -55,7 +55,6 @@ class AdventuresController < ApplicationController
   def show
     @posts = Adventure.find(params[:id]).posts
     @adventures = Adventure.find(params[:id])
-    @last_updated = @adventure.users.order('updated_at DESC').first
     @pindrop = Gmaps4rails.build_markers(@adventures) do |adventure, marker|
       marker.lat adventure.latitude
       marker.lng adventure.longitude

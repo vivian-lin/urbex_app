@@ -1,10 +1,10 @@
 
 <div class="row">
   <div class="col-md-6">
-    <p>
-      <strong>Name:</strong>
+    <h3>
+      <strong>Adventure:</strong>
       <%= @adventure.name %>
-    </p>
+    </h3>
     <p>
       <strong>Address:</strong>
       <%= @adventure.address %>
@@ -18,12 +18,8 @@
       <%= @adventure.description %>
     </p>
     <p>
-      <strong>Last updated by:</strong>
-      <%= @last_updated.username %>
-    </p>
-    <p>
     <strong>Category:</strong>
-    <%= @adventure.category.category_name %>
+    <a href="/categories/<%=@adventure.category.id%>"><%= @adventure.category.category_name %></a>
     </p>
   </div>
 
@@ -51,10 +47,9 @@
     | <%= link_to 'Back', adventures_path %>
   </div>
   <div class="col-sm-6">
-    <h3>Adventure Posts <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %></h3>
-
-
-
+    <h3>Adventure Posts<br><h5>Share your experiences about this adventure: </h5>
+    <%= link_to 'Add New Post', new_post_path + "?adventure_id=" + @adventure.id.to_s, :class =>'btn btn-default' %></h3>
+    <br><br>
     <ul>
       <%@posts.each do |post|%>
         <li><a href="/posts/<%=post.id%>"><%=post.title%></a></li>

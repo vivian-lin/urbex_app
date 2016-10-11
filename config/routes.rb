@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   end
 
   get 'search/index'
-  get '/profile/:username' => 'profile#show'
   get '/profile' => 'profile#show'
+  get '/profile/:username' => 'profile#show'
   get '/profile/:id/profile_map_locations' => 'profile#profile_map_locations'
   get '/feed' => 'profile#feed'
 
