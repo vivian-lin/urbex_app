@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   put "admin/:id" => "admin#update"
   patch "admin/:id" => "admin#update"
 
-  devise_for :users, controllers: {registrations: 'registration', omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: {registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks"}
 
   # adding routes for socialization gem - follow/unfollow users
   resources :users do

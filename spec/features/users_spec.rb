@@ -32,6 +32,7 @@ RSpec.feature "Users", type: :feature do
         sign_up('joe@joe.com', 'joejoe', 'joejoe')
       end
       Then 'I can see my information on a profile page' do
+        click_link 'Profile'
         expect(page).to have_content('Profile')
         expect(page).to have_content('Email: joe@joe.com')
       end
@@ -44,6 +45,7 @@ RSpec.feature "Users", type: :feature do
         sign_up('joe@joe.com', 'joejoe', 'joejoe')
       end
       Then 'I am welcomed by my username and description' do
+        click_link 'Profile'
         expect(page).to have_content('Welcome, @joejoe!')
         expect(page).to have_content('I love to visit haunted places with my dog. We get scared.')
       end
@@ -96,6 +98,17 @@ RSpec.feature "Users", type: :feature do
         click_link 'Bobby_Bob'
         expect(page).to have_content("Bobby_Bob's Profile")
         expect(page).to have_content("4@test.com")
+      end
+    end
+  end
+
+  context 'Viewing my feed' do
+    Steps 'Signing in and viewing feed' do
+      Given 'I am signed up' do
+        sign_up('user@email.com', 'password', 'Username')
+      end
+      Then 'I expect to be brought to my feed' do
+        expect(page).to have_content 'My Newsfeed'
       end
     end
   end
