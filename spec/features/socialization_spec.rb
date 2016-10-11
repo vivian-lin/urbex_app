@@ -143,7 +143,7 @@ RSpec.feature 'Socialization', type: :feature do
       end
       Then 'I can go to my news feed and see all my followees posts in descending order' do
         click_link 'news feed'
-        posts = page.all('div.container ul.blogfeed section')
+        posts = page.all('div.blogPosts section')
         expect(posts[0]).to have_content 'Title3'
         expect(posts[1]).to have_content 'Title2'
         expect(posts[2]).to have_content 'Title1'
