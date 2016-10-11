@@ -66,4 +66,6 @@ class User < ActiveRecord::Base
   #   #@feed.sort_by &:created_at
   #   # default_scope -> { order(created_at: :desc) }
   # end
+
+
 end
