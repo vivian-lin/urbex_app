@@ -2,6 +2,7 @@
 function placeMakers(data) {
   markers = handler.addMarkers(data);
   handler.bounds.extendWith(markers);
+
   handler.fitMapToBounds();
 }
 
@@ -42,6 +43,7 @@ function loadAndCreateGmap() {
     });
   }
 };
+
 // Create the map when the page loads the first time
 $(document).on('ready', loadAndCreateGmap);
 // Create the map when the contents is loaded using turbolinks

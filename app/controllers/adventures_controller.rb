@@ -42,9 +42,10 @@ class AdventuresController < ApplicationController
       @adventure = Adventure.search(params[:search])
     end
     @hash = Gmaps4rails.build_markers(@adventure) do |adventure, marker|
+      info = '<strong><a class="link_orange" href="/adventures/' + adventure.id.to_s + '">' + adventure.name + '</a></strong> <br>' + adventure.address
       marker.lat adventure.latitude
       marker.lng adventure.longitude
-      marker.infowindow adventure.address
+      marker.infowindow info
     end
     render json: @hash.to_json
   end

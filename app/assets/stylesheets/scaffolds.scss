@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+.link_orange {
+  color: #ff6600;
+  font-size: 25px;
+}
 
 p, ol, ul, td {
   font-family: 'Josefin Sans', sans-serif;
@@ -25,11 +29,6 @@ pre {
 
 a {
   color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
 }
 
 div {

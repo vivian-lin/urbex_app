@@ -83,7 +83,6 @@ function loadAndCreateGmap() {
     });
   }
 };
-
 function loadAndCreateGmapForAdventures() {
   // Only load map data if we have a map on the page
   if ($('#allAdventuresMap').length > 0) {
@@ -108,5 +107,5 @@ $(document).on('ready', loadAndCreateGmapForAdventures);
 // Create the map when the page loads the first time
 $(document).on('ready', loadAndCreateGmap);
 // Create the map when the contents is loaded using turbolinks
-// To be 'turbolinks:load' in Rails 5
-$(document).on('page:load', loadAndCreateGmap);
+// // To be 'turbolinks:load' in Rails 5
+// $(document).on('page:load', loadAndCreateGmap);

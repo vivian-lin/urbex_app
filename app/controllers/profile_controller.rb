@@ -3,6 +3,12 @@ class ProfileController < ApplicationController
   def index
   end
 
+  def link_to_location_by_name
+    @adventure = Adventure.find(params[:id])
+    @adventure_name = name
+    render json: "title name".to_json
+  end
+
   def feed
     followees = current_user.followees(User)
     followees_posts = followees.map{|followee| followee.posts}
@@ -64,9 +70,10 @@ class ProfileController < ApplicationController
   def profile_map_locations
     adventures = User.find(params[:id]).adventures
     hash = Gmaps4rails.build_markers(adventures) do |adventure, marker|
+      info = '<strong><a class="link_orange" href="/adventures/' + adventure.id.to_s + '">' + adventure.name + '</a></strong> <br>' + adventure.address
       marker.lat adventure.latitude
       marker.lng adventure.longitude
-      marker.infowindow adventure.address
+      marker.infowindow info
     end
     render json: hash.to_json
   end
