@@ -70,7 +70,7 @@ class ProfileController < ApplicationController
   def profile_map_locations
     adventures = User.find(params[:id]).adventures
     hash = Gmaps4rails.build_markers(adventures) do |adventure, marker|
-      info = '<strong><a class="link_orange" href="/adventures/' + adventure.id.to_s + '">' + adventure.name + '</a></strong> <br>' + adventure.address
+      info = '<strong><a href="/adventures/' + adventure.id.to_s + '">' + adventure.name + '</a></strong> <br>' + adventure.address
       marker.lat adventure.latitude
       marker.lng adventure.longitude
       marker.infowindow info
