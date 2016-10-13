@@ -4,14 +4,18 @@
   <label>Browse by category:</label>
   <ul>
     <%@categories.each do |category|%>
-    <li><a href="/categories/<%=category.id%>" ><%=category.category_name%></a></li>
+    <li><h5><a href="/categories/<%=category.id%>" ><%=category.category_name%></a></h5></li>
     <%end%>
   </ul>
 
   <label>Search by keywords:</label>
   <form action="/adventures" method="get">
-    <input type="text" name="search" id="searchField">
-    <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
+    <div class="row">
+      <div class="">
+        <input type="text" name="search" id="searchField" >
+        <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
+      </div>
+    </div>
   </form>
 
   <h3>All Adventures</h3>
