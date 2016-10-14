@@ -3,7 +3,6 @@ function placeMakers(data) {
   markers = handler.addMarkers(data);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-  handler.getMap().setZoom(12);
 }
 
 // calls placeMakers function
@@ -23,7 +22,7 @@ function createGmap(data, selector) {
   );
 };
 
-function loadAndCreateGmap() {
+function loadAndCreateProfileGmap() {
   // Only load map data if we have a map on the page
   if ($('#profileMap').length > 0) {
     // Access the data-apartment-id attribute on the map element
@@ -45,7 +44,7 @@ function loadAndCreateGmap() {
 };
 
 // Create the map when the page loads the first time
-$(document).on('ready', loadAndCreateGmap);
+$(document).on('ready', loadAndCreateProfileGmap);
 // Create the map when the contents is loaded using turbolinks
 // To be 'turbolinks:load' in Rails 5
-$(document).on('page:load', loadAndCreateGmap);
+$(document).on('page:load', loadAndCreateProfileGmap);

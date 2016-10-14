@@ -1,28 +1,3 @@
-
-$(document).ready(function() {
-  $(".delete").on(
-    "click",
-    function() {
-      if (confirm("Are you sure you want to delete this photo?")) {
-        $(this).remove();
-        $.ajax({
-          dataType: 'json',
-          url: '/image/' + $(this).attr('id'),
-          method: 'DELETE',
-          data: '',
-          success: function(data) {
-            alert("You have deleted your photo!");
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            alert("Delete photo failed." + errorThrown );
-          }
-      });
-    }
-  });
-});
-
-
-
 //sets google zoom and places markers
 function placeMakers(data) {
   markers = handler.addMarkers(data);
@@ -101,10 +76,29 @@ function loadAndCreateGmapForAdventures() {
     });
   }
 };
-// Create the map on the locations index page
-$(document).on('ready', loadAndCreateGmapForAdventures);
-// Create the map when the page loads the first time
-$(document).on('ready', loadAndCreateGmap);
-// Create the map when the contents is loaded using turbolinks
-// // To be 'turbolinks:load' in Rails 5
-// $(document).on('page:load', loadAndCreateGmap);
+
+$(document).ready(function() {
+  // Create the map on the locations index page
+  loadAndCreateGmap();
+  // Create the map when the page loads the first time
+  loadAndCreateGmapForAdventures();
+  $(".delete").on(
+    "click",
+    function() {
+      if (confirm("Are you sure you want to delete this photo?")) {
+        $(this).remove();
+        $.ajax({
+          dataType: 'json',
+          url: '/image/' + $(this).attr('id'),
+          method: 'DELETE',
+          data: '',
+          success: function(data) {
+            alert("You have deleted your photo!");
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert("Delete photo failed." + errorThrown );
+          }
+      });
+    }
+  });
+});

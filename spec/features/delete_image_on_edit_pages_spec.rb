@@ -54,7 +54,7 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Abandoned'
-        expect(page).to have_selector('img', :count => 2)
+        expect(page).to have_selector('img', :count => 6)
       end # ends then
       Then 'I can edit my post by deleting my photos' do
         click_link 'Edit'
@@ -71,7 +71,7 @@ RSpec.feature "DeleteImageOnEditPages", js: true,  type: :feature do
         expect(page).to have_content 'adventure_directions'
         expect(page).to have_content 'adventure_description'
         expect(page).to have_content 'Abandoned'
-        expect(page).to have_selector('img', :count => 1)
+        expect(page).to have_selector('img', :count => 5)
       end # ends then
     end # ends steps
   end # ends context
