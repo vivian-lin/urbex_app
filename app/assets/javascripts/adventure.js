@@ -28,7 +28,6 @@ function placeMakers(data) {
   markers = handler.addMarkers(data);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-  handler.getMap().setZoom(12);
 }
 // calls placeMakers function
 function showLocations(data) {
