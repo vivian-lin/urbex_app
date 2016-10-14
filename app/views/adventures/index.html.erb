@@ -8,17 +8,33 @@
     <%end%>
   </ul>
 
-  <label>Search by keywords:</label>
-  <form action="/adventures" method="get">
-    <div class="row">
-      <div class="">
-        <input type="text" name="search" id="searchField" >
-        <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
-      </div>
-    </div>
-  </form>
+      <label>Search by keywords:</label>
+      <form action="/adventures" method="get">
+        <div class="row">
+          <div class="">
+            <input type="text" name="search" id="searchField" >
+            <input class='btn btn-sm btn-default' type="submit" value="Search" id="searchBtn">
+          </div>
+        </div>
+      </form>
 
-  <h3>All Adventures</h3>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+
+      <h3>All Adventures</h3>
+
+    </div>
+    <br>
+
+    <div class="col-sm-6 text-right">
+      <% if !current_user.nil? %>
+      <%= link_to 'Add New Adventure', new_adventure_path, :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+
   <table class="table">
     <thead>
       <tr>
@@ -68,9 +84,6 @@
   </table>
 
   <hr>
-  <% if !current_user.nil? %>
-  <%= link_to 'Add New Adventure', new_adventure_path, :class => "btn btn-default" %>
-  <% end %>
   <br>
   <br>
   <!-- Map starts -->
